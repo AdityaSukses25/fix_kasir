@@ -15,7 +15,11 @@ $('#inputGender').on('change', function () {
           )
           $.each(data, function (key, therapist) {
             $('select[name="therapist_id"]').append(
-              '<option value="' + key + '">' + therapist.nickname + '</option>',
+              '<option value="' +
+                therapist.id +
+                '">' +
+                therapist.nickname +
+                '</option>',
             )
           })
         } else {
@@ -53,4 +57,27 @@ $('#discount').on('change', function () {
   var disc = $('#discount').val()
   var total = price - (price * disc) / 100
   $('#summary').val(total)
+})
+
+// jam
+window.setTimeout('waktu()', 1000)
+
+function waktu() {
+  var waktu = new Date()
+  setTimeout('waktu()', 1000)
+  h = waktu.getHours()
+  m = waktu.getMinutes()
+  s = waktu.getSeconds()
+  x = h
+
+  var time = x + ' : ' + m + ' : ' + s
+  document.getElementById('jam').innerHTML = time
+}
+
+$('#inputMassage').on('change', function () {
+  var timeNow = moment()
+  var time = $('#time').val()
+  $('#start_service').val(timeNow.format('H:mm:ss'))
+  var end_service = timeNow.add(time, 'minute')
+  $('#end_service').val(end_service.format('H:mm:ss'))
 })

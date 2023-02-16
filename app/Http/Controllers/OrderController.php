@@ -9,6 +9,7 @@ use App\Models\Therapist;
 use App\Models\Discount;
 use App\Models\Service;
 use App\Models\Order;
+use App\Models\User;
 
 class OrderController extends Controller
 {
@@ -21,6 +22,8 @@ class OrderController extends Controller
             'therapists' => Therapist::all(),
             'discounts' => Discount::all(),
             'massages' => Service::all(),
+            'users' => User::all(),
+            'orders' => Order::all(),
         ]);
     }
 
@@ -31,26 +34,28 @@ class OrderController extends Controller
         return response()->json($terapists);
     }
 
-    public function store(Request $request)
+    public function storeOrder(Request $request)
     {
         $validatedData = $request->validate([
-            // 'service_id' => 'required',
-            // 'therapist_id' => 'required',
-            // 'place_id' => 'required',
-            // 'discount_id' => 'required',
-            'cust_name' => 'required|min:5',
-            // 'phone' => 'required',
-            // 'time' => 'required',
-            // 'price' => 'required',
-            // 'payment_method' => 'required',
-            // 'description' => 'required',
-            // 'summary' => 'required',
+            'service_id' => 'required',
+            'therapist_id' => 'required',
+            'place_id' => 'required',
+            'discount_id' => 'required',
+            'cust_name' => 'required',
+            'phone' => 'required',
+            'time' => 'required',
+            'price' => 'required',
+            'start_service' => 'required',
+            'end_service' => 'required',
+            'payment_method' => 'required',
+            'description' => 'required',
+            'summary' => 'required',
         ]);
 
-        // $validatedData['reception_id'] = auth()->user()->id;
+        $validatedData['reception_id'] = auth()->user()->id;
 
         Order::create($validatedData);
 
-        return Redirect('/order', 'Data has been added!');
+        return Redirect('/order')->with('success', 'Data has been added!');
     }
 }

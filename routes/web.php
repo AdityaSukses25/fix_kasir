@@ -122,5 +122,4 @@ Route::get(
     '/getTherapist/{id}',
     'App\Http\Controllers\OrderController@therapist'
 );
-// live search route
-Route::post('/order/create', 'App\Http\Controllers\OrderController@store');
+Route::post('/order/create', 'App\Http\Controllers\OrderController@storeOrder');

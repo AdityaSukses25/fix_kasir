@@ -15,19 +15,21 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('reception_id');
-            // $table->foreignId('service_id');
-            // $table->foreignId('therapist_id');
-            // $table->foreignId('place_id');
-            // $table->foreignId('discount_id');
+            $table->foreignId('reception_id');
+            $table->foreignId('service_id');
+            $table->foreignId('therapist_id');
+            $table->foreignId('place_id');
+            $table->foreignId('discount_id');
             $table->string('cust_name');
-            // $table->bigInteger('phone');
-            // $table->integer('time');
-            // $table->integer('price');
-            // $table->string('payment_method');
-            // $table->string('description');
-            // $table->string('summary');
+            $table->bigInteger('phone');
+            $table->integer('time');
+            $table->integer('price');
+            $table->string('payment_method');
+            $table->string('description');
+            $table->string('summary');
             $table->timestamps();
+            $table->time('start_service');
+            $table->time('end_service');
         });
     }
 
