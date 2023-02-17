@@ -32,7 +32,7 @@ $('#inputGender').on('change', function () {
   }
 })
 
-// autofill
+// autofill service
 function selectMassage() {
   let select = document.getElementById('inputMassage')
   let time = document.getElementById('time')
@@ -50,9 +50,24 @@ function selectMassage() {
   }
 }
 
+// autofill discount
+function selectDiscount() {
+  let select = document.getElementById('inputDiscount')
+  let id = document.getElementById('discount_id')
+  let discount = document.getElementById('discount')
+
+  if (select.value === 'default') {
+    id.value = ''
+    discount.value = ''
+  } else {
+    id.value = JSON.parse(select.value).id
+    discount.value = JSON.parse(select.value).discount
+  }
+}
+
 // summary
 // total summary
-$('#discount').on('change', function () {
+$('#inputDiscount').on('change', function () {
   var price = $('#price').val()
   var disc = $('#discount').val()
   var total = price - (price * disc) / 100

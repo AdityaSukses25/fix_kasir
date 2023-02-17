@@ -126,10 +126,30 @@
                         <!-- time -->
                         <div class="row mb-3">
                           <label for="time" class="col-md-4 col-form-label text-md-end">Time Duration</label>
-                            <div class="col-md-8">
+                            <div class="col-md-2">
                               <input id="time" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" readonly>
 
                                 @error('time')
+                                  <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
+                            </div>
+                            <!-- start -->
+                            <div class="col-md-3">
+                              <input id="start_service" type="text" class="form-control @error('start_service') is-invalid @enderror" name="start_service" value="{{ old('start_service') }}" required autocomplete="start_service" placeholder="start" readonly>
+
+                                  @error('start_service')
+                                    <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+
+                            </div>
+                            <div class="col-md-3">
+                              <input id="end_service" type="text" class="form-control @error('end_service') is-invalid @enderror" name="end_service" value="{{ old('end_service') }}" required autocomplete="end_service" placeholder="end" readonly>
+
+                                @error('end_service')
                                   <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                   </span>
@@ -150,46 +170,20 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <!-- star service time-->
-                        
-                        <div class="row mb-3">
-                          <label for="start_service" class="col-md-4 col-form-label text-md-start">start_service</label>
-                            <div class="col-md-8">
-                              <input id="start_service" type="text" class="form-control @error('start_service') is-invalid @enderror" name="start_service" value="{{ old('start_service') }}" required autocomplete="start_service" readonly>
-
-                                @error('start_service')
-                                  <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                  </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <!-- end service time -->
-                        <div class="row mb-3">
-                          <label for="end_service" class="col-md-4 col-form-label text-md-end">end_service</label>
-                            <div class="col-md-8">
-                              <input id="end_service" type="text" class="form-control @error('end_service') is-invalid @enderror" name="end_service" value="{{ old('end_service') }}" required autocomplete="end_service" readonly>
-
-                                @error('end_service')
-                                  <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                  </span>
-                                @enderror
-                            </div>
-                        </div>
-
+                    
                         <!-- discount -->
                         <div class="row mb-3">
                           <label for="discount_id" class="col-md-4 col-form-label text-md-end">Discount</label>
                           <div class="col-md-8">
-                              <select id="discount" class="form-control custom-select" name="discount_id">
+                              <select id="inputDiscount" class="form-control custom-select" onchange="selectDiscount()">
                                               <option value="" selected disabled>Select discount...</option>
                                                   @foreach( $discounts as $discount)                                    
-                                                  <option value="{{$discount->id}}">{{$discount->discount}}</option>
+                                                  <option value="{{$discount}}">{{$discount->discount}}</option>
                                                   @endforeach
                                               
                               </select>
+                              <input type="hidden" id="discount_id" name="discount_id">
+                              <input type="hidden" id="discount">
                           </div>
                         </div>
 

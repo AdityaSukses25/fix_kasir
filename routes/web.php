@@ -123,3 +123,6 @@ Route::get(
     'App\Http\Controllers\OrderController@therapist'
 );
 Route::post('/order/create', 'App\Http\Controllers\OrderController@storeOrder');
+
+// customer
+Route::get('/customer', 'App\Http\Controllers\CustomerController@index');

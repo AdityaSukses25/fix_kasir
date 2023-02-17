@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/customer" class="nav-link">
             <i class="nav-icon fas fa-solid fa-user"></i>
               <p>
                 Customers
