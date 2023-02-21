@@ -55,7 +55,6 @@ function selectDiscount() {
   let select = document.getElementById('inputDiscount')
   let id = document.getElementById('discount_id')
   let discount = document.getElementById('discount')
-
   if (select.value === 'default') {
     id.value = ''
     discount.value = ''
@@ -75,24 +74,24 @@ $('#inputDiscount').on('change', function () {
 })
 
 // jam
-window.setTimeout('waktu()', 1000)
-
-function waktu() {
-  var waktu = new Date()
-  setTimeout('waktu()', 1000)
-  h = waktu.getHours()
-  m = waktu.getMinutes()
-  s = waktu.getSeconds()
-  x = h
-
-  var time = x + ' : ' + m + ' : ' + s
+const timeNow = setInterval(function () {
+  const time = moment().format('H:mm:ss')
   document.getElementById('jam').innerHTML = time
-}
+}, 1000)
 
 $('#inputMassage').on('change', function () {
-  var timeNow = moment()
-  var time = $('#time').val()
-  $('#start_service').val(timeNow.format('H:mm:ss'))
-  var end_service = timeNow.add(time, 'minute')
-  $('#end_service').val(end_service.format('H:mm:ss'))
+  setInterval(function () {
+    var timeNow = moment()
+    var time = $('#time').val()
+    $('#start_service').val(timeNow.format('H:mm:ss'))
+    var end_service = timeNow.add(time, 'minute')
+    $('#end_service').val(end_service.format('H:mm:ss'))
+    $('#date_service').val(timeNow.format('YYYY-D-MM'))
+  }, 1000)
+})
+
+$(document).ready(function () {
+  setInterval(function () {
+    $('#table-view').load('/order #table-view > *')
+  }, 500)
 })

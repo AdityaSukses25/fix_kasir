@@ -10,11 +10,13 @@ use App\Models\Discount;
 use App\Models\Service;
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class OrderController extends Controller
 {
     public function index()
     {
+        $timeNow = Carbon::now('Asia/Makassar')->format('H:i:s');
         return view('dashboard.order.index', [
             'title' => 'Order',
             'genders' => Gender::all(),
@@ -24,6 +26,12 @@ class OrderController extends Controller
             'massages' => Service::all(),
             'users' => User::all(),
             'orders' => Order::all(),
+            'now' => $timeNow,
+            Order::where('end_service', '<', $timeNow)
+                ->where('status', '=', 'on going')
+                ->update([
+                    'status' => 'success',
+                ]),
         ]);
     }
 
@@ -53,6 +61,7 @@ class OrderController extends Controller
         ]);
 
         $validatedData['reception_id'] = auth()->user()->id;
+        $validatedData['status'] = 'on going';
 
         Order::create($validatedData);
 

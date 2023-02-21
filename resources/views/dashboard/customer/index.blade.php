@@ -47,7 +47,7 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editTerapist btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editTerapist"  >
+                              <button type="button" class="editCustomer btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editCustomer" data-bs-id="{{$customer->id}}"  data-bs-name="{{$customer->cust_name}}" data-bs-phone="{{$customer->phone}}" data-bs-service="{{$customer->service->massage}}" data-bs-therapist="{{$customer->therapist->name}}" data-bs-place="{{$customer->place->place}}" data-bs-time="{{$customer->service->time}}" data-bs-price="{{$customer->service->price}}" data-bs-discount="{{$customer->discount->discount}}" data-bs-payment="{{$customer->payment_method}}" data-bs-description="{{$customer->description}}" data-bs-summary="{{$customer->summary}}" data-bs-create_at="{{$customer->created_at->diffForHumans()}}">
                               <i class="fa fa-edit"></i>
                               </button>
       
@@ -77,11 +77,11 @@
       <div class="container-fluid">
     
         <!-- modal edit --> 
-        <div class="modal fade" id="editTerapist">
+        <div class="modal fade" id="editCustomer">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Edit Therapist</h4>
+                  <h4 class="modal-title">Customer</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -106,14 +106,14 @@
                                       </div>
                                   </div>
 
-                                  <!-- nickname -->
+                                  <!-- phone -->
                                   <div class="row mb-3">
-                                      <label for="nickname" class="col-md-4 col-form-label text-md-end">Nickname</label>
+                                      <label for="phone" class="col-md-4 col-form-label text-md-end">phone</label>
 
                                       <div class="col-md-8">
-                                          <input id="editNickname" type="text" class="form-control @error('nickname') is-invalid @enderror" name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
+                                          <input id="editphone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                                          @error('nickname')
+                                          @error('phone')
                                               <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                               </span>
@@ -121,14 +121,14 @@
                                       </div>
                                   </div>
 
-                                  <!-- phone -->
+                                  <!-- service -->
                                   <div class="row mb-3">
-                                      <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
+                                      <label for="service" class="col-md-4 col-form-label text-md-end">service</label>
 
                                       <div class="col-md-8">
-                                          <input id="editPhone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                          <input id="editservice" type="text" class="form-control @error('service') is-invalid @enderror" name="service" value="{{ old('service') }}" required autocomplete="service" autofocus>
 
-                                          @error('phone')
+                                          @error('service')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>
@@ -137,14 +137,14 @@
                                   </div>
 
                                   
-                                  <!-- kehadiran -->
+                                  <!-- therapist -->
                                   <div class="row mb-3">
-                                      <label for="presence" class="col-md-4 col-form-label text-md-end">Presence</label>
+                                      <label for="therapist" class="col-md-4 col-form-label text-md-end">therapist</label>
 
                                       <div class="col-md-8">
-                                          <input id="editPresence" type="text" class="form-control @error('presence') is-invalid @enderror" name="presence" value="{{ old('presence') }}" required autocomplete="presence" autofocus>
+                                          <input id="edittherapist" type="text" class="form-control @error('therapist') is-invalid @enderror" name="therapist" value="{{ old('therapist') }}" required autocomplete="therapist" autofocus>
 
-                                          @error('presence')
+                                          @error('therapist')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>
@@ -152,14 +152,119 @@
                                       </div>
                                   </div>
 
-                                  <!-- commision -->
+                                  <!-- place -->
                                   <div class="row mb-3">
-                                      <label for="commision" class="col-md-4 col-form-label text-md-end">Commision</label>
+                                      <label for="place" class="col-md-4 col-form-label text-md-end">place</label>
 
                                       <div class="col-md-8">
-                                          <input id="editCommision" type="text" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
+                                          <input id="editplace" type="text" class="form-control @error('place') is-invalid @enderror" name="place" value="{{ old('place') }}" required autocomplete="place" autofocus>
 
-                                          @error('commision')
+                                          @error('place')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- time -->
+                                  <div class="row mb-3">
+                                      <label for="time" class="col-md-4 col-form-label text-md-end">time</label>
+
+                                      <div class="col-md-8">
+                                          <input id="edittime" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" autofocus>
+
+                                          @error('time')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- price -->
+                                  <div class="row mb-3">
+                                      <label for="price" class="col-md-4 col-form-label text-md-end">price</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editprice" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+
+                                          @error('price')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- discount -->
+                                  <div class="row mb-3">
+                                      <label for="discount" class="col-md-4 col-form-label text-md-end">discount</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editdiscount" type="text" class="form-control @error('discount') is-invalid @enderror" name="discount" value="{{ old('discount') }}" required autocomplete="discount" autofocus>
+
+                                          @error('discount')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- payment method -->
+                                  <div class="row mb-3">
+                                      <label for="payment" class="col-md-4 col-form-label text-md-end">payment</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editpayment" type="text" class="form-control @error('payment') is-invalid @enderror" name="payment" value="{{ old('payment') }}" required autocomplete="payment" autofocus>
+
+                                          @error('payment')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- description -->
+                                  <div class="row mb-3">
+                                      <label for="description" class="col-md-4 col-form-label text-md-end">description</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editdescription" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+
+                                          @error('description')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- summary -->
+                                  <div class="row mb-3">
+                                      <label for="summary" class="col-md-4 col-form-label text-md-end">summary</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editsummary" type="text" class="form-control @error('summary') is-invalid @enderror" name="summary" value="{{ old('summary') }}" required autocomplete="summary" autofocus>
+
+                                          @error('summary')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- create at -->
+                                  <div class="row mb-3">
+                                      <label for="create" class="col-md-4 col-form-label text-md-end">create</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editcreate" type="text" class="form-control @error('create') is-invalid @enderror" name="create" value="{{ old('create') }}" required autocomplete="create" autofocus>
+
+                                          @error('create')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>
@@ -172,7 +277,6 @@
                               </div>
                               <div class="modal-footer justify-content-end">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
                               </div>
                   </form>
                 </div>
@@ -189,6 +293,6 @@
     
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="/js/therapist.js"></script>
+<script src="/js/customer.js"></script>
     
 @endsection

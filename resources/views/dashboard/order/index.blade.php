@@ -146,6 +146,7 @@
                                   @enderror
 
                             </div>
+                            <!-- end -->
                             <div class="col-md-3">
                               <input id="end_service" type="text" class="form-control @error('end_service') is-invalid @enderror" name="end_service" value="{{ old('end_service') }}" required autocomplete="end_service" placeholder="end" readonly>
 
@@ -155,6 +156,7 @@
                                   </span>
                                 @enderror
                             </div>
+
                         </div>
 
                         <!-- price -->
@@ -266,7 +268,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" style="height: 590px;">
-                  <table class="table  table-head-fixed text-nowrap">
+                  <table id='table-view' class="table  table-head-fixed text-nowrap">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -278,22 +280,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach( $orders as $order)
-                        @if( $order->id = 0)
-                        <tr>
-                          <td><div class="session text-center">No service yet right now</div></td>
-                        </tr>
-                        @else
-                        <tr>
-                          <td>{{ $loop->iteration }}</td>
-                          <td><a href="/customer">{{ $order->cust_name }}</a> </td>
-                          <td class="text-capitalize">{{ $order->therapist->nickname }}</td>
-                          <td>{{ $order->start_service }}</td>
-                          <td>{{ $order->end_service }}</td>
-                          <td><span class="badge badge-warning">on going...</span></td>
-                        </tr>
-                        @endif
-                      @endforeach
+                      
+                      @if($orders->count())
+                          @foreach( $orders as $order)
+                          <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td><a href="/customer">{{ $order->cust_name }}</a> </td>
+                            <td class="text-capitalize">{{ $order->therapist->nickname }}</td>
+                            <td>{{ $order->start_service }}</td>
+                            <td><div class="endTime" id="end_time" data-bs-now="{{$order->created_at}}" data-bs-id="{{$order->id}}" data-bs-val="{{$order->end_service}}">{{ $order->end_service }}</div></td>
+                            @if($order->status === 'on going')
+                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-warning">on going...</span></td>
+                            @else
+                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-success">success</span></td>
+                            @endif
+                                              
+                          </tr>
+
+                          @endforeach
+                      @else
+                      <tr>
+                        <td colspan="7"><div class="session text-center">No service yet right now!</div></td>
+                      </tr>
+                      @endif
                     </tbody>
                   </table>
                 </div>

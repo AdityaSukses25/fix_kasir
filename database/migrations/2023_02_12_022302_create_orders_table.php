@@ -30,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->timestamps();
             $table->time('start_service');
             $table->time('end_service');
+            $table->string('status');
         });
     }
 
