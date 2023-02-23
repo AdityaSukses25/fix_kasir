@@ -16,7 +16,7 @@
                 Add Data</li>
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" data-target="#addService" data-toggle="modal">Add Therapist</a>
+                <a class="dropdown-item" href="#" data-target="#addService" data-toggle="modal">Add Massage</a>
                 <a class="dropdown-item" href="#" data-target="#addPlace" data-toggle="modal">Add Place</a>
                 <a class="dropdown-item" href="#" data-target="#addDiscount" data-toggle="modal">Add Discount</a>
               </div>
@@ -50,7 +50,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{ $massage->massage }}</td>
                         <td>{{ $massage->time }}</td>
-                        <td>{{ $massage->price }}</td>
+                        <td>{{ Str::rupiah($massage->price) }}</td>
                         <td>
                           <div class="row">
                             <div class="col-md-6">

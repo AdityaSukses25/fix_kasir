@@ -7,6 +7,7 @@ $('.editTerapist').click(function () {
   var gender = $(this).attr('data-bs-gender')
   var kehadiran = $(this).attr('data-bs-kehadiran')
   var komisi = $(this).attr('data-bs-komisi')
+  var attend = $(this).attr('data-bs-attend')
   $('#terapist_id').val(terapist_id)
   $('#editName').val(name)
   $('#editNickname').val(nickname)
@@ -14,6 +15,7 @@ $('.editTerapist').click(function () {
   $('#editPresence').val(kehadiran)
   $('#editCommision').val(komisi)
   $('#editGender').val(gender)
+  $('#editAttend').val(attend)
 })
 
 $('.delete').click(function () {

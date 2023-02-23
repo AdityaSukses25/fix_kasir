@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'nickname' => 'rai',
             'phone' => '08311401437',
             'gender_id' => '2',
+            'status' => '1',
             'presence' => '30000',
             'commision' => '20000',
         ]);
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
             'nickname' => 'adit',
             'phone' => '08311401437',
             'gender_id' => '1',
+            'status' => '0',
             'presence' => '30000',
             'commision' => '25000',
         ]);

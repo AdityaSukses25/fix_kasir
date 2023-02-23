@@ -96,6 +96,9 @@
                                               
                               </select>
                             </div>
+                            @foreach($orders as $order)
+                            <div id="orderSukses" class="orderSukses"  data-bs-orderSukses="{{$order->therapist_id}}" data-bs-id="{{$order->id}}"></div>
+                            @endforeach
 
                             <!-- therapist name -->
                             <div class="col-md-5">
@@ -252,17 +255,14 @@
                   <h3 class="card-title">Services on going</h3>
 
                   <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 250px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                          </button>
+                    
+                    <div class="input-group input-group-sm mt-2" style="width: ;">
+                      
+                                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                      </button>
+                
+                  
                     </div>
                   </div>
                 </div>
@@ -290,9 +290,9 @@
                             <td>{{ $order->start_service }}</td>
                             <td><div class="endTime" id="end_time" data-bs-now="{{$order->created_at}}" data-bs-id="{{$order->id}}" data-bs-val="{{$order->end_service}}">{{ $order->end_service }}</div></td>
                             @if($order->status === 'on going')
-                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-warning">on going...</span></td>
+                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-warning">On going...</span></td>
                             @else
-                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-success">success</span></td>
+                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-success">Finish</span></td>
                             @endif
                                               
                           </tr>

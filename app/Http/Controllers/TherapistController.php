@@ -28,6 +28,8 @@ class TherapistController extends Controller
             'commision' => 'required',
         ]);
 
+        $validatedData['status'] = 1;
+
         Therapist::create($validatedData);
 
         return Redirect('/therapist')->with(
@@ -43,6 +45,7 @@ class TherapistController extends Controller
         $updateTerapist->nickname = $request->nickname;
         $updateTerapist->gender_id = $request->gender_id;
         $updateTerapist->phone = $request->phone;
+        $updateTerapist->status = $request->status;
         $updateTerapist->presence = $request->presence;
         $updateTerapist->commision = $request->commision;
         $updateTerapist->save();

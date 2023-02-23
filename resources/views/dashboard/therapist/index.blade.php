@@ -33,6 +33,7 @@
                       <th >Name</th>
                       <th >Nickname</th>
                       <th >Phone</th>
+                      <th >Status</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
@@ -44,9 +45,16 @@
                         <td>{{ $terapist->nickname }}</td>
                         <td>{{ $terapist->phone }}</td>
                         <td>
+                          @if ($terapist->status == 1)
+                            <span class="badge badge-success">Active</span>
+                          @else
+                            <span class="badge badge-danger">Off</span>
+                          @endif
+                        </td>
+                        <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editTerapist btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}">
+                              <button type="button" class="editTerapist btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
@@ -265,6 +273,18 @@
                                           @foreach ($genders as $gender)                                        
                                               <option value="{{ $gender->id }}">{{ $gender->gender }}</option>
                                           @endforeach
+                                        </select>
+                                      </div>
+                                  </div>
+
+                                  <!-- attend -->
+                                  <div class="row mb-3">
+                                      <label for="attend" class="col-md-4 col-form-label text-md-end">Attended</label>
+                                      <div class="col-8">
+                                        <select id="editAttend" class="form-control custom-select" name="status">
+                                          <option value="" selected disabled>Select attended...</option>
+                                              <option value="0">Off</option>
+                                              <option value="1">Active</option>
                                         </select>
                                       </div>
                                   </div>

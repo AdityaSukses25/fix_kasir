@@ -20,12 +20,6 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home', [
-//         'title' => 'Home',
-//     ]);
-// });
-
 // login
 Route::get('/', [LoginController::class, 'index'])
     ->name('login')
@@ -126,3 +120,14 @@ Route::post('/order/create', 'App\Http\Controllers\OrderController@storeOrder');
 
 // customer
 Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
+
+// report
+Route::get('/report', 'App\Http\Controllers\ReportController@index');
+Route::get(
+    '/report/{dateStart}/{dateEnd}',
+    'App\Http\Controllers\ReportController@perDate'
+);
+Route::post(
+    '/reportSearch',
+    'App\Http\Controllers\ReportController@searchDate'
+);

@@ -9,9 +9,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="#" data-target="#addTerapist" data-toggle="modal">
-                <li class="breadcrumb-item"><i class="fa fa-plus"></i>  Add Therapist</li>
-              </a>
+        
               
             </ol>
           </div><!-- /.col -->
@@ -47,7 +45,7 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editCustomer btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editCustomer" data-bs-id="{{$customer->id}}"  data-bs-name="{{$customer->cust_name}}" data-bs-phone="{{$customer->phone}}" data-bs-service="{{$customer->service->massage}}" data-bs-therapist="{{$customer->therapist->name}}" data-bs-place="{{$customer->place->place}}" data-bs-time="{{$customer->service->time}}" data-bs-price="{{$customer->service->price}}" data-bs-discount="{{$customer->discount->discount}}" data-bs-payment="{{$customer->payment_method}}" data-bs-description="{{$customer->description}}" data-bs-summary="{{$customer->summary}}" data-bs-create_at="{{$customer->created_at->diffForHumans()}}">
+                              <button type="button" class="editCustomer btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editCustomer" data-bs-id="{{$customer->id}}"  data-bs-name="{{$customer->cust_name}}" data-bs-phone="{{$customer->phone}}" data-bs-service="{{$customer->service->massage}}" data-bs-therapist="{{$customer->therapist->name}}" data-bs-place="{{$customer->place->place}}" data-bs-time="{{$customer->service->time}}" data-bs-price="{{$customer->service->price}}" data-bs-discount="{{$customer->discount->discount}}" data-bs-payment="{{$customer->payment_method}}" data-bs-description="{{$customer->description}}" data-bs-summary="{{$customer->summary}}" data-bs-reception="{{$customer->reception->name}}" data-bs-create_at="{{$customer->created_at->format('Y-m-d')}}" data-bs-start="{{$customer->start_service}}" data-bs-end="{{$customer->end_service}}" data-bs-status="{{$customer->status}}">
                               <i class="fa fa-edit"></i>
                               </button>
       
@@ -88,7 +86,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="card-body">
-                    <form action="/therapist/edit/{{ $customer->id }}" method="post">
+                    <form action="" method="post">
                       @method('put')
                       @csrf
                                   <!-- name -->
@@ -108,7 +106,7 @@
 
                                   <!-- phone -->
                                   <div class="row mb-3">
-                                      <label for="phone" class="col-md-4 col-form-label text-md-end">phone</label>
+                                      <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
 
                                       <div class="col-md-8">
                                           <input id="editphone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
@@ -123,7 +121,7 @@
 
                                   <!-- service -->
                                   <div class="row mb-3">
-                                      <label for="service" class="col-md-4 col-form-label text-md-end">service</label>
+                                      <label for="service" class="col-md-4 col-form-label text-md-end">Service</label>
 
                                       <div class="col-md-8">
                                           <input id="editservice" type="text" class="form-control @error('service') is-invalid @enderror" name="service" value="{{ old('service') }}" required autocomplete="service" autofocus>
@@ -139,7 +137,7 @@
                                   
                                   <!-- therapist -->
                                   <div class="row mb-3">
-                                      <label for="therapist" class="col-md-4 col-form-label text-md-end">therapist</label>
+                                      <label for="therapist" class="col-md-4 col-form-label text-md-end">Therapist</label>
 
                                       <div class="col-md-8">
                                           <input id="edittherapist" type="text" class="form-control @error('therapist') is-invalid @enderror" name="therapist" value="{{ old('therapist') }}" required autocomplete="therapist" autofocus>
@@ -154,7 +152,7 @@
 
                                   <!-- place -->
                                   <div class="row mb-3">
-                                      <label for="place" class="col-md-4 col-form-label text-md-end">place</label>
+                                      <label for="place" class="col-md-4 col-form-label text-md-end">Room</label>
 
                                       <div class="col-md-8">
                                           <input id="editplace" type="text" class="form-control @error('place') is-invalid @enderror" name="place" value="{{ old('place') }}" required autocomplete="place" autofocus>
@@ -169,7 +167,7 @@
 
                                   <!-- time -->
                                   <div class="row mb-3">
-                                      <label for="time" class="col-md-4 col-form-label text-md-end">time</label>
+                                      <label for="time" class="col-md-4 col-form-label text-md-end">Time duration</label>
 
                                       <div class="col-md-8">
                                           <input id="edittime" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" autofocus>
@@ -184,7 +182,7 @@
 
                                   <!-- price -->
                                   <div class="row mb-3">
-                                      <label for="price" class="col-md-4 col-form-label text-md-end">price</label>
+                                      <label for="price" class="col-md-4 col-form-label text-md-end">Price</label>
 
                                       <div class="col-md-8">
                                           <input id="editprice" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
@@ -199,7 +197,7 @@
 
                                   <!-- discount -->
                                   <div class="row mb-3">
-                                      <label for="discount" class="col-md-4 col-form-label text-md-end">discount</label>
+                                      <label for="discount" class="col-md-4 col-form-label text-md-end">Discount</label>
 
                                       <div class="col-md-8">
                                           <input id="editdiscount" type="text" class="form-control @error('discount') is-invalid @enderror" name="discount" value="{{ old('discount') }}" required autocomplete="discount" autofocus>
@@ -214,7 +212,7 @@
 
                                   <!-- payment method -->
                                   <div class="row mb-3">
-                                      <label for="payment" class="col-md-4 col-form-label text-md-end">payment</label>
+                                      <label for="payment" class="col-md-4 col-form-label text-md-end">Payment method</label>
 
                                       <div class="col-md-8">
                                           <input id="editpayment" type="text" class="form-control @error('payment') is-invalid @enderror" name="payment" value="{{ old('payment') }}" required autocomplete="payment" autofocus>
@@ -229,7 +227,7 @@
 
                                   <!-- description -->
                                   <div class="row mb-3">
-                                      <label for="description" class="col-md-4 col-form-label text-md-end">description</label>
+                                      <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
 
                                       <div class="col-md-8">
                                           <input id="editdescription" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
@@ -244,7 +242,7 @@
 
                                   <!-- summary -->
                                   <div class="row mb-3">
-                                      <label for="summary" class="col-md-4 col-form-label text-md-end">summary</label>
+                                      <label for="summary" class="col-md-4 col-form-label text-md-end">Summary</label>
 
                                       <div class="col-md-8">
                                           <input id="editsummary" type="text" class="form-control @error('summary') is-invalid @enderror" name="summary" value="{{ old('summary') }}" required autocomplete="summary" autofocus>
@@ -257,14 +255,74 @@
                                       </div>
                                   </div>
 
+                                  <!-- reception -->
+                                  <div class="row mb-3">
+                                      <label for="receptionist" class="col-md-4 col-form-label text-md-end">Receptionist</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editreceptionist" type="text" class="form-control @error('receptionist') is-invalid @enderror" name="receptionist" value="{{ old('receptionist') }}" required autocomplete="receptionist" autofocus>
+
+                                          @error('receptionist')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
                                   <!-- create at -->
                                   <div class="row mb-3">
-                                      <label for="create" class="col-md-4 col-form-label text-md-end">create</label>
+                                      <label for="create" class="col-md-4 col-form-label text-md-end">Create at</label>
 
                                       <div class="col-md-8">
                                           <input id="editcreate" type="text" class="form-control @error('create') is-invalid @enderror" name="create" value="{{ old('create') }}" required autocomplete="create" autofocus>
 
                                           @error('create')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- start -->
+                                  <div class="row mb-3">
+                                      <label for="start" class="col-md-4 col-form-label text-md-end">Start at</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editstart" type="text" class="form-control @error('start') is-invalid @enderror" name="start" value="{{ old('start') }}" required autocomplete="start" autofocus>
+
+                                          @error('start')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- end -->
+                                  <div class="row mb-3">
+                                      <label for="end" class="col-md-4 col-form-label text-md-end">End</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editend" type="text" class="form-control @error('end') is-invalid @enderror" name="end" value="{{ old('end') }}" required autocomplete="end" autofocus>
+
+                                          @error('end')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- status -->
+                                  <div class="row mb-3">
+                                      <label for="status" class="col-md-4 col-form-label text-md-end">Status</label>
+
+                                      <div class="col-md-8">
+                                          <input id="editstatus" type="text" class="form-control @error('status') is-invalid @enderror text-capitalize" name="status" value="{{ old('status') }}" required autocomplete="status" autofocus>
+
+                                          @error('status')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>

@@ -14,13 +14,15 @@ $('#inputGender').on('change', function () {
             '<option hidden>-- Choose therapist --</option>',
           )
           $.each(data, function (key, therapist) {
-            $('select[name="therapist_id"]').append(
-              '<option value="' +
-                therapist.id +
-                '">' +
-                therapist.nickname +
-                '</option>',
-            )
+            if (therapist.status == '1') {
+              $('select[name="therapist_id"]').append(
+                '<option value="' +
+                  therapist.id +
+                  '">' +
+                  therapist.nickname +
+                  '</option>',
+              )
+            }
           })
         } else {
           $('#inputTherapist').empty()
@@ -74,8 +76,8 @@ $('#inputDiscount').on('change', function () {
 })
 
 // jam
-const timeNow = setInterval(function () {
-  const time = moment().format('H:mm:ss')
+setInterval(function () {
+  const time = moment().format('HH:mm:ss')
   document.getElementById('jam').innerHTML = time
 }, 1000)
 
@@ -86,7 +88,6 @@ $('#inputMassage').on('change', function () {
     $('#start_service').val(timeNow.format('H:mm:ss'))
     var end_service = timeNow.add(time, 'minute')
     $('#end_service').val(end_service.format('H:mm:ss'))
-    $('#date_service').val(timeNow.format('YYYY-D-MM'))
   }, 1000)
 })
 

@@ -11,6 +11,14 @@ class Order extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = [
+        'reception',
+        'service',
+        'therapist',
+        'place',
+        'discount',
+    ];
+
     public function reception()
     {
         return $this->belongsTo(User::class);

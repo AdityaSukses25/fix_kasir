@@ -93,7 +93,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/report" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Reports
