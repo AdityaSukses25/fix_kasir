@@ -41,7 +41,7 @@
       <li class="nav-item pt-1">
         <form action="/logout" method="post">
           @csrf
-          <button type="submit" class="dropdown-item">Logout  <i class="fas fa-expand-arrows-alt"></i></button>
+          <button type="submit" class="dropdown-item">Logout  <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </form>
       </li>
     </ul>
