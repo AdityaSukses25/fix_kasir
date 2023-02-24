@@ -9,7 +9,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6 mt-1">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+              <button class="btn btn-primary">
+                <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+              </button>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -37,11 +39,11 @@
                     <a class="nav-link" id="custom-tabs-two-messages-tab" data-toggle="pill" href="#custom-tabs-two-messages" role="tab" aria-controls="custom-tabs-two-messages" aria-selected="false">Laba</a>
                   </li>
                   
-                  <form id="form-filter" method="post">
+                  <form action="/report">
                     <div class="d-flex justify-content-end" style="Margin-left: 820px; margin-top: -37px;">
-                      <li><input type="date" class="ml-5 mr-2" id="" name="start_date"></li>
+                      <li><input type="date" class="ml-5 mr-2" id="" name="start_date" value="{{ old('start_date')}}"></li>
                       <li>to</li>                  
-                      <li><input type="date" class="ml-2" id="dateEnd" name="end_date"></li>
+                      <li><input type="date" class="ml-2" id="dateEnd" name="end_date" value="{{ old('end_date') }}"></li>
                       <div class="input-group input-group-sm" style="margin-top: px ;">
                         
                         <button class="btn btn-tool" style="margin-top: px;" type="submit">
@@ -84,8 +86,8 @@
                       @foreach($days as $day)
                         <tr>
                           <td>{{ $loop->iteration }}</td>
-                          <td>{{ $day->created_at }}</td>
-                          <td>{{ $day->reception->name}}</td>
+                          <td>{{ $day->created_at->format('Y-m-d') }}</td>
+                          <td>{{ $day->reception->name }}</td>
                           <td>{{ $day->cust_name }}</td>
                           <td>{{ $day->therapist->name }}</td>
                           <td>{{ $day->service->massage}}</td>

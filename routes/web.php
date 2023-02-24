@@ -127,7 +127,9 @@ Route::get(
     '/report/{dateStart}/{dateEnd}',
     'App\Http\Controllers\ReportController@perDate'
 );
-Route::post(
-    '/reportSearch',
-    'App\Http\Controllers\ReportController@searchDate'
-);
+Route::post('/report', 'App\Http\Controllers\ReportController@index');
+
+// Route::post(
+//     '/reportSearch',
+//     'App\Http\Controllers\ReportController@searchDate'
+// );
