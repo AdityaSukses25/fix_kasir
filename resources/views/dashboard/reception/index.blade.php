@@ -9,10 +9,12 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="#" data-target="#addUser" data-toggle="modal">
-                <li class="breadcrumb-item"><i class="fa fa-plus"></i>  Add Receptionist</li>
-              </a>
+              <button class="btn btn-primary" data-target="#addUser" data-toggle="modal">
+                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Receptionist</li>
+
+              </button>
               
+                            
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -50,14 +52,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editUser btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
+                              <button type="button" class="editUser btn btn-block btn-default" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default btn-lg" data-bs-target="{{ $user->id}}" data-bs-name="{{ $user->name }}">
-                              <i class="fa fas-delete"></i>
+                              <button type="submit" class="delete btn btn-block btn-default" data-bs-target="{{ $user->id}}" data-bs-name="{{ $user->name }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
                           </div>
@@ -236,7 +238,12 @@
                                       <label for="editUsername" class="col-md-4 col-form-label text-md-end">Username</label>
 
                                       <div class="col-md-8">
-                                          <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                        @if($user->username === 'aditya')
+                                        <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  autocomplete="username" readonly>
+
+                                        @else
+                                        <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                        @endif
 
                                           @error('username')
                                               <span class="invalid-feedback" role="alert">
@@ -298,8 +305,12 @@
                                       <div class="col-8">
                                         <select id="editStatus" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
-                                              <option value="Admin">Admin</option>
-                                              <option value="Receptionist">Receptionist</option>
+                                          @if($user->username ==='aditya')
+                                          <option value="Admin" >Admin</option>
+                                          @else
+                                          <option value="Admin" >Admin</option>
+                                          <option value="Receptionist">Receptionist</option>
+                                          @endif
                                         </select>
                                       </div>
                                   </div>

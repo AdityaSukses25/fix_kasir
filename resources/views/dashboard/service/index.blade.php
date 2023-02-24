@@ -12,8 +12,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-                Add Data</li>
+              <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-end" data-toggle="dropdown">
+              <i class="fa-solid fa-plus"></i> Add Data
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#" data-target="#addService" data-toggle="modal">Add Massage</a>
@@ -54,14 +54,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editMassage btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editMassage" data-bs-massage="{{ $massage->massage }}" data-bs-id="{{ $massage->id }}" data-bs-time="{{ $massage->time}} " data-bs-price="{{ $massage->price }}">
+                              <button type="button" class="editMassage btn btn-block btn-default " data-toggle="modal" data-target="#editMassage" data-bs-massage="{{ $massage->massage }}" data-bs-id="{{ $massage->id }}" data-bs-time="{{ $massage->time}} " data-bs-price="{{ $massage->price }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default btn-lg" data-bs-target="{{ $massage->id}}" data-bs-name="{{ $massage->massage }}">
-                              <i class="fa fas-delete"></i>
+                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $massage->id}}" data-bs-name="{{ $massage->massage }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
                           </div>
@@ -98,14 +98,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editplace btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editplace" data-bs-id="{{ $place->id }}" data-bs-place="{{ $place->place }}">
+                              <button type="button" class="editplace btn btn-block btn-default " data-toggle="modal" data-target="#editplace" data-bs-id="{{ $place->id }}" data-bs-place="{{ $place->place }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default btn-lg" data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
-                              <i class="fa fas-delete"></i>
+                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
                           </div>
@@ -147,8 +147,8 @@
                               </button>
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default btn-lg" data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
-                              <i data-feather="align-left"></i>
+                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
                           </div>

@@ -40,10 +40,10 @@
                   </li>
                   
                   <form action="/report">
-                    <div class="d-flex justify-content-end" style="Margin-left: 820px; margin-top: -37px;">
-                      <li><input type="date" class="ml-5 mr-2" id="" name="start_date" value="{{ old('start_date')}}"></li>
-                      <li>to</li>                  
-                      <li><input type="date" class="ml-2" id="dateEnd" name="end_date" value="{{ old('end_date') }}"></li>
+                    <div class="d-flex justify-content-end" style="Margin-left: 820px; margin-top: -40px;">
+                      <li><input type="date" class="ml-5 mr-2 rounded border-0 p-1 px-2" id="" name="start_date" value="{{ old('start_date')}}"></li>
+                      <li class="mt-1">to</li>                  
+                      <li><input type="date" class="ml-2  rounded border-0 p-1 px-2" id="dateEnd" name="end_date" value="{{ old('end_date') }}"></li>
                       <div class="input-group input-group-sm" style="margin-top: px ;">
                         
                         <button class="btn btn-tool" style="margin-top: px;" type="submit">
@@ -83,10 +83,11 @@
                         </tr>
                       </thead>
                       <tbody id="table-body">
+                      @if($days->count())
                       @foreach($days as $day)
                         <tr>
                           <td>{{ $loop->iteration }}</td>
-                          <td>{{ $day->created_at->format('Y-m-d') }}</td>
+                          <td>{{ $day->created_at->format('Y-m-d') }} | {{ $day->start_service }}</td>
                           <td>{{ $day->reception->name }}</td>
                           <td>{{ $day->cust_name }}</td>
                           <td>{{ $day->therapist->name }}</td>
@@ -101,6 +102,11 @@
                           <td>{{ Str::rupiah($day->summary) }},00</td>
                         </tr>
                         @endforeach
+                      @else
+                        <tr>
+                          <td colspan="10" class="text-center">No Service yet Right now!</td>
+                        </tr>
+                      @endif
                       </tbody>
                       <tfoot>
                         <tr>
@@ -117,21 +123,55 @@
                         <tr>
                           <th>No</th>
                           <th>Date</th>
-                          <th>Customer</th>
-                          <th>Massage</th>
-                          <th>Time</th>
-                          <th>Price</th>
-                          <th>Discount</th>                    
-                          <th>Summary</th>
+                          <th>Therapist</th>
+                          <th>Day On</th>
+                          <th>Day Off</th>
+                          <th>Total Service</th>
+                          <th>Salary</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="table-body">
+                      @if($salarys->count())
                       
+                        <tr>
+                          <td>1</td>
+                          <td>{{ $salarys[0]->created_at->format('Y-m-d') }} </td>
+                          <td>{{ $salarys[0]->name }}</td>
+                          <td>kk</td>
+                          <td>k</td>
+                          <td>{{ $service_total }}</td>
+                          <td>{{ $gajih }}</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>{{ $salarys[1]->created_at->format('Y-m-d') }} </td>
+                          <td>{{ $salarys[1]->name }}</td>
+                          <td>kk</td>
+                          <td>k</td>
+                          <td>{{ $service_total1 }}</td>
+                          <td>{{ $gajih1 }}</td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>{{ $salarys[2]->created_at->format('Y-m-d') }} </td>
+                          <td>{{ $salarys[2]->name }}</td>
+                          <td>kk</td>
+                          <td>k</td>
+                          <td>{{ $service_total2 }}</td>
+                          <td>{{ $gajih2 }}</td>
+                        </tr>
+                        
+                      @else
+                        <tr>
+                          <td colspan="10" class="text-center">No Service yet Right now!</td>
+                        </tr>
+                      @endif
                       </tbody>
                       <tfoot>
                         <tr>
                     
-                          <th colspan='7' class="text-center">Total</th>
+                          <th colspan='6' class="text-center">Total</th>
+                          <th class="">{{ Str::rupiah($total) }},00</th>
                           
                         </tr>
                       </tfoot>

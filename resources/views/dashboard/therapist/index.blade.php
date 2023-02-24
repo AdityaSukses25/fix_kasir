@@ -9,9 +9,9 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a href="#" data-target="#addTerapist" data-toggle="modal">
-                <li class="breadcrumb-item"><i class="fa fa-plus"></i>  Add Therapist</li>
-              </a>
+              <button class="btn btn-primary" data-target="#addTerapist" data-toggle="modal">
+                  <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Therapist</li>
+              </button>
               
             </ol>
           </div><!-- /.col -->
@@ -54,14 +54,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editTerapist btn btn-block btn-default btn-lg" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                              <button type="button" class="editTerapist btn btn-block btn-default" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default btn-lg" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
-                              <i class="fa fas-delete"></i>
+                              <button type="submit" class="delete btn btn-block btn-default" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
                           </div>

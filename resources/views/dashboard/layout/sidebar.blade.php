@@ -29,16 +29,14 @@
               <i class="nav-icon  fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/order" class="nav-link">
-              <i class="nav-icon fas fa-file "></i>
+            <a href="/order" class="nav-link pl-4">
+              <i class="fa fa-file-pen pr-1"></i>
               <p>
                 Orders
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -47,7 +45,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Services
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -56,7 +53,6 @@
             <i class="nav-icon fas fa-solid fa-user"></i>
               <p>
                 Customers
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -65,7 +61,6 @@
             <i class="nav-icon fas fa-users"></i>
               <p>
                 Therapists
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
@@ -97,7 +92,6 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Reports
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
