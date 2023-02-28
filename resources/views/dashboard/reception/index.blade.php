@@ -239,7 +239,7 @@
 
                                       <div class="col-md-8">
                                         @if($user->username === 'aditya')
-                                        <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  autocomplete="username" readonly>
+                                        <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" readonly>
 
                                         @else
                                         <input id="editUsername" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>

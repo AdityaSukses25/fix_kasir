@@ -33,8 +33,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/order" class="nav-link pl-4">
-              <i class="fa fa-file-pen pr-1"></i>
+            <a href="/order" class="nav-link">
+              <i class="fa fa-file-pen nav-icon"></i>
               <p>
                 Orders
               </p>
@@ -89,7 +89,7 @@
           </li>
           <li class="nav-item">
             <a href="/report" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <i class="fa-solid fa-file-contract nav-icon"></i>
               <p>
                 Reports
               </p>

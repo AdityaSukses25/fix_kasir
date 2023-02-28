@@ -35,9 +35,6 @@
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Salarys</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-two-messages-tab" data-toggle="pill" href="#custom-tabs-two-messages" role="tab" aria-controls="custom-tabs-two-messages" aria-selected="false">Laba</a>
-                  </li>
                   
                   <form action="/report">
                     <div class="d-flex justify-content-end" style="Margin-left: 820px; margin-top: -40px;">
@@ -177,11 +174,7 @@
                       </tfoot>
                     </table>
                   </div>
-                  <div class="tab-pane fade" id="custom-tabs-two-messages" role="tabpanel" aria-labelledby="custom-tabs-two-messages-tab">
-                     bersihnya 200jt
                   </div>
-                 
-                </div>
               </div>
               <!-- /.card -->
             </div>

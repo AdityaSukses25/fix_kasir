@@ -258,7 +258,7 @@
                     
                     <div class="input-group input-group-sm mt-2" style="width: ;">
                       
-                                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
                         <i class="fas fa-minus"></i>
                       </button>
                 

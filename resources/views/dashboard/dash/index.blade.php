@@ -56,74 +56,148 @@
       </div>
       
       <!-- BAR CHART -->
-      <div class="container-fluid">
+      <div class="container-fluid"> 
         <div class="row">
-          <div class="col md-auto">
-          <div class="card card-success">
-                <div class="card-header">
-                  <h3 class="card-title">Bar Chart</h3>
-  
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body">
+          <div class="col-12">
+            <div class="card card-primary card-outline card-outline-tabs">
+              <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true"><i class="fas fa-solid fa-user"></i> Visitation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false"><i class="fas fa-dollar-sign"></i> Sales</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <div class="chart">
-                    <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    <canvas id="areaChart" style="min-height: 380px; height: 380px; max-height: 380px; max-width: 100%;"></canvas>
+                  </div>  
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                  <div class="chart">
+                    <canvas id="salesChart" style="min-height: 380px; height: 380px; max-height: 380px; max-width: 100%;"></canvas>
+                  </div> 
                   </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.card -->
-  
-          </div>
-          </div>
-        </div>  
-      </div>
-      
-      
-    </section>
-
-    
-    <!-- <div class="row">
-
-      <section class="col-lg-7 connectedSortable">
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-            <i class="fas fa-chart-pie mr-1"></i>
-              Sales
-            </h3>
-            <div class="card-tools">
-              <ul class="nav nav-pills ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="tab-content p-0">
-
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
-                <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-              </div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-              </div>
             </div>
           </div>
         </div>
-      </section> -->
+      </div>
+      
+      
+      <!-- /.content -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- /.content -->
+    <!-- ChartJS -->
+<script src="../template/Admin/plugins/chart.js/Chart.min.js"></script>
+<script>
+  // visitation
+  var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
+  
+  var areaChartData = {
+    labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [
+      {
+        label               : 'Sales',
+        backgroundColor     : 'rgba(255,255,255,1)',
+        borderColor         : 'rgba(60,141,188,0.8)',
+        pointRadius          : false,
+        pointColor          : '#3b8bba',
+        pointStrokeColor    : 'rgba(60,141,188,1)',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgba(60,141,188,1)',
+        data                : {!! json_encode($counts) !!}
+      },
+      
+    ]
+  }
+  
+  var areaChartOptions = {
+    maintainAspectRatio : false,
+    responsive : true,
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        gridLines : {
+          display : false,
+        }
+      }],
+      yAxes: [{
+        gridLines : {
+          display : false,
+        }
+      }]
+    }
+  }
+  
+  // This will get the first returned node in the jQuery collection.
+  new Chart(areaChartCanvas, {
+    type: 'line',
+    data: areaChartData,
+    options: areaChartOptions
+  })
+  // end of visitation
+
+  // sales per month
+  var areaChartCanvas = $('#salesChart').get(0).getContext('2d')
+
+  
+  var areaChartData = {
+    labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [
+      {
+        label               : 'Sales',
+        backgroundColor     : 'rgba(255,255,255,1)',
+        borderColor         : 'rgba(92, 184, 92, 1)',
+        pointRadius          : false,
+        pointColor          : '#3b8bba',
+        pointStrokeColor    : 'rgba(60,141,188,1)',
+        pointHighlightFill  : '#fff',
+        pointHighlightStroke: 'rgba(60,141,188,1)',
+        data                : {!! json_encode($summarys) !!}
+      },
+      
+    ]
+  }
+  
+  var areaChartOptions = {
+    maintainAspectRatio : false,
+    responsive : true,
+    legend: {
+      display: false
+    },
+    scales: {
+      xAxes: [{
+        gridLines : {
+          display : false,
+        }
+      }],
+      yAxes: [{
+        gridLines : {
+          display : false,
+        }
+      }]
+    }
+  }
+  
+  // This will get the first returned node in the jQuery collection.
+  new Chart(areaChartCanvas, {
+    type: 'line',
+    data: areaChartData,
+    options: areaChartOptions
+  })
+  
+</script>
+
+</section>
+  
 @endsection

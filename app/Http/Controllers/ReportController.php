@@ -18,12 +18,6 @@ class ReportController extends Controller
                 request('end_date'),
             ]);
         }
-        if (request('start_date') && request('end_date')) {
-            $SumNow = Order::whereBetween('created_at', [
-                request('start_date'),
-                request('end_date'),
-            ])->sum('summary');
-        }
         // $salary = Therapist::join(
         //     'orders',
         //     'therapists.id',
