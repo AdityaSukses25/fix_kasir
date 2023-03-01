@@ -53,13 +53,13 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-4">
                               <button type="button" class="editTerapist btn btn-block btn-default" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                               <i class="fa fa-edit"></i>
                               </button>
-      
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <button type="submit" class="delete btn btn-block btn-default" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
@@ -84,6 +84,7 @@
       
     </section>
 
+    <!-- modal content -->
     <div class="content">
       <div class="container-fluid">
         <!-- modal add --> 
@@ -335,11 +336,75 @@
           </div>
         </div>
           <!-- /.end edit therapist -->
+
+        <!-- modal time_start -->
+        <div class="modal fade" id="time_start">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Therapist Presence</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <form action="/attendence/create" method="post">
+                      @csrf
+                                  <!-- name -->
+                                  <div class="row mb-3">
+                                      <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
+                                      <div class="col-md-8">
+                                        <input id="start_id" type="hidden" class="form-control @error('name') is-invalid @enderror" name="therapist_id" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        <input id="start_name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                          @error('username')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- Time_in -->
+                                  <div class="row mb-3">
+                                      <label for="nickname" class="col-md-4 col-form-label text-md-end">Time Start</label>
+
+                                      <div class="col-md-8">
+                                          <input id="time_in" type="text" class="form-control @error('nickname') is-invalid @enderror" name="time_start" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
+
+                                          @error('nickname')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+
+
+                                </div>
+                              </div>
+                              <div class="modal-footer justify-content-end">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                              </div>
+                  </form>
+                </div>
+              <!-- /.modal-content -->
+              </div>
+            <!-- /.modal-dialog -->
+            </div>
+          </div>
+        </div>
+        <!-- end time_start -->
       </div>
     </div>
     
     
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+
 
 <script src="/js/therapist.js"></script>
     

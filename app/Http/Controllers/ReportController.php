@@ -18,37 +18,27 @@ class ReportController extends Controller
                 request('end_date'),
             ]);
         }
-        // $salary = Therapist::join(
-        //     'orders',
-        //     'therapists.id',
-        //     '=',
-        //     'orders.therapist_id'
-        // )
-        //     ->select('therapists.*', 'orders.summary')
-        //     ->sum('');
-        $service_total = Order::where('therapist_id', '=', 1)->count();
-        $commision = Therapist::where('id', 1)->sum('commision');
-        $total1 = $service_total * $commision;
-        $service_total1 = Order::where('therapist_id', '=', 2)->count();
-        $commision1 = Therapist::where('id', 2)->sum('commision');
-        $total2 = $service_total1 * $commision1;
-        $service_total2 = Order::where('therapist_id', '=', 3)->count();
-        $commision2 = Therapist::where('id', 3)->sum('commision');
-        $total3 = $service_total2 * $commision2;
-        $total = $total1 + $total2 + $total3;
-        // $salary = $commision;
+
+        $therapist = Therapist::get();
+        $order = Order::get();
+        $AmountOfSalary = $therapist->map(function ($therapist) use ($order) {
+            $amountOfOrder = $order
+                ->where('therapist_id', $therapist->id)
+                ->count();
+            $salary = $amountOfOrder * $therapist->commision;
+            return [
+                'therapist_name' => $therapist->name,
+                'order_amount' => $amountOfOrder,
+                'salary' => $salary,
+            ];
+        });
+
         return view('dashboard.report.index', [
             'title' => 'Report',
             'days' => $dateNow->get(),
             'totalADays' => $dateNow->sum('summary'),
-            'salarys' => Therapist::get(),
-            'service_total' => $service_total,
-            'gajih' => $commision * $service_total,
-            'service_total1' => $service_total1,
-            'gajih1' => $commision1 * $service_total1,
-            'service_total2' => $service_total2,
-            'gajih2' => $commision2 * $service_total2,
-            'total' => $total,
+            'salarys' => $AmountOfSalary,
+            'Summary' => $AmountOfSalary->sum('salary'),
         ]);
     }
 }

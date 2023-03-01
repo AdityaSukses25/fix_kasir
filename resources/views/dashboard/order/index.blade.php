@@ -28,20 +28,20 @@
       <div class="container-fluid"> 
         <div class="row">
           <div class="col-7">
-            <div class="card shadow">
-                <div class="card-body table-responsive p-0" style="height: 638px;">
+            <div class="card">
+                <div class="card-body table-responsive" style="height: 638px;">
                   <table class="table table-head-fixed text-nowrap">
                   <div class="card ">
                 <!-- /.card-header --> 
                   <!-- form start -->
                   <form action="/order/create" method="post">
                     @csrf
-                      <div class="card-body table-responsive">
+                      <div class="card-body table-responsive border-0">
                         <!-- name -->
                         <div class="row mb-3">
                           <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
                             <div class="col-md-8">
-                              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="cust_name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="cust_name" value="{{ old('name') }}" required autocomplete="name" placeholder="type customer name..." autofocus>
 
                                 @error('name')
                                   <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                         <div class="row mb-3">
                           <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
                             <div class="col-md-8">
-                              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="type customer phone..." autofocus>
 
                                 @error('phone')
                                   <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
                         <div class="row mb-3">
                           <label for="time" class="col-md-4 col-form-label text-md-end">Time Duration</label>
                             <div class="col-md-2">
-                              <input id="time" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" readonly>
+                              <input id="time" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" placeholder="minute" readonly>
 
                                 @error('time')
                                   <span class="invalid-feedback" role="alert">
@@ -166,7 +166,7 @@
                         <div class="row mb-3">
                           <label for="price" class="col-md-4 col-form-label text-md-end">Price</label>
                             <div class="col-md-8">
-                              <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" readonly>
+                              <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" placeholder="Rp." readonly>
 
                                 @error('price')
                                   <span class="invalid-feedback" role="alert">
@@ -210,7 +210,7 @@
                         <div class="row mb-3">
                           <label for="description" class="col-md-4 col-form-label text-md-end">Description</label>
                             <div class="col-md-8">
-                              <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                              <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" placeholder="type here..."></textarea>
                                 @error('description')
                                   <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -223,7 +223,7 @@
                         <div class="row mb-3">
                           <label for="summary" class="col-md-4 col-form-label text-md-end">Total</label>
                             <div class="col-md-8">
-                              <input id="summary" type="text" class="form-control @error('summary') is-invalid @enderror" name="summary" value="{{ old('summary') }}" required autocomplete="summary" readonly>
+                              <input id="summary" type="text" class="form-control @error('summary') is-invalid @enderror" name="summary" value="{{ old('summary') }}" required autocomplete="summary" placeholder="Rp." readonly>
 
                                 @error('summary')
                                   <span class="invalid-feedback" role="alert">
@@ -232,14 +232,14 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="btn d-flex justify-content-center" style="margin-top: 20px;">
+                          <button type="reset" class="btn btn-danger mr-2 ">Cancel</button>
+                          <button type="submit" class="btn btn-primary ml-2 ">Submit</button>
+  
+                        </div>
                       </div>
                       <!-- /.card-body -->
 
-                      <div class="btn d-flex justify-content-center" style="margin-top: -10px;">
-                        <button type="reset" class="btn btn-primary mr-2 ">Cancel</button>
-                        <button type="submit" class="btn btn-primary ml-2 ">Submit</button>
-
-                      </div>
                       
                   </form>
                   </div>
@@ -252,7 +252,7 @@
           <div class="col-5">
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Services on going</h3>
+                  <h3 class="card-title">Services on going <i class="ml-1 fa-solid fa-spinner"></i></h3>
 
                   <div class="card-tools">
                     

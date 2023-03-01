@@ -30,14 +30,14 @@
                 <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
                   <li class="pt-2 px-3"><h3 class="card-title">    </h3></li>
                   <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Sales</a>
+                    <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Salarys</a>
+                  <li class="nav-item" style="Margin-right: 37em;">
+                    <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"><i class="fa fa-hand-holding-dollar"></i>  Salarys</a>
                   </li>
                   
                   <form action="/report">
-                    <div class="d-flex justify-content-end" style="Margin-left: 820px; margin-top: -40px;">
+                    <div class="d-flex justify-content-end" >
                       <li><input type="date" class="ml-5 mr-2 rounded border-0 p-1 px-2" id="" name="start_date" value="{{ old('start_date')}}"></li>
                       <li class="mt-1">to</li>                  
                       <li><input type="date" class="ml-2  rounded border-0 p-1 px-2" id="dateEnd" name="end_date" value="{{ old('end_date') }}"></li>
@@ -121,8 +121,6 @@
                           <th>No</th>
                           <th>Date</th>
                           <th>Therapist</th>
-                          <th>Day On</th>
-                          <th>Day Off</th>
                           <th>Total Service</th>
                           <th>Salary</th>
                         </tr>
@@ -130,33 +128,16 @@
                       <tbody id="table-body">
                       @if($salarys->count())
                       
+                      @foreach($salarys as $salary)
                         <tr>
-                          <td>1</td>
-                          <td>{{ $salarys[0]->created_at->format('Y-m-d') }} </td>
-                          <td>{{ $salarys[0]->name }}</td>
-                          <td>kk</td>
-                          <td>k</td>
-                          <td>{{ $service_total }}</td>
-                          <td>{{ $gajih }}</td>
+                          <td>{{ $loop->iteration}}</td>
+                          <td> </td>
+                          <td>{{ $salary['therapist_name'] }}</td>
+                          <td>{{ $salary['order_amount'] }}</td>
+                          <td>{{ Str::rupiah($salary['salary']) }},00</td>
                         </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>{{ $salarys[1]->created_at->format('Y-m-d') }} </td>
-                          <td>{{ $salarys[1]->name }}</td>
-                          <td>kk</td>
-                          <td>k</td>
-                          <td>{{ $service_total1 }}</td>
-                          <td>{{ $gajih1 }}</td>
-                        </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>{{ $salarys[2]->created_at->format('Y-m-d') }} </td>
-                          <td>{{ $salarys[2]->name }}</td>
-                          <td>kk</td>
-                          <td>k</td>
-                          <td>{{ $service_total2 }}</td>
-                          <td>{{ $gajih2 }}</td>
-                        </tr>
+                        @endforeach
+                        
                         
                       @else
                         <tr>
@@ -167,8 +148,8 @@
                       <tfoot>
                         <tr>
                     
-                          <th colspan='6' class="text-center">Total</th>
-                          <th class="">{{ Str::rupiah($total) }},00</th>
+                          <th colspan='4' class="text-center">Total</th>
+                          <th class="">{{ Str::rupiah($Summary) }},00</th>
                           
                         </tr>
                       </tfoot>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Therapist;
 use App\Models\Gender;
+use App\Models\Therapist;
+use App\Models\attendence;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 class TherapistController extends Controller
 {
     public function index()
@@ -45,6 +48,16 @@ class TherapistController extends Controller
         $updateTerapist->nickname = $request->nickname;
         $updateTerapist->gender_id = $request->gender_id;
         $updateTerapist->phone = $request->phone;
+
+        // $presence = attendence::where(
+        //     created_at,
+        //     Carbon::now()->toDateString()
+        // )->get();
+        // foreach ($presence as $key => $value) {
+        //     $value = $value->therapist;
+        //     $value->status = 1;
+        //     $value->save();
+        // }
         $updateTerapist->status = $request->status;
         $updateTerapist->presence = $request->presence;
         $updateTerapist->commision = $request->commision;

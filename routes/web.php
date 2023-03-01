@@ -128,8 +128,3 @@ Route::get(
     'App\Http\Controllers\ReportController@perDate'
 );
 Route::post('/report', 'App\Http\Controllers\ReportController@index');
-
-// Route::post(
-//     '/reportSearch',
-//     'App\Http\Controllers\ReportController@searchDate'
-// );

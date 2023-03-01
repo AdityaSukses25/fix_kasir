@@ -41,7 +41,7 @@
       <li class="nav-item ">
         <form action="/logout" method="post">
           @csrf
-          <button type="submit" class="btn btn-navbar mr-1">Logout  <i class="pl-1 fa-solid fa-arrow-right-from-bracket"></i></button>
+          <button type="submit" class="btn btn-danger mr-1">Logout  <i class="pl-1 fa-solid fa-arrow-right-from-bracket"></i></button>
         </form>
       </li>
     </ul>

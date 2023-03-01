@@ -18,6 +18,21 @@ $('.editTerapist').click(function () {
   $('#editAttend').val(attend)
 })
 
+// presence
+// time_start
+$('.time_start').click(function () {
+  $('#time_start').modal()
+  var id = $(this).attr('data-bs-terapist')
+  var name = $(this).attr('data-bs-name')
+  $('#start_id').val(id)
+  $('#start_name').val(name)
+  setInterval(function () {
+    var timeNow = moment()
+    $('#time_in').val(timeNow.format('H:mm:ss'))
+  }, 1000)
+})
+// time_end
+
 $('.delete').click(function () {
   var name = $(this).attr('data-bs-name')
   var id = $(this).attr('data-bs-target')

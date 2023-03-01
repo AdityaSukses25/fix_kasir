@@ -22,4 +22,9 @@ class Therapist extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function presence()
+    {
+        return $this->hasMany(attendence::class);
+    }
 }

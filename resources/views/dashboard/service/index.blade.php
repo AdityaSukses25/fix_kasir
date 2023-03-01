@@ -12,7 +12,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-end" data-toggle="dropdown">
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-end " data-toggle="dropdown">
               <i class="fa-solid fa-plus"></i> Add Data
               </button>
               <div class="dropdown-menu">
@@ -33,8 +33,8 @@
           <!-- massage -->
           <div class="col-6">
             <div class="card shadow">
-              <div class="card-body table-responsive p-0" style="height: 638px;">
-                <table class="table table-head-fixed text-nowrap">
+              <div class="card-body table-responsive p-0" style="height: ;">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -54,14 +54,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editMassage btn btn-block btn-default " data-toggle="modal" data-target="#editMassage" data-bs-massage="{{ $massage->massage }}" data-bs-id="{{ $massage->id }}" data-bs-time="{{ $massage->time}} " data-bs-price="{{ $massage->price }}">
+                              <button type="button" class="editMassage btn btn-block btn-warning " data-toggle="modal" data-target="#editMassage" data-bs-massage="{{ $massage->massage }}" data-bs-id="{{ $massage->id }}" data-bs-time="{{ $massage->time}} " data-bs-price="{{ $massage->price }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $massage->id}}" data-bs-name="{{ $massage->massage }}">
-                              <i class="fa-sharp fa-solid fa-delete-left"></i>
+                              <button type="submit" class="delete btn btn-block btn-danger" data-bs-target="{{ $massage->id}}" data-bs-name="{{ $massage->massage }}">
+                              <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
                               </button>
                             </div>
                           </div>
@@ -98,14 +98,14 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editplace btn btn-block btn-default " data-toggle="modal" data-target="#editplace" data-bs-id="{{ $place->id }}" data-bs-place="{{ $place->place }}">
+                              <button type="button" class="editplace btn btn-block btn-warning " data-toggle="modal" data-target="#editplace" data-bs-id="{{ $place->id }}" data-bs-place="{{ $place->place }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
-                              <i class="fa-sharp fa-solid fa-delete-left"></i>
+                              <button type="submit" class="delete btn btn-block btn-danger " data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
+                              <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
                               </button>
                             </div>
                           </div>
@@ -142,13 +142,13 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editdiscount btn btn-block btn-default" data-toggle="modal" data-target="#editdiscount" data-bs-id="{{$discount->id}}" data-bs-discount="{{$discount->discount}}">
+                              <button type="button" class="editdiscount btn btn-block btn-warning" data-toggle="modal" data-target="#editdiscount" data-bs-id="{{$discount->id}}" data-bs-discount="{{$discount->discount}}">
                               <i class="fa fa-edit"></i>
                               </button>
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default " data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
-                              <i class="fa-sharp fa-solid fa-delete-left"></i>
+                              <button type="submit" class="delete btn btn-block btn-danger " data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
+                              <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
                               </button>
                             </div>
                           </div>

@@ -66,28 +66,28 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-                <p>
+              <i class="nav-icon fas fa-users"></i>
+              <p>
                 Employee
                 <i class="right fas fa-angle-left"></i>
-                </p>
+              </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/reception" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Receptionist</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/therapist" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Therapist</p>
-                </a>
-              </li>
-            </ul>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Receptionist</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/therapist" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Therapist</p>
+            </a>
           </li>
-          <li class="nav-item">
+        </ul>
+      </li>
+      <li class="nav-item">
             <a href="/report" class="nav-link">
             <i class="fa-solid fa-file-contract nav-icon"></i>
               <p>

@@ -20,12 +20,12 @@ class DashboardController extends Controller
             ->get();
         $months = [];
         $counts = [];
-        $summary = [];
+        $summarys = [];
 
         foreach ($orders as $order) {
             $months[] = $order->month;
             $counts[] = $order->count;
-            $summarys[] = $order->summary;
+            $summary[] = $order->summary;
         }
 
         return view('dashboard.dash.index', [
@@ -39,7 +39,7 @@ class DashboardController extends Controller
 
             'months' => $months,
             'counts' => $counts,
-            'summarys' => $summarys,
+            'summarys' => $summary,
         ]);
     }
 }
