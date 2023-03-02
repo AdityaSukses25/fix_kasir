@@ -62,7 +62,7 @@ $('.editplace').click(function () {
   $('#edit_place').val(place)
 })
 
-$('.delete').click(function () {
+$('.deleteplace').click(function () {
   var name = $(this).attr('data-bs-name')
   var id = $(this).attr('data-bs-target')
   const swalWithBootstrapButtons = Swal.mixin({
@@ -113,7 +113,7 @@ $('.editdiscount').click(function () {
   $('#edit_discount').val(discount)
 })
 
-$('.delete').click(function () {
+$('.deletediscount').click(function () {
   var name = $(this).attr('data-bs-name')
   var id = $(this).attr('data-bs-target')
   const swalWithBootstrapButtons = Swal.mixin({
@@ -154,3 +154,19 @@ $('.delete').click(function () {
     })
 })
 // end discount
+
+var service = $('#service-table').height()
+if (service > 638) {
+  $('#service-table').css('height', '638px')
+} else {
+}
+var place = $('#place-table').height()
+if (place > 638) {
+  $('#place-table').css('height', '638px')
+} else {
+}
+var discount = $('#discount-table').height()
+if (discount > 638) {
+  $('#discount-table').css('height', '638px')
+} else {
+}

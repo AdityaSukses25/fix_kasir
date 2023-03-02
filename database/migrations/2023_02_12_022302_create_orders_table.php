@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->integer('time');
             $table->integer('price');
             $table->string('payment_method');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('summary');
             $table->timestamps();
             $table->time('start_service');

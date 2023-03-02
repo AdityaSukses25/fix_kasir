@@ -252,7 +252,11 @@
           <div class="col-5">
             <div class="card">
                 <div class="card-header">
+                  @if($orders->count())
                   <h3 class="card-title">Services on going <i class="ml-1 fa-solid fa-spinner"></i></h3>
+                  @else
+                  <h3 class="card-title">Services on going</h3>
+                  @endif
 
                   <div class="card-tools">
                     
@@ -267,8 +271,8 @@
                   </div>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="height: 590px;">
-                  <table id='table-view' class="table  table-head-fixed text-nowrap">
+                <div class="card-body table-responsive p-0" id="show-on-going" style="height: px;">
+                  <table id='table-view' class="table  table-hover text-nowrap">
                     <thead>
                       <tr>
                         <th>No</th>

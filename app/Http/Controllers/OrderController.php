@@ -66,7 +66,7 @@ class OrderController extends Controller
             'start_service' => 'required',
             'end_service' => 'required',
             'payment_method' => 'required',
-            'description' => 'required',
+            'description' => '',
             'summary' => 'required',
         ]);
 

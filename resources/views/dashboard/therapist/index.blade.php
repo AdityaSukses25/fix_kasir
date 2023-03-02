@@ -25,8 +25,8 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-body table-responsive p-0" style="height: 638px;">
-                <table class="table table-head-fixed text-nowrap">
+              <div class="card-body table-responsive p-0" id="therapist-table">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -60,7 +60,7 @@
                               </button>
                             </div>
                             <div class="col-md-4">
-                              <button type="submit" class="delete btn btn-block btn-default" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                              <button type="submit" class="deleteTherapist btn btn-block btn-default" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>

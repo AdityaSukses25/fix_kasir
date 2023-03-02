@@ -128,3 +128,13 @@ Route::get(
     'App\Http\Controllers\ReportController@perDate'
 );
 Route::post('/report', 'App\Http\Controllers\ReportController@index');
+
+// pdf
+Route::get('/pdf', 'App\Http\Controllers\PDFController@index');
+Route::get('/pdf-print', 'App\Http\Controllers\PDFController@printSales');
+
+// edit-personal
+Route::put(
+    '/user-personal/edit/{User}',
+    'App\Http\Controllers\ReceptionController@updatePersonal'
+);

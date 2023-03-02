@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 " style="height: 100vh">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
       <img src="/assets/logo_lotus/logo_dashboard.png" alt="Lotus Logo" class="brand-image img-circle elevation-3" >
@@ -13,7 +13,7 @@
           <img src="../template/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block text-capitalize">{{ auth()->user()->name }}</a>
+          <a href="#" class="edit-personal d-block text-capitalize" data-toggle="modal" data-target="#edit-personal" data-bs-id="{{ auth()->user()->id }}" data-bs-name="{{ auth()->user()->name }}" data-bs-username="{{ auth()->user()->username }}" data-bs-phone="{{ auth()->user()->phone }}" data-bs-email="{{ auth()->user()->email }}" data-bs-password="{{ auth()->user()->password }}" data-bs-status="{{ auth()->user()->status }}">{{ auth()->user()->name }}</a>
           <small class="text-light">you're logged in as {{ auth()->user()->status }}</small>
         </div>
       </div>
@@ -94,10 +94,127 @@
                 Reports
               </p>
             </a>
-          </li>
-        </ul>
-      </nav>
+      </li>
+      
+      </ul>
+    </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+  <!-- modal edit --> 
+  <div class="modal fade z-5" id="edit-personal">
+    <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Edit Personal</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="card-body">
+                    <form action="/user-personal/edit/{auth()->user()->id}" method="post">
+                      @method('put')
+                      @csrf
+                      <!-- name -->
+                      <div class="row mb-3">
+                                      <label for="editName" class="col-md-4 col-form-label text-md-end">Name</label>
+                                      <div class="col-md-8">
+                                        <input type="hidden" id="user-id" name="user_name">
+                                        <input id="edit-Name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                          @error('name')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- username -->
+                                  <div class="row mb-3">
+                                      <label for="edit-Username" class="col-md-4 col-form-label text-md-end">Username</label>
+
+                                      <div class="col-md-8">
+                                        
+
+                                        
+                                        <input id="edit-Username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                          @error('username')
+                                              <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- phone -->
+                                  <div class="row mb-3">
+                                      <label for="edit-Phone" class="col-md-4 col-form-label text-md-end">Phone</label>
+
+                                      <div class="col-md-8">
+                                          <input id="edit-Phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+                                          @error('phone')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  
+                                  <!-- email -->
+                                  <div class="row mb-3">
+                                      <label for="editEmail" class="col-md-4 col-form-label text-md-end">Email</label>
+
+                                      <div class="col-md-8">
+                                        <input id="edit-Email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                        <!-- password -->
+                                          <input id="edit-Password" type="hidden" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+
+                                          @error('email')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  
+
+                                  <!-- status -->
+                                  <div class="row mb-3">
+                                      <label for="edit-Status" class="col-md-4 col-form-label text-md-end">Status</label>
+                                      <div class="col-8">
+                                        <select id="edit-Status" class="form-control custom-select" name="status">
+                                          <option value="" selected disabled>Select Status...</option>
+                                          @if(auth()->user()->status === 'Admin')
+                                          <option value="Admin" >Admin</option>
+                                          @else
+                                          <option value="Receptionist">Receptionist</option>
+                                          @endif
+                                        </select>
+                                      </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer justify-content-end">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                              </div>
+                  </form>
+                </div>
+              <!-- /.modal-content -->
+              </div>
+            <!-- /.modal-dialog -->
+            </div>
+    </div>
+  </div>
+          <!-- /.end edit therapist -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="/js/sidebar.js"></script>

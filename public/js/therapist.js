@@ -33,7 +33,7 @@ $('.time_start').click(function () {
 })
 // time_end
 
-$('.delete').click(function () {
+$('.deleteTherapist').click(function () {
   var name = $(this).attr('data-bs-name')
   var id = $(this).attr('data-bs-target')
   const swalWithBootstrapButtons = Swal.mixin({
@@ -73,3 +73,9 @@ $('.delete').click(function () {
       }
     })
 })
+
+var therapist = $('#therapist-table').height()
+if (therapist > 638) {
+  $('#therapist-table').css('height', '638px')
+} else {
+}

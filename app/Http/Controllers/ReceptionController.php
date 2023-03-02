@@ -53,6 +53,23 @@ class ReceptionController extends Controller
         );
     }
 
+    public function updatePersonal(Request $request)
+    {
+        $updateUser = User::findorFail($request->user_name);
+        $updateUser->name = $request->name;
+        $updateUser->username = $request->username;
+        $updateUser->status = $request->status;
+        $updateUser->phone = $request->phone;
+        $updateUser->email = $request->email;
+        $updateUser->password = $request->password;
+        $updateUser->save();
+
+        return Redirect('/dashboard')->with(
+            'success',
+            'User has been updated!'
+        );
+    }
+
     public function destroy($id)
     {
         User::destroy($id);

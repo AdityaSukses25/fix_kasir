@@ -22,6 +22,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/css/style.css">
     <!-fontawosem-  -->
   <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+  <style>
+    .show-on-service{
+      height: 638px;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

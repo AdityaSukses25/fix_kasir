@@ -33,7 +33,7 @@
           <!-- massage -->
           <div class="col-6">
             <div class="card shadow">
-              <div class="card-body table-responsive p-0" style="height: ;">
+              <div class="card-body table-responsive p-0 " id="service-table">
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
@@ -81,8 +81,8 @@
           <!-- place -->
           <div class="col-3">
             <div class="card shadow">
-              <div class="card-body table-responsive p-0" style="height: 638px;">
-                <table class="table table-head-fixed text-nowrap">
+              <div class="card-body table-responsive p-0" id="place-table">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -104,7 +104,7 @@
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-danger " data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
+                              <button type="submit" class="deleteplace btn btn-block btn-danger " data-bs-target="{{ $place->id}}" data-bs-name="{{ $place->place }}">
                               <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
                               </button>
                             </div>
@@ -125,8 +125,8 @@
           <!-- discount -->
           <div class="col-3">
             <div class="card shadow">
-              <div class="card-body table-responsive p-0" style="height: 638px;">
-                <table class="table table-head-fixed text-nowrap">
+              <div class="card-body table-responsive p-0" id="discount-table">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -147,7 +147,7 @@
                               </button>
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-danger " data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
+                              <button type="submit" class="deletediscount btn btn-block btn-danger " data-bs-target="{{ $discount->id}}" data-bs-name="{{ $discount->discount }}">
                               <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
                               </button>
                             </div>
@@ -530,5 +530,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="/js/service.js"></script>
+
     
 @endsection

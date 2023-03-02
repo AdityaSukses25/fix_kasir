@@ -50,6 +50,16 @@ class DatabaseSeeder extends Seeder
             'commision' => '25000',
         ]);
 
+        Therapist::create([
+            'name' => 'I Wayan Artha Wiguna',
+            'nickname' => 'artha',
+            'phone' => '08311401437',
+            'gender_id' => '1',
+            'status' => '0',
+            'presence' => '30000',
+            'commision' => '25000',
+        ]);
+
         Gender::create([
             'gender' => 'male',
         ]);
@@ -69,11 +79,17 @@ class DatabaseSeeder extends Seeder
         Service::create([
             'massage' => 'Balinese',
             'time' => '60',
-            'price' => '90',
+            'price' => '90000',
+        ]);
+
+        Service::create([
+            'massage' => 'Japanese',
+            'time' => '1',
+            'price' => '90000',
         ]);
 
         Discount::create([
-            'discount' => '20',
+            'discount' => '0',
         ]);
     }
 }

@@ -35,3 +35,9 @@ $('.editCustomer').on('click', function () {
   $('#editend').val(end)
   $('#editstatus').val(status)
 })
+
+var customer = $('#customer-table').height()
+if (customer > 638) {
+  $('#customer-table').css('height', '638px')
+} else {
+}

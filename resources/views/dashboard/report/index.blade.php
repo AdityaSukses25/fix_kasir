@@ -9,9 +9,11 @@
           </div><!-- /.col -->
           <div class="col-sm-6 mt-1">
             <ol class="breadcrumb float-sm-right">
-              <button class="btn btn-primary">
+              <form action="/pdf-print">
+              <button class="btn btn-primary" type="submit">
                 <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
               </button>
+              </form>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -61,10 +63,10 @@
                   </div>
                 </ul>
               </div>
-              <div class="card-body table-responsive p-0" style="height: 590px;">
+              <div class="card-body table-responsive p-0" id="report-table">
                 <div class="tab-content" id="custom-tabs-two-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
-                    <table id="table1" class="table table-bordered table-striped table-head-fixed text-nowrap">
+                    <table id="table1" class="table table-bordered table-striped table-hover text-nowrap">
                       <thead>
                         <tr>
                           <th class="text-center">No</th>
@@ -115,7 +117,7 @@
                     </table>
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
-                  <table id="example1" class="table table-bordered table-striped">
+                  <table id="example1" class="table table-bordered table-striped table-hover">
                       <thead>
                         <tr>
                           <th>No</th>

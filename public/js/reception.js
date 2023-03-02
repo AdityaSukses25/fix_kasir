@@ -56,3 +56,9 @@ $('.delete').click(function () {
       }
     })
 })
+
+var reception = $('#reception-table').height()
+if (reception > 638) {
+  $('#reception-table').css('height', '638px')
+} else {
+}

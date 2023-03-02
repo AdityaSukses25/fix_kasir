@@ -23,8 +23,8 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-body table-responsive p-0" style="height: 638px;">
-                <table class="table table-head-fixed text-nowrap">
+              <div class="card-body table-responsive p-0" id="customer-table">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -36,6 +36,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                      @if($customers->count())
                       @foreach($customers as $customer)
                       <tr>
                         <td>{{$loop->iteration}}</td>
@@ -45,7 +46,7 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editCustomer btn btn-block btn-default" data-toggle="modal" data-target="#editCustomer" data-bs-id="{{$customer->id}}"  data-bs-name="{{$customer->cust_name}}" data-bs-phone="{{$customer->phone}}" data-bs-service="{{$customer->service->massage}}" data-bs-therapist="{{$customer->therapist->name}}" data-bs-place="{{$customer->place->place}}" data-bs-time="{{$customer->service->time}}" data-bs-price="{{$customer->service->price}}" data-bs-discount="{{$customer->discount->discount}}" data-bs-payment="{{$customer->payment_method}}" data-bs-description="{{$customer->description}}" data-bs-summary="{{$customer->summary}}" data-bs-reception="{{$customer->reception->name}}" data-bs-create_at="{{$customer->created_at->format('Y-m-d')}}" data-bs-start="{{$customer->start_service}}" data-bs-end="{{$customer->end_service}}" data-bs-status="{{$customer->status}}">
+                              <button type="button" class="editCustomer btn btn-block btn-warning" data-toggle="modal" data-target="#editCustomer" data-bs-id="{{$customer->id}}"  data-bs-name="{{$customer->cust_name}}" data-bs-phone="{{$customer->phone}}" data-bs-service="{{$customer->service->massage}}" data-bs-therapist="{{$customer->therapist->name}}" data-bs-place="{{$customer->place->place}}" data-bs-time="{{$customer->service->time}}" data-bs-price="{{$customer->service->price}}" data-bs-discount="{{$customer->discount->discount}}" data-bs-payment="{{$customer->payment_method}}" data-bs-description="{{$customer->description}}" data-bs-summary="{{$customer->summary}}" data-bs-reception="{{$customer->reception->name}}" data-bs-create_at="{{$customer->created_at->format('Y-m-d')}}" data-bs-start="{{$customer->start_service}}" data-bs-end="{{$customer->end_service}}" data-bs-status="{{$customer->status}}">
                               <i class="fa fa-circle-info"></i>
                               </button>
       
@@ -57,7 +58,12 @@
                         </td>
                       </tr>
                       @endforeach
-                      
+                      @else
+                      <tr>
+                          <td colspan="7" class="text-center">Have no customer right now!</td>
+                      </tr>
+
+                      @endif
                     </tbody>
                 </table>
               </div>
