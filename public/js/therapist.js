@@ -75,7 +75,7 @@ $('.deleteTherapist').click(function () {
 })
 
 var therapist = $('#therapist-table').height()
-if (therapist > 638) {
-  $('#therapist-table').css('height', '638px')
+if (therapist > 580) {
+  $('#therapist-table').css('height', '580px')
 } else {
 }

@@ -48,17 +48,21 @@
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->status }}</td>
+                        @if( $user->status == 1)
+                        <td>Admin</td>
+                        @else
+                        <td>Receptionist</td>
+                        @endif
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <button type="button" class="editUser btn btn-block btn-default" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
+                              <button type="button" class="editUser btn btn-block btn-warning" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
                             <div class="col-md-6">
-                              <button type="submit" class="delete btn btn-block btn-default" data-bs-target="{{ $user->id}}" data-bs-name="{{ $user->name }}">
+                              <button type="submit" class="delete btn btn-block btn-danger" data-bs-target="{{ $user->id}}" data-bs-name="{{ $user->name }}">
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
@@ -180,8 +184,8 @@
                                         <select id="gender" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
                                                                                   
-                                              <option value="Admin">Admin</option>
-                                              <option value="Receptionist">Receptionist</option>
+                                              <option value="1">Admin</option>
+                                              <option value="0">Receptionist</option>
                                         </select>
                                       </div>
                                   </div>
@@ -306,10 +310,10 @@
                                         <select id="editStatus" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
                                           @if($user->username ==='aditya')
-                                          <option value="Admin" >Admin</option>
+                                          <option value="1" >Admin</option>
                                           @else
-                                          <option value="Admin" >Admin</option>
-                                          <option value="Receptionist">Receptionist</option>
+                                          <option value="1" >Admin</option>
+                                          <option value="0">Receptionist</option>
                                           @endif
                                         </select>
                                       </div>

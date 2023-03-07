@@ -61,10 +61,10 @@
               <div class="card-header border-bottom-0">
                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true"><i class="fas fa-solid fa-user"></i> Visitation</a>
+                    <a class="nav-link active text-primary" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true"><i class="fas fa-solid fa-user"></i> Visitation</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link sales" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false"><i class="fas fa-dollar-sign"></i> Sales</a>
+                    <a class="nav-link sales text-dark" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false"><i class="fas fa-dollar-sign"></i> Sales</a>
                   </li>
                 </ul>
               </div>
@@ -72,12 +72,12 @@
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <div class="chart">
-                    <canvas id="areaChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                    <canvas id="areaChart" style="min-height: 320px; height: 320px; max-height: 320px; max-width: 100%;"></canvas>
                   </div>  
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
                   <div class="chart">
-                    <canvas id="salesChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                    <canvas id="salesChart" style="min-height: 320px; height: 320px; max-height: 320px; max-width: 100%;"></canvas>
                   </div> 
                   </div>
                 </div>
@@ -92,20 +92,26 @@
       <!-- /.content -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+  // sales
     $('#custom-tabs-four-profile-tab').click(function(){
       $('#sales').removeClass('card-primary')
       $('#sales').addClass('card-success')
-      $('#custom-tabs-four-home-tab').addClass('text-success')
-      $('#custom-tabs-four-home-tab').removeClass('text-primary')
-      $('#custom-tabs-four-profile-tab').removeClass('text-primary')
+      $('#custom-tabs-four-profile-tab').removeClass('text-dark')
+      $('#custom-tabs-four-profile-tab').addClass('text-success')
+      $('#custom-tabs-four-home-tab').addClass('text-dark')
+      // $('#custom-tabs-four-home-tab').removeClass('text-primary')
     } )
-
+// visitation
     $('#custom-tabs-four-home-tab').click(function(){
       $('#sales').removeClass('card-success')
       $('#sales').addClass('card-primary')
-      $('#custom-tabs-four-profile-tab').addClass('text-primary')
-      $('#custom-tabs-four-profile-tab').removeClass('text-success')
-      $('#custom-tabs-four-home-tab').removeClass('text-success')
+      $('#custom-tabs-four-profile-tab').addClass('text-dark')
+      // $('#custom-tabs-four-profile-tab').removeClass('text-dark')
+      $('#custom-tabs-four-home-tab').removeClass('text-dark')
+      $('#custom-tabs-four-home-tab').addClass('text-primary')
+
+      // $('#custom-tabs-four-profile-tab').removeClass('text-success')
+      // $('#custom-tabs-four-home-tab').removeClass('text-success')
     } )
 </script>
     <!-- ChartJS -->

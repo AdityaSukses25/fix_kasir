@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,6 +31,14 @@ class AppServiceProvider extends ServiceProvider
 
         Str::macro('rupiah', function ($value) {
             return 'Rp. ' . \number_format($value, 0, ',', '.');
+        });
+
+        Gate::define('admin', function (User $user) {
+            return $user->status == 1;
+        });
+
+        Gate::define('reception', function (User $user) {
+            return $user->status == 0;
         });
     }
 }

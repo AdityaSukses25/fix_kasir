@@ -16,7 +16,17 @@
               	<div class="kotak border px-3 py-1 absolute">
                   <h1 id="jam"></h1>
                 </div>
-                
+                @if(session()->has('loginError'))
+                  <div class="row justify-content-end" style="position:relative;">
+                    <div class="col-3" style="position:absolute;margin-top:-90px; margin-bottom: 20px">
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('orderError') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    </div>
+                  </div>
+                @endif
+              </div>  
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,7 +39,7 @@
         <div class="row">
           <div class="col-7">
             <div class="card">
-                <div class="card-body table-responsive" style="height: 638px;">
+                <div class="card-body table-responsive" style="height: 580px;">
                   <table class="table table-head-fixed text-nowrap">
                   <div class="card ">
                 <!-- /.card-header --> 
@@ -41,9 +51,9 @@
                         <div class="row mb-3">
                           <label for="name" class="col-md-4 col-form-label text-md-end">Name</label>
                             <div class="col-md-8">
-                              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="cust_name" value="{{ old('name') }}" required autocomplete="name" placeholder="type customer name..." autofocus>
+                              <input id="name" type="text" class="form-control @error('cust_name') is-invalid @enderror" name="cust_name" value="{{ old('name') }}" required autocomplete="name" placeholder="type customer name..." autofocus>
 
-                                @error('name')
+                                @error('cust_name')
                                   <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                   </span>
@@ -70,7 +80,7 @@
                         <div class="row mb-3">
                           <label for="service_id" class="col-md-4 col-form-label text-md-end">Massage</label>
                             <div class="col-md-8">
-                              <select id="inputMassage" class="form-control custom-select" name=""  onchange="selectMassage()">
+                              <select id="inputMassage" class="form-control custom-select @error('serve') is-invalid @enderror" name="serve"  onchange="selectMassage()" required>
                                 <option value="" selected disabled>Select Massage...</option>
                                 @foreach( $massages as $massage)                                    
                                                   <option value="{{ $massage }}">{{$massage->massage}}</option>
@@ -102,7 +112,7 @@
 
                             <!-- therapist name -->
                             <div class="col-md-5">
-                            <select id="inputTherapist" class="form-control custom-select" name="therapist_id">
+                            <select id="inputTherapist" class="form-control custom-select @error('cust_name') is-invalid @enderror" name="therapist_id" required>
                                             
                                               
                               </select>
@@ -116,7 +126,7 @@
                         <div class="row mb-3">
                           <label for="place_id" class="col-md-4 col-form-label text-md-end">Room</label>
                           <div class="col-md-8">
-                              <select id="place" class="form-control custom-select" name="place_id">
+                              <select id="place" class="form-control custom-select" name="place_id" required>
                                               <option value="" selected disabled>Select room...</option>
                                                   @foreach( $places as $place )                                    
                                                   <option value="{{$place->id}}">{{$place->place}}</option>
@@ -180,7 +190,7 @@
                         <div class="row mb-3">
                           <label for="discount_id" class="col-md-4 col-form-label text-md-end">Discount</label>
                           <div class="col-md-8">
-                              <select id="inputDiscount" class="form-control custom-select" onchange="selectDiscount()">
+                              <select id="inputDiscount" class="form-control custom-select" onchange="selectDiscount()" required>
                                               <option value="" selected disabled>Select discount...</option>
                                                   @foreach( $discounts as $discount)                                    
                                                   <option value="{{$discount}}">{{$discount->discount}}</option>
@@ -196,7 +206,7 @@
                         <div class="row mb-3">
                           <label for="payment" class="col-md-4 col-form-label text-md-end">Payment Method</label>
                           <div class="col-md-8">
-                              <select id="payment" class="form-control custom-select" name="payment_method">
+                              <select id="payment" class="form-control custom-select" name="payment_method" required>
                                               <option value="" selected disabled>Select payment...</option>
                                               <option value="Cash">Cash</option>
                                               <option value="Debit">Debit</option>
@@ -272,7 +282,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" id="show-on-going" style="height: px;">
-                  <table id='table-view' class="table  table-hover text-nowrap">
+                  <table id="table-view" class="table  table-hover text-nowrap">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -292,11 +302,11 @@
                             <td><a href="/customer">{{ $order->cust_name }}</a> </td>
                             <td class="text-capitalize">{{ $order->therapist->nickname }}</td>
                             <td>{{ $order->start_service }}</td>
-                            <td><div class="endTime" id="end_time" data-bs-now="{{$order->created_at}}" data-bs-id="{{$order->id}}" data-bs-val="{{$order->end_service}}">{{ $order->end_service }}</div></td>
+                            <td>{{ $order->end_service }}</td>
                             @if($order->status === 'on going')
-                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-warning">On going...</span></td>
+                            <td><span class="status badge badge-warning">On going...</span></td>
                             @else
-                            <td><span  id="{{$order->id}}" data-bs-id="{{$order->id}}" class="status badge badge-success">Finish</span></td>
+                            <td><span class="status badge badge-success">Finish</span></td>
                             @endif
                                               
                           </tr>

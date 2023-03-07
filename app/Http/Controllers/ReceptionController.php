@@ -30,9 +30,7 @@ class ReceptionController extends Controller
 
         User::create($validatedData);
 
-        $request
-            ->session()
-            ->flash('success', 'Registration Successfull! Please Login');
+        $request->session()->flash('success', 'Reception has been added!');
 
         return redirect('/reception');
     }
@@ -64,10 +62,7 @@ class ReceptionController extends Controller
         $updateUser->password = $request->password;
         $updateUser->save();
 
-        return Redirect('/dashboard')->with(
-            'success',
-            'User has been updated!'
-        );
+        return back()->with('success', 'User has been updated!');
     }
 
     public function destroy($id)

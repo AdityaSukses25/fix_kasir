@@ -16,7 +16,7 @@
         <div class="col p-2">
           <div class="title text-center"><h1>SPA LOTUS MASSAGE ECHO</h1></div>
           <div class="title text-center text-success"><h1>SALES REPORT</h1></div>
-          <div class="title text-center"><h3>January, 23 2023</h3></div>
+          <div class="title text-center"><h3>January, 24 2024</h3></div>
         </div>
       </div>
       <div class="row">
@@ -71,6 +71,9 @@
       </div>
     </div>
 
+    <script>
+      window.print()
+    </script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

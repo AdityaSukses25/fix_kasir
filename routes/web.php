@@ -54,7 +54,10 @@ Route::get(
 );
 
 // reception
-Route::get('/reception', 'App\Http\Controllers\ReceptionController@index');
+Route::get(
+    '/reception',
+    'App\Http\Controllers\ReceptionController@index'
+)->middleware('admin');
 Route::post(
     '/reception/create',
     'App\Http\Controllers\ReceptionController@store'
@@ -116,7 +119,7 @@ Route::get(
     '/getTherapist/{id}',
     'App\Http\Controllers\OrderController@therapist'
 );
-Route::post('/order/create', 'App\Http\Controllers\OrderController@storeOrder');
+Route::post('/order/create', 'App\Http\Controllers\OrderController@store');
 
 // customer
 Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
@@ -130,8 +133,8 @@ Route::get(
 Route::post('/report', 'App\Http\Controllers\ReportController@index');
 
 // pdf
-Route::get('/pdf', 'App\Http\Controllers\PDFController@index');
-Route::get('/pdf-print', 'App\Http\Controllers\PDFController@printSales');
+Route::get('/pdf-sales', 'App\Http\Controllers\PDFController@index');
+Route::get('/pdf-salary', 'App\Http\Controllers\ReportController@printSalary');
 
 // edit-personal
 Route::put(

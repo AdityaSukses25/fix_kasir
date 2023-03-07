@@ -9,11 +9,23 @@
           </div><!-- /.col -->
           <div class="col-sm-6 mt-1">
             <ol class="breadcrumb float-sm-right">
-              <form action="/pdf-print">
-              <button class="btn btn-primary" type="submit">
-                <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
-              </button>
-              </form>
+              <div class="print-sale">
+                <form action="/pdf-sales" method="" target="_blank">
+                <input type="hidden" name="start_sales" id="start_sales">
+                <input type="hidden" name="end_sales" id="end_sales">
+                <button class="btn btn-primary" type="submit">
+                  <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+                </button>
+                </form>
+              </div>
+              <div class="print-salary d-none">
+                <form action="/pdf-salary" method="" target="_blank">
+                <input type="hidden" name="bulan" id="bulan" class="ml-5 mr-2 rounded border-0 p-1 px-2 start_month"  >
+                <button class="btn btn-success" type="submit">
+                  <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+                </button>
+                </form>
+              </div>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,46 +39,71 @@
 
         <div class="row">
         <div class="col-12 ">
-            <div class="card card-primary card-tabs ">
+            <div class="card card-primary card-tabs " id="card-sales">
               <div class="card-header p-0 pt-1">
                 <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
                   <li class="pt-2 px-3"><h3 class="card-title">    </h3></li>
                   <li class="nav-item">
                     <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true"><i class="fa-solid fa-dollar-sign"></i> Sales</a>
                   </li>
-                  <li class="nav-item" style="Margin-right: 37em;">
+                  <li class="nav-item" style="Margin-right: 580px;">
                     <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"><i class="fa fa-hand-holding-dollar"></i>  Salarys</a>
                   </li>
                   
-                  <form action="/report">
+                  <form action="/report" class="date-sales">
                     <div class="d-flex justify-content-end" >
-                      <li><input type="date" class="ml-5 mr-2 rounded border-0 p-1 px-2" id="" name="start_date" value="{{ old('start_date')}}"></li>
-                      <li class="mt-1">to</li>                  
-                      <li><input type="date" class="ml-2  rounded border-0 p-1 px-2" id="dateEnd" name="end_date" value="{{ old('end_date') }}"></li>
+                      <li><input type="date" class="ml-5 mr-2 rounded border-0 p-1 px-2 date-sales" id="start_date" name="start_date" value="{{ old('start_date')}}"></li>
+                      <li class="mt-1 date-sales">to</li>                  
+                      <li><input type="date" class="ml-2 date-sales rounded border-0 p-1 px-2" id="end_date" name="end_date" value="{{ old('end_date') }}"></li>
+                      
                       <div class="input-group input-group-sm" style="margin-top: px ;">
                         
-                        <button class="btn btn-tool" style="margin-top: px;" type="submit">
+                        <button class="btn btn-tool date-sales" style="margin-top: px;" type="submit">
                           <i class="fas fa-search"></i>
                           
                         </button>                      
                         
                         
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <button type="button" class="btn btn-tool date-sales" data-card-widget="collapse">
                           <i class="fas fa-minus"></i>
                         </button>
                         
                         
                       </div>
                       
-                      </form>
-                    
-                  </div>
+                      
+                    </div>
+                  </form>
+
+                  <form action="/report" class="date-salary  d-none" style="margin-left: 10rem;">
+                    <div class="d-flex justify-content-end" >
+                      <li><input type="month" name="bulan" id="start_month" class="ml-5 mr-2 rounded border-0 p-1 px-2 "  ></li>
+                      
+                      
+                      <div class="input-group input-group-sm" style="margin-top: px ;">
+                        
+                        <button class="btn btn-tool " style="margin-top: px;" type="submit">
+                          <i class="fas fa-search"></i>
+                          
+                        </button>                      
+                        
+                        
+                        <button type="button" class="btn btn-tool " data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        
+                        
+                      </div>
+                      
+                      
+                    </div>
+                  </form>
                 </ul>
               </div>
               <div class="card-body table-responsive p-0" id="report-table">
                 <div class="tab-content" id="custom-tabs-two-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
-                    <table id="table1" class="table table-bordered table-striped table-hover text-nowrap">
+                    <table id="table1" class="table table-bordered table-striped table-head-fixed table-hover text-nowrap">
                       <thead>
                         <tr>
                           <th class="text-center">No</th>
@@ -121,19 +158,18 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Date</th>
+                          <th>Time</th>
                           <th>Therapist</th>
                           <th>Total Service</th>
                           <th>Salary</th>
                         </tr>
                       </thead>
                       <tbody id="table-body">
-                      @if($salarys->count())
                       
                       @foreach($salarys as $salary)
                         <tr>
                           <td>{{ $loop->iteration}}</td>
-                          <td> </td>
+                          <td>{{ $month_salary->format('F Y')}}</td>
                           <td>{{ $salary['therapist_name'] }}</td>
                           <td>{{ $salary['order_amount'] }}</td>
                           <td>{{ Str::rupiah($salary['salary']) }},00</td>
@@ -141,11 +177,7 @@
                         @endforeach
                         
                         
-                      @else
-                        <tr>
-                          <td colspan="10" class="text-center">No Service yet Right now!</td>
-                        </tr>
-                      @endif
+                      
                       </tbody>
                       <tfoot>
                         <tr>

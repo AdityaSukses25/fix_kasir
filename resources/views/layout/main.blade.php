@@ -8,7 +8,14 @@
 
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    
+    <style>
+      .sidebar .user-panel .info a .user-personal{
+        display: none;
+        color: #000;
+      }
+      
+      
+    </style>
   </head>
   <body>
   

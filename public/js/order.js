@@ -91,13 +91,12 @@ $('#inputMassage').on('change', function () {
   }, 1000)
 })
 
-$(document).ready(function () {
-  setInterval(function () {
-    $('#table-view').load('/order #table-view > *')
-    var show = $('#show-on-going').height()
-    if (show > 590) {
-      $('#show-on-going').css('height', '590px')
-    } else {
-    }
-  }, 1000)
-})
+// setInterval(function () {
+//   $('#table-view').load('/order #table-view > *')
+// }, 500)
+
+var show_service = $('#show-on-going').height()
+if (show_service > 535) {
+  $('#show-on-going').css('height', '535px')
+} else {
+}

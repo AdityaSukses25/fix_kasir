@@ -31,11 +31,9 @@ class OrderController extends Controller
                 '=',
                 date('Y-m-d')
             )->get(),
-            Order::where('end_service', '<', $timeNow)
-                ->where('status', '=', 'on going')
-                ->update([
-                    'status' => 'success',
-                ]),
+            Order::where('end_service', '<', $timeNow)->update([
+                'status' => 'success',
+            ]),
         ]);
     }
 
@@ -52,7 +50,7 @@ class OrderController extends Controller
         return response()->json($terapists);
     }
 
-    public function storeOrder(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'service_id' => 'required',
@@ -75,6 +73,6 @@ class OrderController extends Controller
 
         Order::create($validatedData);
 
-        return Redirect('/order')->with('success', 'Data has been added!');
+        return Redirect('/order')->with('success', 'Order has been added!');
     }
 }

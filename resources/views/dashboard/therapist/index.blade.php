@@ -9,9 +9,11 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+              @can('admin')
               <button class="btn btn-primary" data-target="#addTerapist" data-toggle="modal">
-                  <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Therapist</li>
+                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Therapist</li>
               </button>
+              @endcan
               
             </ol>
           </div><!-- /.col -->
@@ -55,12 +57,12 @@
                           <div class="row">
                             
                             <div class="col-md-4">
-                              <button type="button" class="editTerapist btn btn-block btn-default" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                              <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                               <i class="fa fa-edit"></i>
                               </button>
                             </div>
                             <div class="col-md-4">
-                              <button type="submit" class="deleteTherapist btn btn-block btn-default" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                              <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
                             </div>
@@ -158,7 +160,7 @@
                                       </div>
                                   </div>
 
-                                  <!-- kehadiran -->
+                                  <!-- kehadiran
                                   <div class="row mb-3">
                                       <label for="presence" class="col-md-4 col-form-label text-md-end">Presence</label>
 
@@ -171,7 +173,7 @@
                                               </span>
                                           @enderror
                                       </div>
-                                  </div>
+                                  </div> -->
 
                                   <!-- commision -->
                                   <div class="row mb-3">
@@ -291,7 +293,7 @@
                                   </div>
 
                                   <!-- kehadiran -->
-                                  <div class="row mb-3">
+                                  <!-- <div class="row mb-3">
                                       <label for="presence" class="col-md-4 col-form-label text-md-end">Presence</label>
 
                                       <div class="col-md-8">
@@ -303,25 +305,44 @@
                                               </span>
                                           @enderror
                                       </div>
-                                  </div>
+                                  </div> -->
 
                                   <!-- commision -->
+                                  @can('reception')
+                                  <div class="row mb-3">
+
+                                      <div class="col-md-8">
+                                        <input id="editCommision" type="hidden" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
+
+                                        @error('commision')
+                                        <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                        </span>
+                                          @enderror
+                                        </div>
+                                      </div>
+                                      
+                                      
+                                  </div>
+                                  @endcan
+                                  @can('admin')
                                   <div class="row mb-3">
                                       <label for="commision" class="col-md-4 col-form-label text-md-end">Commision</label>
 
                                       <div class="col-md-8">
-                                          <input id="editCommision" type="text" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
+                                        <input id="editCommision" type="text" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
 
-                                          @error('commision')
-                                              <span class="invalid-feedback" role="alert">
-                                                  <strong>{{ $message }}</strong>
-                                              </span>
+                                        @error('commision')
+                                        <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                        </span>
                                           @enderror
+                                        </div>
                                       </div>
+                                      
+                                      
                                   </div>
-
-
-                                </div>
+                                  @endcan
                               </div>
                               <div class="modal-footer justify-content-end">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

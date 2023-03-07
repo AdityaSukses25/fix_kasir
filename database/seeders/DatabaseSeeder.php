@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Aditya Wardana',
             'username' => 'aditya',
             'phone' => '09832423',
-            'status' => 'admin',
+            'status' => 1,
             'email' => 'aditya@gmail.com',
             'password' => bcrypt('12345'),
         ]);
@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '08311401437',
             'gender_id' => '2',
             'status' => '1',
-            'presence' => '30000',
             'commision' => '20000',
         ]);
 
@@ -46,7 +45,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '08311401437',
             'gender_id' => '1',
             'status' => '0',
-            'presence' => '30000',
             'commision' => '25000',
         ]);
 
@@ -56,7 +54,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '08311401437',
             'gender_id' => '1',
             'status' => '0',
-            'presence' => '30000',
             'commision' => '25000',
         ]);
 

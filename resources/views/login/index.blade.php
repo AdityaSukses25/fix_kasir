@@ -42,16 +42,10 @@
   <body class="">
     <div class="row justify-content-center pt-5">
       <div class="col">
-        @if(session()->has('success'))
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        @endif
         
         @if(session()->has('loginError'))
-          <div class="row justify-content-center">
-            <div class="col-8">
+          <div class="row justify-content-end" style="position:relative;">
+            <div class="col-3" style="position:absolute;margin-top:-90px; margin-bottom: 20px">
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ session('loginError') }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -71,7 +65,7 @@
 
                       <div class="card-body">
                         <div class="row d-flex absolute justify-content-center">
-                          <div class="col-3 mt-2 mb-4">
+                          <div class="col mt-2 mb-4 text-center">
                             <div class="card-logo">
                               <svg width="202" height="197" viewBox="0 0 502 497" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <rect width="497" height="497" fill="url(#pattern0)"/>
@@ -118,8 +112,8 @@
 
 
                               <div class="row mb-0">
-                                  <div class="col-md-8 offset-md-4">
-                                      <button type="submit" class="btn btn-primary">
+                                  <div class="col-3 offset-md-7 text-end">
+                                      <button type="submit" class="btn btn-primary px-5">
                                           Login
                                       </button>
                                   </div>

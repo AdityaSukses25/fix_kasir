@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
 use App\Models\Order;
 use App\Models\Therapist;
 use Illuminate\Http\Request;
@@ -12,10 +13,10 @@ class PDFController extends Controller
     public function index(Request $request)
     {
         $dateNow = Order::whereDate('created_at', '=', Date('Y-m-d'));
-        if (request('start_date') && request('end_date')) {
+        if (request('start_sales') && request('end_sales')) {
             $dateNow = Order::whereBetween('created_at', [
-                request('start_date'),
-                request('end_date'),
+                request('start_sales'),
+                request('end_sales'),
             ]);
         }
 
@@ -32,29 +33,12 @@ class PDFController extends Controller
                 'salary' => $salary,
             ];
         });
-        return view('dashboard.pdf.index', [
+        return view('dashboard.pdf.sales', [
             'title' => 'SALES REPORT',
             'days' => $dateNow->get(),
             'totalADays' => $dateNow->sum('summary'),
             'salarys' => $AmountOfSalary,
-            'Summary' => $AmountOfSalary->sum('salary'),
-        ]);
-    }
-
-    public function printSales()
-    {
-        $html = View::make('dashboard.pdf.index')->render();
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-        return $dompdf->stream('dashboard.pdf.index', [
-            'title' => 'SALES REPORT',
-            'Attachment' => false,
-            'days' => $dateNow->get(),
-            'totalADays' => $dateNow->sum('summary'),
-            'salarys' => $AmountOfSalary,
-            'Summary' => $AmountOfSalary->sum('salary'),
+            // 'Summary' => $AmountOfSalary->sum('salary'),
         ]);
     }
 }

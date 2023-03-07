@@ -58,7 +58,7 @@ $('.delete').click(function () {
 })
 
 var reception = $('#reception-table').height()
-if (reception > 638) {
-  $('#reception-table').css('height', '638px')
+if (reception > 580) {
+  $('#reception-table').css('height', '580px')
 } else {
 }

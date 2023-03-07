@@ -27,7 +27,6 @@ class TherapistController extends Controller
             'nickname' => 'required',
             'gender_id' => 'required',
             'phone' => 'required',
-            'presence' => 'required',
             'commision' => 'required',
         ]);
 
@@ -59,7 +58,6 @@ class TherapistController extends Controller
         //     $value->save();
         // }
         $updateTerapist->status = $request->status;
-        $updateTerapist->presence = $request->presence;
         $updateTerapist->commision = $request->commision;
         $updateTerapist->save();
 

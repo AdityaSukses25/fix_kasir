@@ -20,7 +20,6 @@ class CreateTherapistsTable extends Migration
             $table->string('nickname');
             $table->bigInteger('phone');
             $table->integer('status');
-            $table->integer('presence');
             $table->integer('commision');
             $table->timestamps();
         });

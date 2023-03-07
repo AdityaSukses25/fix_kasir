@@ -13,8 +13,12 @@
           <img src="../template/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="edit-personal d-block text-capitalize" data-toggle="modal" data-target="#edit-personal" data-bs-id="{{ auth()->user()->id }}" data-bs-name="{{ auth()->user()->name }}" data-bs-username="{{ auth()->user()->username }}" data-bs-phone="{{ auth()->user()->phone }}" data-bs-email="{{ auth()->user()->email }}" data-bs-password="{{ auth()->user()->password }}" data-bs-status="{{ auth()->user()->status }}">{{ auth()->user()->name }}</a>
-          <small class="text-light">you're logged in as {{ auth()->user()->status }}</small>
+          <a href="#" class="edit-personal d-block text-capitalize" data-toggle="modal" data-target="#edit-personal" data-bs-id="{{ auth()->user()->id }}" data-bs-name="{{ auth()->user()->name }}" data-bs-username="{{ auth()->user()->username }}" data-bs-phone="{{ auth()->user()->phone }}" data-bs-email="{{ auth()->user()->email }}" data-bs-password="{{ auth()->user()->password }}" data-bs-status="{{ auth()->user()->status }}">{{ auth()->user()->name }} <i class="d-none fa fa-user-pen user-personal"></i></a>
+          @if(auth()->user()->status == 1)
+          <small class="text-light">you're logged in as Admin</small>
+          @else
+          <small class="text-light">you're logged in as Receptionist</small>
+          @endif
         </div>
       </div>
 
@@ -25,23 +29,28 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
-              <i class="nav-icon  fas fa-tachometer-alt"></i>
+            <a href="/dashboard" class="{{ Request::is('dashboard') ? 'active' : '' }} nav-link">
+              <i class="nav-icon  fas fa-tachometer-alt"></i> 
               <p>
                 Dashboard
               </p>
             </a>
           </li>
+
+          @can('reception')
           <li class="nav-item">
-            <a href="/order" class="nav-link">
-              <i class="fa fa-file-pen nav-icon"></i>
-              <p>
-                Orders
+            <a href="/order" class="nav-link {{ Request::is('order') ? 'active' : '' }}">
+            <i class="fa fa-file-pen nav-icon"></i>
+            <p>
+              Orders
               </p>
             </a>
           </li>
+          @endcan
+
+          
           <li class="nav-item">
-            <a href="/service" class="nav-link">
+            <a href="/service" class="nav-link {{ Request::is('service') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Services
@@ -49,21 +58,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/customer" class="nav-link">
+            <a href="/customer" class="nav-link {{ Request::is('customer') ? 'active' : '' }}">
             <i class="nav-icon fas fa-solid fa-user"></i>
               <p>
                 Customers
               </p>
             </a>
           </li>
+
+          @can('reception')
           <li class="nav-item">
-            <a href="/therapist" class="nav-link">
+            <a href="/therapist" class="nav-link {{ Request::is('therapist') ? 'active' : '' }}">
             <i class="nav-icon fas fa-users"></i>
               <p>
                 Therapists
               </p>
             </a>
           </li>
+          @endcan
+ 
+          @can('admin')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -74,21 +88,23 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/reception" class="nav-link">
+                <a href="/reception" class="nav-link {{ Request::is('reception') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Receptionist</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="/therapist" class="nav-link">
+              <a href="/therapist" class="nav-link {{ Request::is('therapist') ? 'active' : '' }}">
               <i class="far fa-circle nav-icon"></i>
               <p>Therapist</p>
             </a>
           </li>
         </ul>
       </li>
+      @endcan
+
       <li class="nav-item">
-            <a href="/report" class="nav-link">
+            <a href="/report" class="nav-link {{ Request::is('report') ? 'active' : '' }}">
             <i class="fa-solid fa-file-contract nav-icon"></i>
               <p>
                 Reports
@@ -192,10 +208,10 @@
                                       <div class="col-8">
                                         <select id="edit-Status" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
-                                          @if(auth()->user()->status === 'Admin')
-                                          <option value="Admin" >Admin</option>
+                                          @if(auth()->user()->status == 1)
+                                          <option value="1" >Admin</option>
                                           @else
-                                          <option value="Receptionist">Receptionist</option>
+                                          <option value="0">Receptionist</option>
                                           @endif
                                         </select>
                                       </div>

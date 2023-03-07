@@ -15,3 +15,14 @@ $('.edit-personal').on('click', function () {
   $('#edit-Password').val(password)
   $('#edit-Status').val(status)
 })
+
+$(document).ready(function () {
+  $('.edit-personal').hover(
+    function () {
+      $('.user-personal').removeClass('d-none')
+    },
+    function () {
+      $('.user-personal').addClass('d-none')
+    },
+  )
+})
