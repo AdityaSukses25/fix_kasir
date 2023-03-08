@@ -12,7 +12,9 @@ class TherapistController extends Controller
 {
     public function index()
     {
-        $terapist = collect(Therapist::all())->sortBy('name');
+        $terapist = Therapist::where('status', '>', 0)
+            ->orderBy('name', 'asc')
+            ->get();
         return view('dashboard.therapist.index', [
             'title' => 'Therapist',
             'terapists' => $terapist,
@@ -30,7 +32,7 @@ class TherapistController extends Controller
             'commision' => 'required',
         ]);
 
-        $validatedData['status'] = 1;
+        $validatedData['status'] = 2;
 
         Therapist::create($validatedData);
 
@@ -67,9 +69,34 @@ class TherapistController extends Controller
         );
     }
 
+    public function updateDelete(Request $request, $id)
+    {
+        $updateTerapist = Therapist::find($id);
+        // $updateTerapist->name = $request->name;
+        // $updateTerapist->nickname = $request->nickname;
+        // $updateTerapist->gender_id = $request->gender_id;
+        // $updateTerapist->phone = $request->phone;
+        $updateTerapist->status = 0;
+        // $updateTerapist->commision = $request->commision;
+        $updateTerapist->save();
+
+        return Redirect('/therapist')->with(
+            'success',
+            'Terapist has been updated Delete!'
+        );
+    }
+
     public function destroy($id)
     {
-        Therapist::destroy($id);
+        $updateTerapist = Therapist::find($id);
+        // $updateTerapist->name = $request->name;
+        // $updateTerapist->nickname = $request->nickname;
+        // $updateTerapist->gender_id = $request->gender_id;
+        // $updateTerapist->phone = $request->phone;
+        $updateTerapist->status = 0;
+        // $updateTerapist->commision = $request->commision;
+        $updateTerapist->save();
+        // Therapist::destroy($id);
 
         return Redirect('/therapist');
     }

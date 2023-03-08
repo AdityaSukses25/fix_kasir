@@ -20,25 +20,10 @@ class PDFController extends Controller
             ]);
         }
 
-        $therapist = Therapist::get();
-        $order = Order::get();
-        $AmountOfSalary = $therapist->map(function ($therapist) use ($order) {
-            $amountOfOrder = $order
-                ->where('therapist_id', $therapist->id)
-                ->count();
-            $salary = $amountOfOrder * $therapist->commision;
-            return [
-                'therapist_name' => $therapist->name,
-                'order_amount' => $amountOfOrder,
-                'salary' => $salary,
-            ];
-        });
         return view('dashboard.pdf.sales', [
             'title' => 'SALES REPORT',
             'days' => $dateNow->get(),
             'totalADays' => $dateNow->sum('summary'),
-            'salarys' => $AmountOfSalary,
-            // 'Summary' => $AmountOfSalary->sum('salary'),
         ]);
     }
 }

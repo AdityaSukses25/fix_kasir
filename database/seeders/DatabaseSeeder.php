@@ -67,26 +67,31 @@ class DatabaseSeeder extends Seeder
 
         Place::create([
             'place' => 'floor 1',
+            'status' => '1',
         ]);
 
         Place::create([
             'place' => 'floor 2',
+            'status' => '1',
         ]);
 
         Service::create([
             'massage' => 'Balinese',
             'time' => '60',
             'price' => '90000',
+            'status' => '1',
         ]);
 
         Service::create([
             'massage' => 'Japanese',
             'time' => '1',
             'price' => '90000',
+            'status' => '1',
         ]);
 
         Discount::create([
             'discount' => '0',
+            'status' => '1',
         ]);
     }
 }

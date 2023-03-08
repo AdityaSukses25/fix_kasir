@@ -24,7 +24,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body table-responsive p-0" id="customer-table">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-head-fixed table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -66,6 +66,9 @@
                       @endif
                     </tbody>
                 </table>
+                <div class="page d-flex justify-content-center">
+                    {{ $customers->links() }}
+                </div>
               </div>
               <!-- /.card-body -->
             </div>

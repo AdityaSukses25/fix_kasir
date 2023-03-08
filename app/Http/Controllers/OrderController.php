@@ -37,6 +37,12 @@ class OrderController extends Controller
         ]);
     }
 
+    public function serviceOnGoing()
+    {
+        $data = Order::get();
+        return view('dashboard.order.index', compact('data'));
+    }
+
     // therapist dropdown dinamic
     public function therapist($id)
     {

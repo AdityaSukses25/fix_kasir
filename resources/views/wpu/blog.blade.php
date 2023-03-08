@@ -83,6 +83,6 @@
 
     <div class="page d-flex justify-content-center">
         {{ $posts->links() }}
-    </d>
+    </div>
     
 @endsection

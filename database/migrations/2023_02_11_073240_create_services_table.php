@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('massage');
             $table->integer('time');
             $table->integer('price');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -47,7 +47,7 @@
                         <td>{{ $terapist->nickname }}</td>
                         <td>{{ $terapist->phone }}</td>
                         <td>
-                          @if ($terapist->status == 1)
+                          @if ($terapist->status == 2)
                             <span class="badge badge-success">Active</span>
                           @else
                             <span class="badge badge-danger">Off</span>
@@ -62,9 +62,21 @@
                               </button>
                             </div>
                             <div class="col-md-4">
-                              <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                              <form id="updateDelete"action="/therapist/delete/{{ $terapist->id }}" method="post">
+                              @method('put')
+                              @csrf
+                              
+                              <!-- <div class="row mb-3"> -->
+                                
+                                <!-- <input type="text" value=0 name="status"> -->
+                              <!-- </div> -->
+                              </form>
+                              <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}" >
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
+                              <!-- <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                              <i class="fa-sharp fa-solid fa-delete-left"></i>
+                              </button> -->
                             </div>
                           </div>
 
@@ -286,8 +298,8 @@
                                       <div class="col-8">
                                         <select id="editAttend" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select attended...</option>
-                                              <option value="0">Off</option>
-                                              <option value="1">Active</option>
+                                              <option value="1">Off</option>
+                                              <option value="2">Active</option>
                                         </select>
                                       </div>
                                   </div>

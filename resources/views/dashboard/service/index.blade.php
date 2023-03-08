@@ -192,7 +192,7 @@
                                   <div class="row mb-3">
                                       <label for="massage" class="col-md-4 col-form-label text-md-end">Massage</label>
                                       <div class="col-md-8">
-                                        <input id="massage" type="text" class="form-control @error('massage') is-invalid @enderror" name="massage" value="{{ old('massage') }}" required autocomplete="massage" autofocus>
+                                        <input id="massage" type="text" class="form-control @error('massage') is-invalid @enderror " name="massage" value="{{ old('massage') }}" required autocomplete="massage" autofocus>
 
                                           @error('massage')
                                               <span class="invalid-feedback" role="alert">
@@ -222,7 +222,7 @@
                                       <label for="price" class="col-md-4 col-form-label text-md-end">Price</label>
 
                                       <div class="col-md-8">
-                                          <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+                                          <input id="price" type="number" class="form-control @error('price') is-invalid @enderror rupiah" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
 
                                           @error('price')
                                               <span class="invalid-feedback" role="alert">
@@ -530,6 +530,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="/js/service.js"></script>
-
-    
+<script src="{{ asset('js/maskmoney.js') }}"></script>    
 @endsection

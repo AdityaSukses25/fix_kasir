@@ -12,9 +12,15 @@ class ServiceController extends Controller
     {
         return view('/dashboard.service.index', [
             'title' => 'Services',
-            'massages' => Service::all(),
-            'places' => Place::all(),
-            'discounts' => Discount::all(),
+            'massages' => Service::where('status', '>', 0)
+                ->orderBy('massage', 'asc')
+                ->get(),
+            'places' => Place::where('status', '>', 0)
+                ->orderBy('place', 'asc')
+                ->get(),
+            'discounts' => Discount::where('status', '>', 0)
+                ->orderBy('discount', 'asc')
+                ->get(),
         ]);
     }
 
@@ -26,6 +32,8 @@ class ServiceController extends Controller
             'time' => 'required',
             'price' => 'required',
         ]);
+
+        $validatedData['status'] = 1;
 
         Service::create($validatedData);
 
@@ -48,7 +56,9 @@ class ServiceController extends Controller
 
     public function destroy($id)
     {
-        Service::destroy($id);
+        $updateService = Service::find($id);
+        $updateService->status = 0;
+        $updateService->save();
 
         return Redirect('/service');
     }
@@ -60,6 +70,7 @@ class ServiceController extends Controller
         $validatedData = $request->validate([
             'place' => 'required',
         ]);
+        $validatedData['status'] = 1;
 
         Place::create($validatedData);
 
@@ -80,7 +91,9 @@ class ServiceController extends Controller
 
     public function destroyPlace($id)
     {
-        Place::destroy($id);
+        $updatePlace = Place::find($id);
+        $updatePlace->status = 0;
+        $updatePlace->save();
 
         return Redirect('/service');
     }
@@ -92,6 +105,7 @@ class ServiceController extends Controller
         $validatedData = $request->validate([
             'discount' => 'required',
         ]);
+        $validatedData['status'] = 1;
 
         Discount::create($validatedData);
 
@@ -115,7 +129,9 @@ class ServiceController extends Controller
 
     public function destroyDiscount($id)
     {
-        Discount::destroy($id);
+        $updateDiscount = Discount::find($id);
+        $updateDiscount->status = 0;
+        $updateDiscount->save();
 
         return Redirect('/service');
     }

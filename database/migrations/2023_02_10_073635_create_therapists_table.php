@@ -18,7 +18,7 @@ class CreateTherapistsTable extends Migration
             $table->foreignId('gender_id');
             $table->string('name');
             $table->string('nickname');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->integer('status');
             $table->integer('commision');
             $table->timestamps();

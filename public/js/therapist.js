@@ -55,6 +55,7 @@ $('.deleteTherapist').click(function () {
     })
     .then((result) => {
       if (result.isConfirmed) {
+        // $('#updateDelete').submit()
         window.location = '/terapist/delete/' + id + ' '
         swalWithBootstrapButtons.fire(
           'Deleted!',

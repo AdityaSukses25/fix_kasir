@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('reception', function (User $user) {
-            return $user->status == 0;
+            return $user->status == 2;
         });
     }
 }

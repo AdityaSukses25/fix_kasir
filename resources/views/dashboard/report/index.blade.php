@@ -138,11 +138,12 @@
                           <td>{{ Str::rupiah($day->summary) }},00</td>
                         </tr>
                         @endforeach
-                      @else
+
+                        @else
                         <tr>
                           <td colspan="10" class="text-center">No Service yet Right now!</td>
                         </tr>
-                      @endif
+                        @endif
                       </tbody>
                       <tfoot>
                         <tr>
@@ -152,6 +153,8 @@
                         </tr>
                       </tfoot>
                     </table>
+                    <div class="page d-flex justify-content-center">
+                    </div>
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
                   <table id="example1" class="table table-bordered table-striped table-hover">
@@ -188,6 +191,8 @@
                         </tr>
                       </tfoot>
                     </table>
+                    <div class="page d-flex justify-content-center">
+                    </div>
                   </div>
                   </div>
               </div>

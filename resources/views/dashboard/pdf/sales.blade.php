@@ -16,7 +16,7 @@
         <div class="col p-2">
           <div class="title text-center"><h1>SPA LOTUS MASSAGE ECHO</h1></div>
           <div class="title text-center text-success"><h1>SALES REPORT</h1></div>
-          <div class="title text-center"><h3>January, 24 2024</h3></div>
+          <div class="title text-center"><h3></h3></div>
         </div>
       </div>
       <div class="row">

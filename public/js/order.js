@@ -14,7 +14,7 @@ $('#inputGender').on('change', function () {
             '<option hidden>-- Choose therapist --</option>',
           )
           $.each(data, function (key, therapist) {
-            if (therapist.status == '1') {
+            if (therapist.status == '2') {
               $('select[name="therapist_id"]').append(
                 '<option value="' +
                   therapist.id +
@@ -91,12 +91,23 @@ $('#inputMassage').on('change', function () {
   }, 1000)
 })
 
-// setInterval(function () {
-//   $('#table-view').load('/order #table-view > *')
-// }, 500)
+setInterval(function () {
+  $('#table-view').load('/order #table-view > *')
+}, 500)
 
 var show_service = $('#show-on-going').height()
 if (show_service > 535) {
   $('#show-on-going').css('height', '535px')
 } else {
 }
+
+// function refreshTable() {
+//   $.ajax({
+//     url: '/order/showService',
+//     success: function (orders) {
+//       $('#show-on-going').html(orders)
+//     },
+//   })
+// }
+
+// setInterval(refreshTable, 1000) // Refresh table every 5 seconds

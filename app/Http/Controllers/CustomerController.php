@@ -10,7 +10,7 @@ class CustomerController extends Controller
     public function index()
     {
         return view('dashboard.customer.index', [
-            'customers' => Order::all(),
+            'customers' => Order::paginate(20),
             'title' => 'Customer',
         ]);
     }

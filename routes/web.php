@@ -32,112 +32,123 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware(
 );
 Route::post('/register', [RegisterController::class, 'store']);
 
-// dashboard
-Route::get(
-    '/dashboard',
-    'App\Http\Controllers\DashboardController@index'
-)->middleware('auth');
-
-// therapist
-Route::get('/therapist', 'App\Http\Controllers\TherapistController@index');
-Route::post(
-    '/therapist/create',
-    'App\Http\Controllers\TherapistController@store'
-);
-Route::put(
-    '/therapist/edit/{Therapist}',
-    'App\Http\Controllers\TherapistController@update'
-);
-Route::get(
-    '/terapist/delete/{Therapist}',
-    'App\Http\Controllers\TherapistController@destroy'
-);
-
 // reception
 Route::get(
     '/reception',
     'App\Http\Controllers\ReceptionController@index'
 )->middleware('admin');
-Route::post(
-    '/reception/create',
-    'App\Http\Controllers\ReceptionController@store'
-);
-Route::put(
-    '/reception/edit/{User}',
-    'App\Http\Controllers\ReceptionController@update'
-);
-Route::get(
-    '/reception/delete/{User}',
-    'App\Http\Controllers\ReceptionController@destroy'
-);
 
-// service
-// ---- masssage
-Route::get('/service', 'App\Http\Controllers\ServiceController@index');
-Route::post('/service/create', 'App\Http\COntrollers\ServiceController@store');
-Route::put(
-    '/service/edit/{Service}',
-    'App\Http\Controllers\ServiceController@update'
-);
-Route::get(
-    '/service/delete/{Service}',
-    'App\Http\Controllers\ServiceController@destroy'
-);
+Route::middleware('auth')->group(function () {
+    // dashboard
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');
 
-// ---- place
-Route::post(
-    '/place/create',
-    'App\Http\Controllers\ServiceController@storePlace'
-);
-Route::put(
-    '/place/edit/{Place}',
-    'App\Http\Controllers\ServiceController@updatePlace'
-);
-Route::get(
-    '/place/delete/{Place}',
-    'App\Http\Controllers\ServiceController@destroyPlace'
-);
+    // therapist
+    Route::get('/therapist', 'App\Http\Controllers\TherapistController@index');
+    Route::post(
+        '/therapist/create',
+        'App\Http\Controllers\TherapistController@store'
+    );
+    Route::put(
+        '/therapist/edit/{Therapist}',
+        'App\Http\Controllers\TherapistController@update'
+    );
+    Route::get(
+        '/terapist/delete/{Therapist}',
+        'App\Http\Controllers\TherapistController@updateDelete'
+    );
 
-// discount
-Route::post(
-    '/discount/create',
-    'App\Http\Controllers\ServiceController@storeDiscount'
-);
-Route::put(
-    '/discount/edit/{Discount}',
-    'App\Http\Controllers\ServiceController@updateDiscount'
-);
-Route::get(
-    '/discount/delete/{Discount}',
-    'App\Http\Controllers\ServiceController@destroyDiscount'
-);
+    // reception
+    Route::post(
+        '/reception/create',
+        'App\Http\Controllers\ReceptionController@store'
+    );
+    Route::put(
+        '/reception/edit/{User}',
+        'App\Http\Controllers\ReceptionController@update'
+    );
+    Route::get(
+        '/reception/delete/{User}',
+        'App\Http\Controllers\ReceptionController@destroy'
+    );
 
-// order
-Route::get('/order', 'App\Http\Controllers\OrderController@index');
-// therapist dinamic dropdown
-Route::get(
-    '/getTherapist/{id}',
-    'App\Http\Controllers\OrderController@therapist'
-);
-Route::post('/order/create', 'App\Http\Controllers\OrderController@store');
+    // service
+    // ---- masssage
+    Route::get('/service', 'App\Http\Controllers\ServiceController@index');
+    Route::post(
+        '/service/create',
+        'App\Http\COntrollers\ServiceController@store'
+    );
+    Route::put(
+        '/service/edit/{Service}',
+        'App\Http\Controllers\ServiceController@update'
+    );
+    Route::get(
+        '/service/delete/{Service}',
+        'App\Http\Controllers\ServiceController@destroy'
+    );
 
-// customer
-Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
+    // ---- place
+    Route::post(
+        '/place/create',
+        'App\Http\Controllers\ServiceController@storePlace'
+    );
+    Route::put(
+        '/place/edit/{Place}',
+        'App\Http\Controllers\ServiceController@updatePlace'
+    );
+    Route::get(
+        '/place/delete/{Place}',
+        'App\Http\Controllers\ServiceController@destroyPlace'
+    );
 
-// report
-Route::get('/report', 'App\Http\Controllers\ReportController@index');
-Route::get(
-    '/report/{dateStart}/{dateEnd}',
-    'App\Http\Controllers\ReportController@perDate'
-);
-Route::post('/report', 'App\Http\Controllers\ReportController@index');
+    // discount
+    Route::post(
+        '/discount/create',
+        'App\Http\Controllers\ServiceController@storeDiscount'
+    );
+    Route::put(
+        '/discount/edit/{Discount}',
+        'App\Http\Controllers\ServiceController@updateDiscount'
+    );
+    Route::get(
+        '/discount/delete/{Discount}',
+        'App\Http\Controllers\ServiceController@destroyDiscount'
+    );
 
-// pdf
-Route::get('/pdf-sales', 'App\Http\Controllers\PDFController@index');
-Route::get('/pdf-salary', 'App\Http\Controllers\ReportController@printSalary');
+    // order
+    Route::get('/order', 'App\Http\Controllers\OrderController@index');
+    // therapist dinamic dropdown
+    Route::get(
+        '/getTherapist/{id}',
+        'App\Http\Controllers\OrderController@therapist'
+    );
+    Route::post('/order/create', 'App\Http\Controllers\OrderController@store');
+    Route::get(
+        '/order/showService',
+        'App\Http\Controllers\OrderController@index'
+    );
 
-// edit-personal
-Route::put(
-    '/user-personal/edit/{User}',
-    'App\Http\Controllers\ReceptionController@updatePersonal'
-);
+    // customer
+    Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
+
+    // report
+    Route::get('/report', 'App\Http\Controllers\ReportController@index');
+    Route::get(
+        '/report/{dateStart}/{dateEnd}',
+        'App\Http\Controllers\ReportController@perDate'
+    );
+    Route::post('/report', 'App\Http\Controllers\ReportController@index');
+
+    // pdf
+    Route::get('/pdf-sales', 'App\Http\Controllers\PDFController@index');
+    Route::get(
+        '/pdf-salary',
+        'App\Http\Controllers\ReportController@printSalary'
+    );
+
+    // edit-personal
+    Route::put(
+        '/user-personal/edit/{User}',
+        'App\Http\Controllers\ReceptionController@updatePersonal'
+    );
+});

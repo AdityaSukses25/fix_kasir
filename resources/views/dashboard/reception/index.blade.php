@@ -185,7 +185,7 @@
                                           <option value="" selected disabled>Select Status...</option>
                                                                                   
                                               <option value="1">Admin</option>
-                                              <option value="0">Receptionist</option>
+                                              <option value="2">Receptionist</option>
                                         </select>
                                       </div>
                                   </div>
@@ -313,7 +313,7 @@
                                           <option value="1" >Admin</option>
                                           @else
                                           <option value="1" >Admin</option>
-                                          <option value="0">Receptionist</option>
+                                          <option value="2">Receptionist</option>
                                           @endif
                                         </select>
                                       </div>

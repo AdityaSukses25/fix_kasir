@@ -10,7 +10,9 @@ class ReceptionController extends Controller
     {
         return view('dashboard.reception.index', [
             'title' => 'Receptionist',
-            'users' => User::all(),
+            'users' => User::where('status', '>', 0)
+                ->orderBy('name')
+                ->get(),
         ]);
     }
 
@@ -67,7 +69,9 @@ class ReceptionController extends Controller
 
     public function destroy($id)
     {
-        User::destroy($id);
+        $updateUser = User::find($id);
+        $updateUser->status = 0;
+        $updateUser->save();
 
         return Redirect('/reception');
     }

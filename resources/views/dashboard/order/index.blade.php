@@ -66,7 +66,7 @@
                         <div class="row mb-3">
                           <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
                             <div class="col-md-8">
-                              <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="type customer phone..." autofocus>
+                              <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="type customer phone..." autofocus>
 
                                 @error('phone')
                                   <span class="invalid-feedback" role="alert">
@@ -282,7 +282,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0" id="show-on-going" style="height: px;">
-                  <table id="table-view" class="table  table-hover text-nowrap">
+                  <table id="table-view" class="table table-head-fixed table-hover text-nowrap">
                     <thead>
                       <tr>
                         <th>No</th>

@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('place_id');
             $table->foreignId('discount_id');
             $table->string('cust_name');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->integer('time');
             $table->integer('price');
             $table->string('payment_method');
