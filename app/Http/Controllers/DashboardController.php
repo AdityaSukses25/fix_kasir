@@ -35,7 +35,7 @@ class DashboardController extends Controller
                 '=',
                 date('Y-m-d')
             )->get(),
-            'therapists' => Therapist::where('status', 1)->get(),
+            'therapists' => Therapist::where('status', '=', 3)->get(),
 
             'months' => $months,
             'counts' => $counts,

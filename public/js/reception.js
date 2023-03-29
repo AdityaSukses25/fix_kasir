@@ -59,6 +59,19 @@ $('.delete').click(function () {
 
 var reception = $('#reception-table').height()
 if (reception > 580) {
-  $('#reception-table').css('height', '580px')
+  $('#reception-table').css('height', '74vh')
 } else {
 }
+
+$('#all').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/reception'
+})
+$('#owner').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/reception?search=1'
+})
+$('#reception').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/reception?search=2'
+})
+$('#inactive').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/reception?search=3'
+})

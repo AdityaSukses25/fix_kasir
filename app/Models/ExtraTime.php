@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class ExtraTime extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function extra()
+    public function order()
     {
-        return $this->hasMany(ExtraTime::class);
+        return $this->belongsTo(Order::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(service::class);
     }
 }

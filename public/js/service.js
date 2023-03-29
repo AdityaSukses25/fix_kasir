@@ -5,10 +5,12 @@ $('.editMassage').click(function () {
   var massage_id = $(this).attr('data-bs-id')
   var time = $(this).attr('data-bs-time')
   var price = $(this).attr('data-bs-price')
+  var status = $(this).attr('data-bs-status')
   $('#massage_id').val(massage_id)
   $('#edit_Massage').val(massage)
-  $('#editTime').val(time)
+  $('#edit_Time').val(time)
   $('#editPrice').val(price)
+  $('#editstatus').val(status)
 })
 
 $('.delete').click(function () {
@@ -58,8 +60,10 @@ $('.editplace').click(function () {
   $('#editplace').modal()
   var id = $(this).attr('data-bs-id')
   var place = $(this).attr('data-bs-place')
+  var status = $(this).attr('data-bs-status')
   $('#place_id').val(id)
   $('#edit_place').val(place)
+  $('#status').val(status)
 })
 
 $('.deleteplace').click(function () {
@@ -109,8 +113,10 @@ $('.editdiscount').click(function () {
   $('#editdiscount').modal()
   var discount = $(this).attr('data-bs-discount')
   var discount_id = $(this).attr('data-bs-id')
+  var status = $(this).attr('data-bs-status')
   $('#discount_id').val(discount_id)
   $('#edit_discount').val(discount)
+  $('#edit_status').val(status)
 })
 
 $('.deletediscount').click(function () {
@@ -157,16 +163,26 @@ $('.deletediscount').click(function () {
 
 var service = $('#service-table').height()
 if (service > 580) {
-  $('#service-table').css('height', '580px')
+  $('#service-table').css('height', '74vh')
 } else {
 }
 var place = $('#place-table').height()
 if (place > 580) {
-  $('#place-table').css('height', '580px')
+  $('#place-table').css('height', '74vh')
 } else {
 }
 var discount = $('#discount-table').height()
 if (discount > 580) {
-  $('#discount-table').css('height', '580px')
+  $('#discount-table').css('height', '74vh')
 } else {
 }
+
+$('#all').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/service'
+})
+$('#active').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/service?search=2'
+})
+$('#inactive').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/service?search=1'
+})

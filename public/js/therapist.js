@@ -77,6 +77,19 @@ $('.deleteTherapist').click(function () {
 
 var therapist = $('#therapist-table').height()
 if (therapist > 580) {
-  $('#therapist-table').css('height', '580px')
+  $('#therapist-table').css('height', '74vh')
 } else {
 }
+
+$('#all').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/therapist'
+})
+$('#on').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/therapist?search=3'
+})
+$('#off').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/therapist?search=2'
+})
+$('#inactive').click(function () {
+  window.location.href = 'http://127.0.0.1:8000/therapist?search=1'
+})

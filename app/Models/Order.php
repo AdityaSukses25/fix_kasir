@@ -17,6 +17,7 @@ class Order extends Model
         'therapist',
         'place',
         'discount',
+        'extraTime',
     ];
 
     public function reception()
@@ -42,5 +43,23 @@ class Order extends Model
     public function discount()
     {
         return $this->belongsTo(Discount::class);
+    }
+
+    public function extraTime()
+    {
+        return $this->hasMany(ExtraTime::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($order) {
+            $extraTime = new ExtraTime();
+            $extraTime->order_id = $order->id;
+            $extraTime->service_extra_time_id = $order->service_id;
+            $extraTime->summary_extra_time = $order->summary;
+            $extraTime->save();
+        });
     }
 }

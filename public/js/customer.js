@@ -38,6 +38,6 @@ $('.editCustomer').on('click', function () {
 
 var customer = $('#customer-table').height()
 if (customer > 580) {
-  $('#customer-table').css('height', '580px')
+  $('#customer-table').css('height', '74vh')
 } else {
 }

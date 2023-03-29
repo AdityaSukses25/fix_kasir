@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use App\Models\Order;
 use App\Models\Therapist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\View;
 
 class PDFController extends Controller
@@ -23,6 +24,7 @@ class PDFController extends Controller
         return view('dashboard.pdf.sales', [
             'title' => 'SALES REPORT',
             'days' => $dateNow->get(),
+            'Now' => Carbon::now()->setTimezone('Asia/Makassar'),
             'totalADays' => $dateNow->sum('summary'),
         ]);
     }

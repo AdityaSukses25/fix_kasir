@@ -12,7 +12,7 @@
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
@@ -41,9 +41,9 @@
           <div class="inner">
             <h3>{{ $therapists->count() }}</h3>
             @if($therapists->count())
-            <p>Active Therapist</p>
+            <p>Therapist Available</p>
             @else
-            <p>We have no therapist yet right now</p>
+            <p>We have no therapist right now</p>
             @endif
           </div>
           <div class="icon">
@@ -72,12 +72,12 @@
                 <div class="tab-content" id="custom-tabs-four-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                   <div class="chart">
-                    <canvas id="areaChart" style="min-height: 320px; height: 320px; max-height: 320px; max-width: 100%;"></canvas>
+                    <canvas id="areaChart" style="min-height: 40vh; height: 40vh; max-height: 40vh; max-width: 100%;"></canvas>
                   </div>  
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
                   <div class="chart">
-                    <canvas id="salesChart" style="min-height: 320px; height: 320px; max-height: 320px; max-width: 100%;"></canvas>
+                    <canvas id="salesChart" style="min-height: 40vh; height: 40vh; max-height: 40vh; max-width: 100%;"></canvas>
                   </div> 
                   </div>
                 </div>
@@ -88,9 +88,11 @@
         </div>
       </div>
       
+     
       
       <!-- /.content -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   // sales
     $('#custom-tabs-four-profile-tab').click(function(){
@@ -217,6 +219,7 @@
   })
   
 </script>
+
 
 </section>
   

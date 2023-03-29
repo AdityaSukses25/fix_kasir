@@ -30,12 +30,21 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345'),
         ]);
 
+        User::create([
+            'name' => 'Ni Putu Rai Asih',
+            'username' => 'raiasih',
+            'phone' => '09832423',
+            'status' => 2,
+            'email' => 'aditya11@gmail.com',
+            'password' => bcrypt('12345'),
+        ]);
+
         Therapist::create([
             'name' => 'Ni Putu Rai Asih',
             'nickname' => 'rai',
             'phone' => '08311401437',
             'gender_id' => '2',
-            'status' => '1',
+            'status' => '3',
             'commision' => '20000',
         ]);
 
@@ -44,7 +53,7 @@ class DatabaseSeeder extends Seeder
             'nickname' => 'adit',
             'phone' => '08311401437',
             'gender_id' => '1',
-            'status' => '0',
+            'status' => '3',
             'commision' => '25000',
         ]);
 
@@ -53,45 +62,45 @@ class DatabaseSeeder extends Seeder
             'nickname' => 'artha',
             'phone' => '08311401437',
             'gender_id' => '1',
-            'status' => '0',
+            'status' => '3',
             'commision' => '25000',
         ]);
 
         Gender::create([
-            'gender' => 'male',
+            'gender' => 'Male',
         ]);
 
         Gender::create([
-            'gender' => 'female',
+            'gender' => 'Female',
         ]);
 
         Place::create([
             'place' => 'floor 1',
-            'status' => '1',
+            'status' => '2',
         ]);
 
         Place::create([
             'place' => 'floor 2',
-            'status' => '1',
+            'status' => '2',
         ]);
 
         Service::create([
             'massage' => 'Balinese',
             'time' => '60',
             'price' => '90000',
-            'status' => '1',
+            'status' => '2',
         ]);
 
         Service::create([
             'massage' => 'Japanese',
             'time' => '1',
             'price' => '90000',
-            'status' => '1',
+            'status' => '2',
         ]);
 
         Discount::create([
             'discount' => '0',
-            'status' => '1',
+            'status' => '2',
         ]);
     }
 }

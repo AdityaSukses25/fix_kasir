@@ -9,6 +9,15 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+              <button type="button" class="py-2 btn btn-default dropdown-toggle dropdown-toggle-end mr-1" data-toggle="dropdown">
+                <i class=" fa fa-filter mr-1"></i>Filter By
+              </button>
+              <div class="dropdown-menu">
+              <a id="all" class="dropdown-item" href="#" value="1">All</a>
+                <a id="owner" class="dropdown-item" href="#" value="1">Owner </a>
+                <a id="reception" class="dropdown-item" href="#" value="0">Receptionist </a>
+                <a id="inactive"class="dropdown-item" href="#" value="0">Inactive </a>
+              </div>
               <button class="btn btn-primary" data-target="#addUser" data-toggle="modal">
                 <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Receptionist</li>
 
@@ -28,7 +37,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body table-responsive p-0" id="reception-table">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-head-fixed table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -41,6 +50,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                      @if($users->count())
                       @foreach($users as $user)
                       <tr>
                         <td>{{$loop->iteration}}</td>
@@ -49,23 +59,34 @@
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->email }}</td>
                         @if( $user->status == 1)
-                        <td>Admin</td>
-                        @else
+                        <td>Owner</td>
+                        @elseif($user->status == 2)
                         <td>Receptionist</td>
+                        @else
+                        <td ><span class="badge badge-danger p-1">Inactive</span></td>
                         @endif
                         <td>
-                          <div class="row">
-                            <div class="col-md-6">
+                          <div class="row justify-content-center">
+                            @if($users->count() < 2)
+                            <div class="col-md">
                               <button type="button" class="editUser btn btn-block btn-warning" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
                               <i class="fa fa-edit"></i>
                               </button>
       
                             </div>
-                            <div class="col-md-6">
+                            @else
+                            <div class="col-md">
+                              <button type="button" class="editUser btn btn-block btn-warning" data-toggle="modal" data-target="#editUser"  data-bs-name="{{ $user->name }}" data-bs-user="{{ $user->id }}" data-bs-username="{{ $user->username }}" data-bs-phone="{{ $user->phone }}"  data-bs-email="{{ $user->email }}"      data-bs-status="{{ $user->status }}" data-bs-password="{{ $user->password }}">
+                              <i class="fa fa-edit"></i>
+                              </button>
+      
+                            </div>
+                            <!-- <div class="col-md-6">
                               <button type="submit" class="delete btn btn-block btn-danger" data-bs-target="{{ $user->id}}" data-bs-name="{{ $user->name }}">
                               <i class="fa-sharp fa-solid fa-delete-left"></i>
                               </button>
-                            </div>
+                            </div> -->
+                            @endif
                           </div>
 
                           
@@ -73,6 +94,11 @@
                       </tr>
                       @endforeach
                       
+                      @else
+                      <tr>
+                        <td colspan="8" class="text-center">No User Found!</td>
+                      </tr>
+                      @endif
                     </tbody>
                 </table>
               </div>
@@ -136,7 +162,7 @@
                                       <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
 
                                       <div class="col-md-8">
-                                          <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                          <input id="phone" type="number" min="0"  class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                           @error('phone')
                                               <span class="invalid-feedback" role="alert">
@@ -184,7 +210,7 @@
                                         <select id="gender" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
                                                                                   
-                                              <option value="1">Admin</option>
+                                              <option value="1">Owner</option>
                                               <option value="2">Receptionist</option>
                                         </select>
                                       </div>
@@ -219,6 +245,9 @@
                 </div>
                 <div class="modal-body">
                   <div class="card-body">
+                    @if($users->count())
+                    @foreach($users as $user)
+                    @endforeach
                     <form action="/reception/edit/{{ $user->id }}" method="post">
                       @method('put')
                       @csrf
@@ -262,7 +291,7 @@
                                       <label for="editPhone" class="col-md-4 col-form-label text-md-end">Phone</label>
 
                                       <div class="col-md-8">
-                                          <input id="editPhone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                          <input id="editPhone" type="number" min="0" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                           @error('phone')
                                               <span class="invalid-feedback" role="alert">
@@ -310,10 +339,11 @@
                                         <select id="editStatus" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select Status...</option>
                                           @if($user->username ==='aditya')
-                                          <option value="1" >Admin</option>
+                                          <option value="1" >Owner</option>
                                           @else
-                                          <option value="1" >Admin</option>
+                                          <option value="1" >Owner</option>
                                           <option value="2">Receptionist</option>
+                                          <option value="3">Inactive</option>
                                           @endif
                                         </select>
                                       </div>
@@ -325,6 +355,8 @@
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                               </div>
                   </form>
+                    @else
+                    @endif
                 </div>
               <!-- /.modal-content -->
               </div>

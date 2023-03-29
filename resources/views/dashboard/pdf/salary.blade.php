@@ -14,31 +14,40 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col p-2">
-          <div class="title text-center"><h1>SPA LOTUS MASSAGE ECHO</h1></div>
-          <div class="title text-center text-success"><h1>SALARY REPORT</h1></div>
-          <div class="title text-center"><h3>{{ $month_salary->format('F, Y') }}</h3></div>
+          <div class="title text-end"><p><span class="today">Download in {{ $Now->format('Y-m-d | H:i:s') }}</span></p></div>
+          <div class="title text-center pt-4 pb-3"><h3>SPA LOTUS MASSAGE ECHO</h3></div>
+          <div class="from text-center pb-1"><p>Jalan Batu Mejan Canggu, Desa Canggu, Kecamatan Kuta Utara, Kabupaten Badung, Bali.</p></div>
+          <div class="border border-top border-dark"></div>
+          <div class="title text-center text-success pt-3"><h4>SALARY REPORT</h4></div>
+          <div class="row justify-content-center">
+            <div class="col-1 border-top border-success pb-3"></div>
+          </div>
+          <div class="title text-center float-left pb-2" id="start_date" >
+            <div class="text-center">Period of</div>
+            <div class="title text-center"><p>{{ $month_salary->format('F, Y') }}</p></div>
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-        <table class="table table-striped table-bordered">
+        <table class="table border-dark table-bordered">
             <thead>
               <tr>
                 <th scope="col" class="text-center">No</th>
-                <th scope="col" class="text-center">Date</th>
+                <!-- <th scope="col" class="text-center">Date</th> -->
                 <th scope="col" class="text-center">Therapist</th>
                 <th scope="col" class="text-center">Total Service</th>
-                <th scope="col" class="text-center">Salary</th>
+                <th scope="col" class="text-center">Salary (Rp)</th>
               </tr>
             </thead>
             <tbody>
             @foreach($salarys as $salary)
                         <tr>
                           <td>{{ $loop->iteration}}</td>
-                          <td>{{ $month_salary->format('F Y')}}</td>
+                          <!-- <td>{{ $month_salary->format('F Y')}}</td> -->
                           <td>{{ $salary['therapist_name'] }}</td>
-                          <td>{{ $salary['order_amount'] }}</td>
-                          <td>{{ Str::rupiah($salary['salary']) }},00</td>
+                          <td class="text-center">{{ $salary['order_amount'] }}</td>
+                          <td class="text-end">{{ Str::rupiah($salary['salary']) }},00</td>
                         </tr>
                         @endforeach  
               
@@ -46,8 +55,8 @@
             <tfoot>
                         <tr>
                           
-                          <th colspan='4' class="text-center">Total</th>
-                          <th>{{ Str::rupiah($Summary) }},00</th>
+                          <th colspan='3' class="text-center">Total Salary (Rp)</th>
+                          <th class="text-end">{{ Str::rupiah($Summary) }},00</th>
                         </tr>
                       </tfoot>
           </table>

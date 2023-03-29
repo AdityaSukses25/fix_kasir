@@ -8,11 +8,17 @@ class ReceptionController extends Controller
 {
     public function index()
     {
+        $user = User::orderBy('name');
+        if (\request('search')) {
+            $user = User::where(
+                'status',
+                'like',
+                '%' . \request('search') . '%'
+            )->orderBy('name');
+        }
         return view('dashboard.reception.index', [
-            'title' => 'Receptionist',
-            'users' => User::where('status', '>', 0)
-                ->orderBy('name')
-                ->get(),
+            'title' => 'User',
+            'users' => $user->get(),
         ]);
     }
 
@@ -32,7 +38,7 @@ class ReceptionController extends Controller
 
         User::create($validatedData);
 
-        $request->session()->flash('success', 'Reception has been added!');
+        $request->session()->flash('success', 'User has been added!');
 
         return redirect('/reception');
     }

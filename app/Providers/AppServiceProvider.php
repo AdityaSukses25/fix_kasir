@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         Str::macro('rupiah', function ($value) {
-            return 'Rp. ' . \number_format($value, 0, ',', '.');
+            return ' ' . \number_format($value, 0, ',', '.');
         });
 
         Gate::define('admin', function (User $user) {

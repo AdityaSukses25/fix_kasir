@@ -9,6 +9,16 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+              
+              <button type="button" class="py-2 btn btn-default dropdown-toggle dropdown-toggle-end mr-1" data-toggle="dropdown">
+                <i class=" fa fa-filter mr-1"></i>Filter By
+              </button>
+              <div class="dropdown-menu">
+              <a id="all" class="dropdown-item" href="#" value="1">All</a>
+                <a id="on" class="dropdown-item" href="#" value="1">Day On </a>
+                <a id="off" class="dropdown-item" href="#" value="0">Day Off </a>
+                <a id="inactive"class="dropdown-item" href="#" value="0">Inactive </a>
+              </div>
               @can('admin')
               <button class="btn btn-primary" data-target="#addTerapist" data-toggle="modal">
                 <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Therapist</li>
@@ -28,7 +38,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body table-responsive p-0" id="therapist-table">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-head-fixed table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th >No</th>
@@ -40,50 +50,57 @@
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach($terapists as $terapist)
-                      <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{ $terapist->name }}</td>
-                        <td>{{ $terapist->nickname }}</td>
-                        <td>{{ $terapist->phone }}</td>
-                        <td>
-                          @if ($terapist->status == 2)
-                            <span class="badge badge-success">Active</span>
-                          @else
-                            <span class="badge badge-danger">Off</span>
-                          @endif
-                        </td>
-                        <td>
-                          <div class="row">
-                            
-                            <div class="col-md-4">
-                              <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
-                              <i class="fa fa-edit"></i>
-                              </button>
-                            </div>
-                            <div class="col-md-4">
-                              <form id="updateDelete"action="/therapist/delete/{{ $terapist->id }}" method="post">
-                              @method('put')
-                              @csrf
-                              
-                              <!-- <div class="row mb-3"> -->
-                                
-                                <!-- <input type="text" value=0 name="status"> -->
-                              <!-- </div> -->
-                              </form>
-                              <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}" >
-                              <i class="fa-sharp fa-solid fa-delete-left"></i>
-                              </button>
-                              <!-- <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
-                              <i class="fa-sharp fa-solid fa-delete-left"></i>
-                              </button> -->
-                            </div>
+                    @if($terapists->count())
+                    @foreach($terapists as $terapist)
+                    <tr>
+                      <td>{{$loop->iteration}}</td>
+                      <td>{{ $terapist->name }}</td>
+                      <td>{{ $terapist->nickname }}</td>
+                      <td>{{ $terapist->phone }}</td>
+                      <td>
+                        @if ($terapist->status > 2)
+                          <span class="badge badge-success">Day On</span>
+                        @elseif($terapist->status == 2)
+                          <span class="badge badge-warning">Day Off</span>
+                        @else
+                          <span class="badge badge-danger">Inactive</span>
+                        @endif
+                      </td>
+                      <td>
+                        <div class="row justify-content-center">
+                          @if($terapists->count() < 2)
+                          <div class="col-md">
+                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                            <i class="fa fa-edit"></i>
+                            </button>
                           </div>
+                          @else
+                          <div class="col-md">
+                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                            <i class="fa fa-edit"></i>
+                            </button>
+                          </div>
+                          <!-- <div class="col-md-4"> -->
+                            
+                            <!-- <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}" >
+                            <i class="fa-sharp fa-solid fa-delete-left text-dark"></i>
+                            </button> -->
+                            <!-- <button type="submit" class="deleteTherapist btn btn-block btn-danger" data-bs-target="{{ $terapist->id}}" data-bs-name="{{ $terapist->name }}">
+                            <i class="fa-sharp fa-solid fa-delete-left"></i>
+                            </button> -->
+                          <!-- </div> -->
+                          @endif
+                        </div>
 
-                          
-                        </td>
-                      </tr>
-                      @endforeach
+                        
+                      </td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                      <td colspan="6" class="text-center">No Therapist Found Right Now.</td>
+                    </tr>
+                    @endif
                       
                     </tbody>
                 </table>
@@ -149,7 +166,7 @@
                                       <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
 
                                       <div class="col-md-8">
-                                          <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                          <input id="phone" type="number" min="0" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                           @error('phone')
                                               <span class="invalid-feedback" role="alert">
@@ -192,7 +209,7 @@
                                       <label for="commision" class="col-md-4 col-form-label text-md-end">Commision</label>
 
                                       <div class="col-md-8">
-                                          <input id="commision" type="text" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
+                                          <input id="commision" type="number" min="0" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
 
                                           @error('commision')
                                               <span class="invalid-feedback" role="alert">
@@ -231,7 +248,12 @@
                 </div>
                 <div class="modal-body">
                   <div class="card-body">
+                    @if($terapists->count())
+                    
+                    @foreach($terapists as $terapist)
                     <form action="/therapist/edit/{{ $terapist->id }}" method="post">
+                    @endforeach
+
                       @method('put')
                       @csrf
                                   <!-- name -->
@@ -269,7 +291,7 @@
                                       <label for="phone" class="col-md-4 col-form-label text-md-end">Phone</label>
 
                                       <div class="col-md-8">
-                                          <input id="editPhone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                                          <input id="editPhone" type="number" min="0" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                           @error('phone')
                                               <span class="invalid-feedback" role="alert">
@@ -298,8 +320,9 @@
                                       <div class="col-8">
                                         <select id="editAttend" class="form-control custom-select" name="status">
                                           <option value="" selected disabled>Select attended...</option>
-                                              <option value="1">Off</option>
-                                              <option value="2">Active</option>
+                                              <option value="2">Day Off</option>
+                                              <option value="3">Day On</option>
+                                              <option value="1">Inactive</option>
                                         </select>
                                       </div>
                                   </div>
@@ -342,7 +365,7 @@
                                       <label for="commision" class="col-md-4 col-form-label text-md-end">Commision</label>
 
                                       <div class="col-md-8">
-                                        <input id="editCommision" type="text" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
+                                        <input id="editCommision" type="number" min="0" class="form-control @error('commision') is-invalid @enderror" name="commision" value="{{ old('commision') }}" required autocomplete="commision" autofocus>
 
                                         @error('commision')
                                         <span class="invalid-feedback" role="alert">
@@ -360,7 +383,10 @@
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
                               </div>
-                  </form>
+                      </form>
+                      @else
+                    @endif
+                    
                 </div>
               <!-- /.modal-content -->
               </div>

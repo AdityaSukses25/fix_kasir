@@ -38,6 +38,10 @@ Route::get(
     'App\Http\Controllers\ReceptionController@index'
 )->middleware('admin');
 
+Route::get('/order', 'App\Http\Controllers\OrderController@index')->middleware(
+    'reception'
+);
+
 Route::middleware('auth')->group(function () {
     // dashboard
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');
@@ -116,7 +120,7 @@ Route::middleware('auth')->group(function () {
     );
 
     // order
-    Route::get('/order', 'App\Http\Controllers\OrderController@index');
+
     // therapist dinamic dropdown
     Route::get(
         '/getTherapist/{id}',
@@ -126,6 +130,26 @@ Route::middleware('auth')->group(function () {
     Route::get(
         '/order/showService',
         'App\Http\Controllers\OrderController@index'
+    );
+    Route::put(
+        '/order/edit/{Order}',
+        'App\Http\Controllers\OrderController@update'
+    );
+    Route::put(
+        '/extratime/edit/{ExtraTime}',
+        'App\Http\Controllers\OrderController@updateExtra'
+    );
+    Route::get(
+        '/order/sort/{sortBy}',
+        'App\Http\Controllers\OrderController@index'
+    )->name('order.sort');
+    Route::get(
+        '/order/finish/{Order}',
+        'App\Http\Controllers\OrderController@finish'
+    );
+    Route::get(
+        '/extraTime/finish/{ExtraTime}',
+        'App\Http\Controllers\OrderController@finishExtra'
     );
 
     // customer

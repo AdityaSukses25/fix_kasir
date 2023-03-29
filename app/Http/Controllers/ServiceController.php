@@ -10,17 +10,31 @@ class ServiceController extends Controller
 {
     public function index()
     {
+        $service = Service::orderBy('massage', 'asc');
+        $place = Place::orderBy('place', 'asc');
+        $discount = Discount::orderBy('discount', 'asc');
+        if (\request('search')) {
+            $service = Service::where(
+                'status',
+                'like',
+                '%' . \request('search') . '%'
+            )->orderBy('massage', 'asc');
+            $place = Place::where(
+                'status',
+                'like',
+                '%' . \request('search') . '%'
+            )->orderBy('place', 'asc');
+            $discount = Discount::where(
+                'status',
+                'like',
+                '%' . \request('search') . '%'
+            )->orderBy('discount', 'asc');
+        }
         return view('/dashboard.service.index', [
-            'title' => 'Services',
-            'massages' => Service::where('status', '>', 0)
-                ->orderBy('massage', 'asc')
-                ->get(),
-            'places' => Place::where('status', '>', 0)
-                ->orderBy('place', 'asc')
-                ->get(),
-            'discounts' => Discount::where('status', '>', 0)
-                ->orderBy('discount', 'asc')
-                ->get(),
+            'title' => 'Service',
+            'massages' => $service->get(),
+            'places' => $place->get(),
+            'discounts' => $discount->get(),
         ]);
     }
 
@@ -33,7 +47,7 @@ class ServiceController extends Controller
             'price' => 'required',
         ]);
 
-        $validatedData['status'] = 1;
+        $validatedData['status'] = 2;
 
         Service::create($validatedData);
 
@@ -46,11 +60,12 @@ class ServiceController extends Controller
         $updateService->massage = $request->massage;
         $updateService->time = $request->time;
         $updateService->price = $request->price;
+        $updateService->status = $request->status;
         $updateService->save();
 
         return Redirect('/service')->with(
             'success',
-            'Terapist has been updated!'
+            'Service has been updated!'
         );
     }
 
@@ -70,7 +85,7 @@ class ServiceController extends Controller
         $validatedData = $request->validate([
             'place' => 'required',
         ]);
-        $validatedData['status'] = 1;
+        $validatedData['status'] = 2;
 
         Place::create($validatedData);
 
@@ -81,12 +96,10 @@ class ServiceController extends Controller
     {
         $updateService = Place::findorFail($request->place_name);
         $updateService->place = $request->place;
+        $updateService->status = $request->status;
         $updateService->save();
 
-        return Redirect('/service')->with(
-            'success',
-            'Terapist has been updated!'
-        );
+        return Redirect('/service')->with('success', 'Place has been updated!');
     }
 
     public function destroyPlace($id)
@@ -105,7 +118,7 @@ class ServiceController extends Controller
         $validatedData = $request->validate([
             'discount' => 'required',
         ]);
-        $validatedData['status'] = 1;
+        $validatedData['status'] = 2;
 
         Discount::create($validatedData);
 
@@ -119,6 +132,7 @@ class ServiceController extends Controller
     {
         $updateDiscount = Discount::findorFail($request->discount_name);
         $updateDiscount->discount = $request->discount;
+        $updateDiscount->status = $request->status;
         $updateDiscount->save();
 
         return Redirect('/service')->with(

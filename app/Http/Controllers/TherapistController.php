@@ -12,12 +12,18 @@ class TherapistController extends Controller
 {
     public function index()
     {
-        $terapist = Therapist::where('status', '>', 0)
-            ->orderBy('name', 'asc')
-            ->get();
+        $terapist = Therapist::orderBy('name', 'asc');
+
+        if (request('search')) {
+            $terapist = Therapist::where(
+                'status',
+                'like',
+                '%' . \request('search') . '%'
+            )->orderBy('name', 'asc');
+        }
         return view('dashboard.therapist.index', [
             'title' => 'Therapist',
-            'terapists' => $terapist,
+            'terapists' => $terapist->get(),
             'genders' => Gender::all(),
         ]);
     }
@@ -32,7 +38,7 @@ class TherapistController extends Controller
             'commision' => 'required',
         ]);
 
-        $validatedData['status'] = 2;
+        $validatedData['status'] = 3;
 
         Therapist::create($validatedData);
 
