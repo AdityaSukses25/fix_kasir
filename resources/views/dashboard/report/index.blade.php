@@ -68,7 +68,7 @@
                           <i class="fas fa-minus"></i>
                         </button>
                         
-                        
+                         
                       </div>
                       
                       
@@ -133,7 +133,7 @@
                           @if($day->discount == 0)
                           <td class="text-center">-</td>
                           @else
-                          <td class="text-center">{{ $day->discount->discount }}%</td>
+                          <td class="text-center">{{ $day->discount }}%</td>
                           @endif
                           @if($day->start_extra_time == null)
                           <td class="text-center">-</td>
@@ -168,7 +168,7 @@
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
                   <!-- salary -->
-                  <table id="example1" class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-striped table-head-fixed table-hover text-nowrap">
                       <thead>
                         <tr>
                           <th class="text-center">No</th>
@@ -178,24 +178,17 @@
                           <th class="text-center">Salary (Rp)</th>
                         </tr>
                       </thead>
-                      <tbody id="table-body">
-                      
+                      <tbody>
                       @foreach($salarys as $salary)
-                        
+                        <tr data-widget="expandable-table" aria-expanded="false">
                           <td class="text-center">{{ $loop->iteration}}</td>
                           <td>{{ $month_salary->format('F, Y')}}</td>
                           <td>{{ $salary['therapist_name'] }}</td>
-                          @foreach ($salary['order_details'] as $order)
-                          @endforeach
-                          <td class="text-center"><a href="#" class="serviceDetail" data-toggle="modal" data-target="#salaryReport" data-bs-name="{{ $salary['therapist_name'] }}" data-bs-order="{{ $salary['order_amount'] }}">{{ $salary['order_amount'] }}</a></td>
+                          <td class="text-center"><a href="/report/salary-detail{{ $salary['therapist_id'] }}?bulan={{request('bulan')}}" class="serviceDetail" data-toggle="" data-target="" data-bs-name="{{ $salary['therapist_name'] }}" data-bs-order="{{ $salary['order_amount'] }}" data-bs-id="{{ $salary['therapist_id'] }}">{{ $salary['order_amount'] }}</a></td>
                           <td class="text-right">{{ Str::rupiah($salary['salary']) }},00</td>
-                          
-                         
                         </tr>
                       @endforeach
-                        
-                        
-                      
+
                       </tbody>
                       <tfoot>
                         <tr>
@@ -206,8 +199,6 @@
                         </tr>
                       </tfoot>
                     </table>
-                    <div class="page d-flex justify-content-center">
-                    </div>
                   </div>
                   </div>
               </div>
@@ -248,13 +239,17 @@
                                   <th class="text-center">Summary (Rp)</th> -->
                                 </tr>
                               </thead>
-                              <tbody id="table-body">
+                              <tbody id="table-body-detail">
                               @if($salarys)
                               @foreach($salarys as $salary)
-                              <tr>
-                               
-                                <!-- <td class="text-right">{{ Str::rupiah($salary['salary']) }},00</td> -->
-                              </tr>
+                              @foreach($salary['order_details'] as $d)
+                              <td class="">{{ $d['order_id'] }}</td>
+                              <td class="" id="orderID">{{ $d['order_date'] }}</td>
+                              <td class="" id="orderNAME">{{ $d['customer_name'] }}</td>
+                              <td class="" id="orderSERVICE">{{ $d['service'] }}</td>
+                              <td class="" id="orderTIME_Duration">{{ $d['time_duration'] }}</td>
+                              <td class="" id="orderTIME">{{ $d['time'] }}</td>
+                              @endforeach
                               @endforeach
                               
                                 @else

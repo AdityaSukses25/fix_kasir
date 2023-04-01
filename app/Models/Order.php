@@ -57,7 +57,7 @@ class Order extends Model
         static::created(function ($order) {
             $extraTime = new ExtraTime();
             $extraTime->order_id = $order->id;
-            $extraTime->service_extra_time_id = $order->service_id;
+            $extraTime->service_id = $order->service_id;
             $extraTime->summary_extra_time = $order->summary;
             $extraTime->save();
         });

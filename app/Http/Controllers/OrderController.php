@@ -60,10 +60,11 @@ class OrderController extends Controller
             ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')
             ->join('therapists', 'orders.therapist_id', '=', 'therapists.id')
             ->join('services', 'orders.service_id', '=', 'services.id')
+            ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
             ->join('places', 'orders.place_id', '=', 'places.id')
             ->join(
                 'services as services_extra',
-                'extra_times.service_extra_time_id',
+                'extra_times.service_id',
                 '=',
                 'services_extra.id'
             )
@@ -73,6 +74,7 @@ class OrderController extends Controller
                 'therapists.nickname as nickname',
                 'therapists.name as name',
                 'therapists.id as therapistId',
+                'discounts.discount as discount',
                 'extra_times.start_extra_time',
                 'extra_times.id as extraId',
                 'extra_times.end_extra_time',
@@ -82,7 +84,7 @@ class OrderController extends Controller
                 'services_extra.massage as massageExtra',
                 'places.place as place'
             )
-            ->orderBy('order_ID', 'desc');
+            ->orderBy('id', 'desc');
 
         if (\request('search')) {
             $extra_time = DB::table('orders')
@@ -95,17 +97,7 @@ class OrderController extends Controller
                             '%' . request('search') . '%'
                         )
                         ->orWhere(
-                            'orders.order_ID',
-                            'like',
-                            '%' . request('search') . '%'
-                        )
-                        ->orWhere(
-                            'orders.start_service',
-                            'like',
-                            '%' . request('search') . '%'
-                        )
-                        ->orWhere(
-                            'orders.end_service',
+                            'orders.id',
                             'like',
                             '%' . request('search') . '%'
                         )
@@ -127,11 +119,12 @@ class OrderController extends Controller
                     'therapists.id'
                 )
                 ->join('services', 'orders.service_id', '=', 'services.id')
+                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
 
                 ->join(
                     'services as services_extra',
-                    'extra_times.service_extra_time_id',
+                    'extra_times.service_id',
                     '=',
                     'services_extra.id'
                 )
@@ -142,6 +135,7 @@ class OrderController extends Controller
                     'therapists.name as name',
                     'therapists.id as therapistId',
                     'extra_times.start_extra_time',
+                    'discounts.discount as discount',
                     'extra_times.id as extraId',
                     'extra_times.end_extra_time',
                     'extra_times.extra_time',
@@ -150,7 +144,7 @@ class OrderController extends Controller
                     'places.place as place',
                     'services_extra.massage as massageExtra'
                 )
-                ->orderBy('order_ID', 'desc');
+                ->orderBy('id', 'desc');
         }
 
         $orderId = Order::whereDate('created_at', Date('Y-m-d'))->count();
@@ -175,7 +169,7 @@ class OrderController extends Controller
             'massages' => Service::where('status', 2)->get(),
             'users' => User::all(),
             'orders' => $orders,
-            'orderId' => '#LME' . $orderId,
+            'orderId' => '#' . $orderId,
             'extra_time' => $extra_time->get(),
 
             'finish' => Order::whereDate('created_at', Date('Y-m-d'))
@@ -239,7 +233,6 @@ class OrderController extends Controller
         ]);
 
         $validatedData['reception_id'] = auth()->user()->id;
-        $validatedData['order_ID'] = '#LME' . $orderId;
         $validatedData['status'] = 'pending';
 
         Order::create($validatedData);
@@ -262,7 +255,7 @@ class OrderController extends Controller
         $updateExtra = ExtraTime::findorFail($request->order_extra);
         $updateExtra->status = 'extra';
         $updateExtra->therapist_id = $request->therapist_id;
-        $updateExtra->service_extra_time_id = $request->service_extra_time_id;
+        $updateExtra->service_id = $request->service_extra_time_id;
         $updateExtra->extra_time = $request->extra_time;
         $updateExtra->price_extra_time = $request->price_extra_time;
         $updateExtra->price_extra_time = $request->price_extra_time;

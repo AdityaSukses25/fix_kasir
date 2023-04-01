@@ -157,11 +157,11 @@ Route::middleware('auth')->group(function () {
 
     // report
     Route::get('/report', 'App\Http\Controllers\ReportController@index');
+    // salary-detail
     Route::get(
-        '/report/{dateStart}/{dateEnd}',
-        'App\Http\Controllers\ReportController@perDate'
+        '/report/salary-detail{therapist:id}',
+        'App\Http\Controllers\SalaryDetailController@index'
     );
-    Route::post('/report', 'App\Http\Controllers\ReportController@index');
 
     // pdf
     Route::get('/pdf-sales', 'App\Http\Controllers\PDFController@index');

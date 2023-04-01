@@ -104,7 +104,7 @@
         </a>
       </li>
       <li class="nav-item">
-            <a href="/report" class="nav-link {{ Request::is('report') ? 'active' : '' }}">
+            <a href="/report" id="DetailService1" class="nav-link {{ Request::is('report') ? 'active' : '' }}">
             <i class="fa-solid fa-file-contract nav-icon"></i>
               <p>
                 Reports

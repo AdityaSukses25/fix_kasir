@@ -22,7 +22,6 @@ class CreateOrdersTable extends Migration
             $table->foreignId('place_id');
             $table->foreignId('discount_id');
             // $table->foreignId('discount_id');
-            $table->string('order_ID');
             $table->string('cust_name');
             $table->string('phone');
             $table->integer('time');

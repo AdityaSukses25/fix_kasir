@@ -17,7 +17,7 @@ class CreateExtraTimesTable extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->foreignId('therapist_id')->nullable();
-            $table->foreignId('service_extra_time_id')->nullable();
+            $table->foreignId('service_id')->nullable();
             $table->integer('extra_time')->nullable();
             $table->integer('price_extra_time')->nullable();
             $table->time('start_extra_time')->nullable();

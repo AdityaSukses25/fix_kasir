@@ -47,41 +47,48 @@
           <table class="table table-bordered border-dark">
               <thead>
                 <tr>
-                  <th scope="col" class="text-center">No</th>
-                  <th scope="col" class="text-center">Date</th>
-                  <!-- <th scope="col" class="text-center">Receptionist</th>
-                  <th scope="col" class="text-center">Customer</th>
-                  <th scope="col" class="text-center">Therapist</th> -->
-                  <th scope="col" class="text-center">Massage</th>
-                  <th scope="col" class="text-center">Time (mnt)</th>
-                  <th scope="col" class="text-center">Price (Rp)</th>
-                  <th scope="col" class="text-center">Discount (%)</th>
-                  <th scope="col" class="text-center">Summary (Rp)</th>
+                <th class="text-center">No</th>
+                          <th class="text-center">Date</th>
+                          <th class="text-center">Massage</th>
+                          <th class="text-center">Time</th>
+                          <th class="text-center">Price </th>
+                          <th class="text-center">Discount</th>                    
+                          <th class="text-center">ExtraTime </th>                    
+                          <th class="text-center">Massage </th>                    
+                          <th class="text-center">Price  </th>                    
+                          <th class="text-center">Summary </th>
                 </tr>
               </thead>
               <tbody>
               
                 @if($days->count())
                 @foreach($days as $day)
-                  <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td id="today">{{ $day->created_at->format('Y-m-d') }}</td>
-                      <!-- <td>{{ $day->reception->name }}</td>
-                      <td>{{ $day->cust_name }}</td>
-                      <td>{{ $day->therapist->name }}</td> -->
-                      <td>{{ $day->service->massage}}</td>
-                      <td class="text-center">{{ $day->time }}'</td>
-                      <td class="text-end">{{Str::rupiah($day->price)}},00</td>
-                      @if($day->discount->discount == 0)
-                      <td class="text-center">-</td>
-                      @else
-                      <td class="text-center">{{ $day->discount->discount }}</td>
-                      @endif
-                      <td class="text-end">{{ Str::rupiah($day->summary) }},00</td>
-                    </tr>
+                <tr>
+                          <td class="text-center">{{ $loop->iteration }}</td>
+                          <td class=>{{ date('Y-m-d', strtotime($day->created_at)) }}</td>
+                          <td>{{ $day->massage}}</td>
+                          <td class="text-center">{{ $day->time }}'</td>
+                          <td class="text-end" >{{Str::rupiah($day->price)}},00</td>
+                          @if($day->discount == 0)
+                          <td class="text-center">-</td>
+                          @else
+                          <td class="text-center">{{ $day->discount }}%</td>
+                          @endif
+                          @if($day->start_extra_time == null)
+                          <td class="text-center">-</td>
+                          <td class="text-center">-</td>
+                          <td class="text-center">-</td>
+                          <td class="text-end">{{ Str::rupiah($day->summary) }},00</td>
+                          @else
+                          <td class="text-center">{{ $day->extra_time}}'</td>
+                          <td class="text-center">{{ $day->massageExtra}}</td>
+                          <td class="text-end">{{ Str::rupiah($day->priceExtra) }},00</td>
+                          <td class="text-end">{{ Str::rupiah($day->summary_extra_time) }},00</td>
+                          @endif
+                        </tr>
                     @endforeach
                 @else
-                    <td class="text-center" colspan="7">No Sales Found!</td>
+                    <td class="text-center" colspan="10">No Sales Found!</td>
                 @endif
                 
                 
@@ -89,7 +96,7 @@
               <tfoot>
                           <tr>
                             
-                            <th colspan='6' class="text-center">Total Summary (Rp)</th>
+                            <th colspan='9' class="text-center">Total Summary (Rp)</th>
                             <th class="text-end">{{ Str::rupiah($totalADays) }},00</th>
                           </tr>
                         </tfoot>
