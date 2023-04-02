@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\ExtraTime;
 use App\Models\Therapist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,19 +13,6 @@ class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        // sales
-        // $dateNow = Order::whereDate('created_at', '=', Date('Y-m-d'))->where(
-        //     'status',
-        //     '!=',
-        //     'pending'
-        // );
-        // if (request('start_date') && request('end_date')) {
-        //     $dateNow = Order::whereBetween('created_at', [
-        //         request('start_date'),
-        //         request('end_date'),
-        //     ])->where('status', '!=', 'pending');
-        // }
-
         // sales
 
         if (request('start_date') && request('end_date')) {
@@ -108,13 +96,14 @@ class ReportController extends Controller
         // end sales
 
         // salary
-        $terapis = Therapist::where('status', '>', 1)->get();
+        $terapis = Therapist::where('status', '>', 1)
+            ->orderBy('name')
+            ->get();
         $bulan = Carbon::now();
         if ($request->input('bulan')) {
             $bulan = Carbon::createFromFormat('Y-m', $request->input('bulan'));
         }
         $data = [];
-
         foreach ($terapis as $t) {
             $jumlah_orderan = Order::with('therapist')
                 ->where('therapist_id', $t->id)
@@ -123,33 +112,54 @@ class ReportController extends Controller
                 ->whereYear('created_at', $bulan->year)
                 ->get();
 
-            // $gaji_pokok = $t->commision;
-            $bonus = $jumlah_orderan->count() * $t->commision;
+            $gaji_pokok = $t->commision;
+            $gaji_extra = $gaji_pokok / 60;
+            $bonus = 0;
             $order_details = [];
             foreach ($jumlah_orderan as $order) {
+                $extra_time_salary = ExtraTime::where(
+                    'order_id',
+                    $order->id
+                )->first();
+                $order_bonus = 0;
+                if ($extra_time_salary) {
+                    $order_bonus =
+                        $extra_time_salary->extra_time * $gaji_extra +
+                        $gaji_pokok;
+                }
+                $bonus = $order_bonus;
                 $order_details[] = [
                     'order_id' => $order->id,
                     'order_date' => $order->created_at->format('Y-m-d'),
+                    'order_time' => $order->start_service,
                     'customer_name' => $order->cust_name,
                     'reception_name' => $order->reception->name,
                     'service' => $order->service->massage,
                     'time_duration' => $order->time,
                     'time' => $order->start_service,
+                    'extra_time' => $extra_time_salary
+                        ? $extra_time_salary->extra_time
+                        : null,
+                    'order_bonus' => $bonus,
+                    'service_extra' => $extra_time_salary->service->massage,
                 ];
             }
-
+            $total_gaji = $gaji_pokok * $jumlah_orderan->count();
             $data[] = [
                 'therapist_name' => $t->name,
                 'therapist_id' => $t->id,
+                'therapist_commision' => $t->commision,
                 'order_amount' => $jumlah_orderan->count(),
-                'salary' => $bonus,
+                'gaji_pokok' => $gaji_pokok,
+                'total_gaji' => $total_gaji,
+                'bonus' => $bonus,
+                'total_salary' => $total_gaji + $bonus,
                 'order_details' => $order_details,
             ];
         }
-        $total_salary = array_reduce($data, function ($sum, $item) {
-            return $sum + $item['salary'];
+        $total_salary = array_reduce($order_details, function ($sum, $item) {
+            return $sum + $item['order_bonus'];
         });
-        // dd($data);
 
         return view('dashboard.report.index', [
             'title' => 'Report',
@@ -169,55 +179,71 @@ class ReportController extends Controller
         $end_date = $request->input('end_date');
         $dateNow = Order::whereBetween('created_at', [$start_date, $end_date]);
 
-        $terapis = Therapist::where('status', '>', 1)->get();
+        // salary
+        $terapis = Therapist::where('status', '>', 1)
+            ->orderBy('name')
+            ->get();
         $bulan = Carbon::now();
         if ($request->input('bulan')) {
             $bulan = Carbon::createFromFormat('Y-m', $request->input('bulan'));
         }
         $data = [];
-
         foreach ($terapis as $t) {
-            $jumlah_orderan = Order::where('therapist_id', $t->id)
+            $jumlah_orderan = Order::with('therapist')
+                ->where('therapist_id', $t->id)
                 ->where('status', '=', 'finish')
                 ->whereMonth('created_at', $bulan->month)
                 ->whereYear('created_at', $bulan->year)
-                ->count();
+                ->get();
 
-            // $gaji_pokok = $t->commision;
-            $bonus = $jumlah_orderan * $t->commision;
-            $data[] = [
-                'therapist_name' => $t->name,
-                'order_amount' => $jumlah_orderan,
-                'salary' => $bonus,
-            ];
-        }
-
-        $total_salary = array_reduce($data, function ($sum, $item) {
-            return $sum + $item['salary'];
-        });
-
-        if (request('start_month')) {
-            // $dateNow = Order::whereBetween('created_at', [
-            //     request('start_date'),
-            //     request('end_date'),
-            // ]);
-            $terapis = Therapist::all();
-            $data = [];
-
-            foreach ($terapis as $t) {
-                $jumlah_orderan = Order::where('therapist_id', $t->id)
-                    ->where('created_at', $request('start_month'))
-                    ->count();
-
-                // $gaji_pokok = $t->commision;
-                $bonus = $jumlah_orderan * $t->commision;
-                $data[] = [
-                    'therapist_name' => $t->name,
-                    'order_amount' => $jumlah_orderan,
-                    'salary' => $bonus,
+            $gaji_pokok = $t->commision;
+            $gaji_extra = $gaji_pokok / 60;
+            $bonus = 0;
+            $order_details = [];
+            foreach ($jumlah_orderan as $order) {
+                $extra_time_salary = ExtraTime::where(
+                    'order_id',
+                    $order->id
+                )->first();
+                $order_bonus = 0;
+                if ($extra_time_salary) {
+                    $order_bonus =
+                        $extra_time_salary->extra_time * $gaji_extra +
+                        $gaji_pokok;
+                }
+                $bonus = $order_bonus;
+                $order_details[] = [
+                    'order_id' => $order->id,
+                    'order_date' => $order->created_at->format('Y-m-d'),
+                    'order_time' => $order->start_service,
+                    'customer_name' => $order->cust_name,
+                    'reception_name' => $order->reception->name,
+                    'service' => $order->service->massage,
+                    'time_duration' => $order->time,
+                    'time' => $order->start_service,
+                    'extra_time' => $extra_time_salary
+                        ? $extra_time_salary->extra_time
+                        : null,
+                    'order_bonus' => $bonus,
+                    'service_extra' => $extra_time_salary->service->massage,
                 ];
             }
+            $total_gaji = $gaji_pokok * $jumlah_orderan->count();
+            $data[] = [
+                'therapist_name' => $t->name,
+                'therapist_id' => $t->id,
+                'therapist_commision' => $t->commision,
+                'order_amount' => $jumlah_orderan->count(),
+                'gaji_pokok' => $gaji_pokok,
+                'total_gaji' => $total_gaji,
+                'bonus' => $bonus,
+                'total_salary' => $total_gaji + $bonus,
+                'order_details' => $order_details,
+            ];
         }
+        $total_salary = array_reduce($order_details, function ($sum, $item) {
+            return $sum + $item['order_bonus'];
+        });
         // dd($data);
         return view('dashboard.pdf.salary', [
             'title' => 'Report',

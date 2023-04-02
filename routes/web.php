@@ -169,6 +169,10 @@ Route::middleware('auth')->group(function () {
         '/pdf-salary',
         'App\Http\Controllers\ReportController@printSalary'
     );
+    Route::get(
+        '/pdf-salary-detail{therapist:id}',
+        'App\Http\Controllers\SalaryDetailController@printSalaryDetail'
+    );
 
     // edit-personal
     Route::put(

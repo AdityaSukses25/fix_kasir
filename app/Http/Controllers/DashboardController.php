@@ -35,6 +35,16 @@ class DashboardController extends Controller
                 '=',
                 date('Y-m-d')
             )->get(),
+            'order_on' => Order::whereDate('created_at', '=', date('Y-m-d'))
+                ->where('status', '=', 'pending')
+                ->get(),
+            'order_on_going' => Order::whereDate(
+                'created_at',
+                '=',
+                date('Y-m-d')
+            )
+                ->where('status', '=', 'on going')
+                ->get(),
             'therapists' => Therapist::where('status', '=', 3)->get(),
 
             'months' => $months,

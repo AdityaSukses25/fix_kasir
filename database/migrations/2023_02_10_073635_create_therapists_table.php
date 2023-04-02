@@ -21,6 +21,7 @@ class CreateTherapistsTable extends Migration
             $table->string('phone');
             $table->integer('status');
             $table->integer('commision');
+            // $table->integer('salary')->nullable();
             $table->timestamps();
         });
     }

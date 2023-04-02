@@ -41,22 +41,39 @@
               </tr>
             </thead>
             <tbody>
-            @foreach($salarys as $salary)
-                        <tr>
-                          <td>{{ $loop->iteration}}</td>
-                          <!-- <td>{{ $month_salary->format('F Y')}}</td> -->
+           
+              
+                        @foreach($salarys as $salary)
+                        <tr data-widget="expandable-table" aria-expanded="false">
+                          <td class="text-center">{{ $loop->iteration}}</td>
+                          <!-- <td>{{ $month_salary->format('F, Y')}}</td> -->
                           <td>{{ $salary['therapist_name'] }}</td>
                           <td class="text-center">{{ $salary['order_amount'] }}</td>
-                          <td class="text-end">{{ Str::rupiah($salary['salary']) }},00</td>
+                          
+                          @php
+                            $total_order_bonus = 0;
+                            foreach ($salary['order_details'] as $dt) {
+                              $total_order_bonus += $dt['order_bonus'];
+                            }
+                          @endphp
+                          <td class="text-end">{{ Str::rupiah($total_order_bonus) }},00</td>
                         </tr>
-                        @endforeach  
-              
+                      @endforeach            
             </tbody>
             <tfoot>
                         <tr>
                           
-                          <th colspan='3' class="text-center">Total Salary (Rp)</th>
-                          <th class="text-end">{{ Str::rupiah($Summary) }},00</th>
+                        <th colspan='3' class="text-center">Total Salary (Rp)</th>
+                          @php
+                          $total_order_bonus_sum = 0;
+                          foreach ($salarys as $salary) {
+                              $total_order_bonus_sum += array_reduce($salary['order_details'], function($carry, $item) {
+                                  return $carry + $item['order_bonus'];
+                              }, 0);
+                          }
+                          @endphp
+
+                          <th class="text-end">{{ Str::rupiah($total_order_bonus_sum)}},00</th>
                         </tr>
                       </tfoot>
           </table>

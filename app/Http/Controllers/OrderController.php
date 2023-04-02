@@ -97,7 +97,7 @@ class OrderController extends Controller
                             '%' . request('search') . '%'
                         )
                         ->orWhere(
-                            'orders.id',
+                            'orders.order_name',
                             'like',
                             '%' . request('search') . '%'
                         )
@@ -233,6 +233,7 @@ class OrderController extends Controller
         ]);
 
         $validatedData['reception_id'] = auth()->user()->id;
+        $validatedData['order_name'] = '#LME' . $orderId;
         $validatedData['status'] = 'pending';
 
         Order::create($validatedData);

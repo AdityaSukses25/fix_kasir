@@ -21,7 +21,7 @@
       <div class="container-fluid">
 
         <div class="row">
-          <div class=" col-6">
+          <div class=" col-4">
 
             <div class="small-box bg-info">
               <div class="inner">
@@ -35,22 +35,74 @@
         </div>
       </div>
 
-      <div class="col-lg-6 col-6">
+      <div class="col-lg-4 col-4">
 
-        <div class="small-box bg-warning">
+        @if($order_on->count())
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{ $order_on->count() }}</h3>
+            <p>Need to be processed!</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
+          </div>
+          <a href="/order?search=pending" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      @elseif($order_on_going->count())
+      <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>{{ $order_on_going->count() }}</h3>
+            @if($order_on_going->count() > 1)
+            <p>Services is running!</p>
+            @else
+            <p>Service is running!</p>
+            @endif
+          </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
+          </div>
+          <a href="/order?search=on going" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      @else
+      <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{ $order_on->count() }}</h3>
+            <p>No action is required at this time</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
+          </div>
+          <a href="/order?search=finish" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      @endif
+      <div class="col-lg-4 col-4">
+
+        @if($therapists->count())
+        <div class="small-box bg-success">
           <div class="inner">
             <h3>{{ $therapists->count() }}</h3>
-            @if($therapists->count())
             <p>Therapist Available</p>
-            @else
-            <p>We have no therapist right now</p>
-            @endif
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
           <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
+        @else
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{ $therapists->count() }}</h3>
+            <p>We have no therapist right now!</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @endif
       </div>
       
       <!-- BAR CHART -->

@@ -21,8 +21,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('therapist_id');
             $table->foreignId('place_id');
             $table->foreignId('discount_id');
-            // $table->foreignId('discount_id');
             $table->string('cust_name');
+            $table->string('order_name');
             $table->string('phone');
             $table->integer('time');
             // $table->integer('extra_time')->nullable();
