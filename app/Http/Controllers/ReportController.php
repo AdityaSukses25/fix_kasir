@@ -14,7 +14,6 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         // sales
-
         if (request('start_date') && request('end_date')) {
             $extra_time = DB::table('orders')
                 ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')

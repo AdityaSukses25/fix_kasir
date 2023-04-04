@@ -233,7 +233,7 @@ class OrderController extends Controller
         ]);
 
         $validatedData['reception_id'] = auth()->user()->id;
-        $validatedData['order_name'] = '#LME' . $orderId;
+        $validatedData['order_name'] = $orderId;
         $validatedData['status'] = 'pending';
 
         Order::create($validatedData);

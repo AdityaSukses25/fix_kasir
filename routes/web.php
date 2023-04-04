@@ -153,7 +153,10 @@ Route::middleware('auth')->group(function () {
     );
 
     // customer
-    Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
+    Route::get(
+        '/transaction-record',
+        'App\Http\Controllers\CustomerController@index'
+    );
 
     // report
     Route::get('/report', 'App\Http\Controllers\ReportController@index');

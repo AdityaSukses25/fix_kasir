@@ -96,7 +96,7 @@
       @endcan
       
       <li class="nav-item">
-        <a href="/customer" class="nav-link {{ Request::is('customer') ? 'active' : '' }}">
+        <a href="/transaction-record" class="nav-link {{ Request::is('transaction-record') ? 'active' : '' }}">
         <i class="nav-icon fa fa-sack-dollar"></i>
           <p>
             Transaction Record
@@ -104,7 +104,7 @@
         </a>
       </li>
       <li class="nav-item">
-            <a href="/report" id="DetailService1" class="nav-link {{ Request::is('report') ? 'active' : '' }}">
+            <a href="/report" id="DetailService1" class="nav-link {{ Request::is('report') || Request::is('report/*') ? 'active' : '' }}">
             <i class="fa-solid fa-file-contract nav-icon"></i>
               <p>
                 Reports

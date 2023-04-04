@@ -4,28 +4,46 @@
 <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
+          <div class="col-sm-2">
             <h1 class="m-0">{{ $title }}</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6 mt-1">
+          <div class="col-sm-10 mt-1">
             <ol class="breadcrumb float-sm-right">
-              <div class="print-sale">
-                <form action="/pdf-sales" method="" target="_blank">
-                <input type="hidden" name="start_sales" id="start_sales" value="{{ request('start_date')}}">
-                <input type="hidden" name="end_sales" id="end_sales" value="{{ request('end_date')}}">
-                <button class="btn btn-primary" type="submit">
-                  <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
-                </button>
-                </form>
-              </div>
-              <div class="print-salary d-none">
-                <form action="/pdf-salary" method="" target="_blank">
-                <input type="hidden" name="bulan" id="bulan" class="ml-5 mr-2 rounded border-0 p-1 px-2 start_month" value="{{ request('bulan')}}"  >
-                <button class="btn btn-success" type="submit">
-                  <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
-                </button>
-                </form>
-              </div>
+              <form action="/report" class="date-sales">
+                <div class="input-group input-group-sm">
+                      <input type="date" id="search" class="form-control float-right rounded mr-2 py-3 " id="start_date" name="start_date" value="{{ request('start_date')}}">
+                      to
+                      <input type="date" id="search" class="form-control float-right rounded-left ml-2 py-3"id="end_date" name="end_date" value="{{ request('end_date') }}">
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-default mr-2">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                </div>
+              </form>
+              <form action="/report" class="date-salary d-none">
+                <div class="input-group input-group-sm">
+                      <input type="month"  class="form-control float-right rounded-left py-3" id="start_month" name="bulan" value="{{ request('bulan')}}">
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-default mr-2">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                </div>
+              </form>
+              <form action="/pdf-sales" method="" target="_blank" class="print-sale">
+              <input type="hidden" name="start_sales" id="start_sales" value="{{ request('start_date')}}">
+              <input type="hidden" name="end_sales" id="end_sales" value="{{ request('end_date')}}">
+              <button class="btn btn-primary" type="submit">
+                <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+              </button>
+              </form>
+              <form action="/pdf-salary" method="" target="_blank" class="print-salary d-none">
+              <input type="hidden" name="bulan" id="bulan" class="ml-5 mr-2 rounded border-0 p-1 px-2 start_month" value="{{ request('bulan')}}"  >
+              <button class="btn btn-success" type="submit">
+                <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
+              </button>
+              </form>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -50,7 +68,7 @@
                     <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"><i class="fa fa-hand-holding-dollar"></i>  Salarys</a>
                   </li>
                   
-                  <form action="/report" class="date-sales">
+                  <!-- <form action="/report" class="date-sales">
                     <div class="d-flex justify-content-end" >
                       <li><input type="date" class="ml-5 mr-2 rounded border-0 p-1 px-2 date-sales" id="start_date" name="start_date" value="{{ request('start_date')}}"></li>
                       <li class="mt-1 date-sales">to</li>                  
@@ -73,9 +91,9 @@
                       
                       
                     </div>
-                  </form>
+                  </form> -->
 
-                  <form action="/report" class="date-salary  d-none" style="margin-left: 10rem;">
+                  <!-- <form action="/report" class="date-salary  d-none" style="margin-left: 10rem;">
                     <div class="d-flex justify-content-end" >
                       <li><input type="month" name="bulan" id="start_month" class="ml-5 mr-2 rounded border-0 p-1 px-2 "  value="{{ request('bulan')}}"></li>
                       
@@ -97,7 +115,7 @@
                       
                       
                     </div>
-                  </form>
+                  </form> -->
                 </ul>
               </div>
 
@@ -147,7 +165,7 @@
                           <td class="text-right">{{ Str::rupiah($day->summary_extra_time) }},00</td>
                           @endif
                         </tr>
-                        @endforeach
+                      @endforeach
 
                         @else
                         <tr>

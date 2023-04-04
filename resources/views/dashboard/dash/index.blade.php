@@ -17,26 +17,130 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+    @if(auth()->user()->status == 1)
     <section class="content">
-      <div class="container-fluid">
-
+        <div class="container-fluid">
+        <!-- order info -->
         <div class="row">
           <div class=" col-4">
-
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{ $orders->count() }}</h3>
+                @if($orders->count() == 0)
+                <p>No Order yet right now!</p>
+                @elseif($orders->count() == 1)
+                <p>New Order</p>
+                @else
                 <p>New Orders</p>
+                @endif
               </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-          <a href="/order" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="/transaction-record" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
 
+      
+      <!-- service favorite info -->
       <div class="col-lg-4 col-4">
+        @if($favorites->count())
+        <div class="small-box bg-teal">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $favorites->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $services->count() }}</h5>
+            </div>
+            @if($favorites->count() == 1)
+            <p>Top service of the week</p>
+            @else
+            <p>Top services of the week</p>
+            @endif
+          </div>
+          <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+          </div>
+          <a href="#" class="small-box-footer" data-target="#showFavorite" data-toggle="modal">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @else
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            <p>We have no therapist ready right now!</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+          </div>
+          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @endif
+      </div>
 
+      <!-- therapist info -->
+      <div class="col-lg-4 col-4">
+        @if($therapists->count())
+        <div class="small-box bg-success">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            @if($therapists->count() == 1)
+            <p>Therapist Available</p>
+            @else
+            <p>Therapists Available</p>
+            @endif
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @else
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            <p>We have no therapist ready right now!</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
+          </div>
+          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @endif
+      </div>
+    @else
+      <section class="content">
+        <div class="container-fluid">
+        <!-- order info -->
+        <div class="row">
+          <div class=" col-3">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ $orders->count() }}</h3>
+                @if($orders->count() == 0)
+                <p>No Order yet right now!</p>
+                @elseif($orders->count() == 1)
+                <p>New Order</p>
+                @else
+                <p>New Orders</p>
+                @endif
+              </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+          <a href="/transaction-record" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+
+      <!-- action needed -->
+      <div class="col-lg-3 col-3">
         @if($order_on->count())
         <div class="small-box bg-danger">
           <div class="inner">
@@ -78,13 +182,58 @@
         </div>
       </div>
       @endif
-      <div class="col-lg-4 col-4">
+      
+      <!-- service favorite info -->
+      <div class="col-lg-3 col-3">
+        @if($favorites->count())
+        <div class="small-box bg-teal">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $favorites->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $services->count() }}</h5>
+            </div>
+            @if($favorites->count() == 1)
+            <p>Top service of the week</p>
+            @else
+            <p>Top services of the week</p>
+            @endif
+          </div>
+          <div class="icon">
+            <i class="ion ion ion-pie-graph"></i>
+          </div>
+          <a href="#" class="small-box-footer" data-target="#showFavorite" data-toggle="modal">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @else
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            <p>We have no therapist ready right now!</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion ion-pie-graph"></i>
+          </div>
+          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        @endif
+      </div>
 
+      <!-- therapist info -->
+      <div class="col-lg-3 col-3">
         @if($therapists->count())
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>{{ $therapists->count() }}</h3>
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            @if($therapists->count() == 1)
             <p>Therapist Available</p>
+            @else
+            <p>Therapists Available</p>
+            @endif
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -94,8 +243,11 @@
         @else
         <div class="small-box bg-danger">
           <div class="inner">
-            <h3>{{ $therapists->count() }}</h3>
-            <p>We have no therapist right now!</p>
+            <div class="" style="position: relative;">
+              <h3>{{ $therapists->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+            </div>
+            <p>We have no therapist ready right now!</p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -105,6 +257,7 @@
         @endif
       </div>
       
+    @endif
       <!-- BAR CHART -->
       <div class="container-fluid"> 
         <div class="row">
@@ -137,6 +290,49 @@
               <!-- /.card -->
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- modal show favorite service -->
+      <div class="modal fade" id="showFavorite">
+        <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      @if($favorites->count() == 1)
+                      <h4 class="modal-title">Top {{$favorites->count()}} service on the week</h4>
+                      @else
+                      <h4 class="modal-title">Top {{$favorites->count()}} services on the week</h4>
+                      @endif
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="card-body">
+                        <table class="table table-bordered table-striped table-head-fixed table-hover text-nowrap">
+                          <thead>
+                            <tr>
+                              <th class="text-center">No</th>
+                              <th class="text-center">Massage</th>
+                              <th class="text-center">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach($favorites as $fv)
+                            <tr>
+                              <td class="text-center">{{ $loop->iteration }}</td>
+                              <td>{{ $fv->massage }}</td>
+                              <td class="text-center">{{ $fv->total }}</td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+                </div>
         </div>
       </div>
       

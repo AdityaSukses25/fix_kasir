@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Service;
 use App\Models\Therapist;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class DashboardController extends Controller
@@ -28,6 +30,19 @@ class DashboardController extends Controller
             $summarys[] = $order->summary;
         }
 
+        $favorite_services = DB::table('orders')
+            ->select(
+                DB::raw('YEARWEEK(orders.created_at) as week_number'),
+                'services.id',
+                'services.massage',
+                DB::raw('COUNT(*) as total')
+            )
+            ->join('services', 'orders.service_id', '=', 'services.id')
+            ->groupBy('week_number', 'services.id', 'services.massage')
+            ->orderBy('week_number', 'asc')
+            ->orderBy('total', 'desc')
+            ->get();
+
         return view('dashboard.dash.index', [
             'title' => 'Dashboard',
             'orders' => Order::whereDate(
@@ -46,10 +61,13 @@ class DashboardController extends Controller
                 ->where('status', '=', 'on going')
                 ->get(),
             'therapists' => Therapist::where('status', '=', 3)->get(),
+            'therapists_total' => Therapist::where('status', '>', 1)->get(),
 
             'months' => $months,
             'counts' => $counts,
             'summarys' => $summarys,
+            'favorites' => $favorite_services,
+            'services' => Service::all(),
         ]);
     }
 }
