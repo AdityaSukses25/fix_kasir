@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Order extends Model
 {
     use HasFactory;
+    use Sortable;
 
     protected $guarded = ['id'];
 
@@ -49,6 +51,8 @@ class Order extends Model
     {
         return $this->hasMany(ExtraTime::class);
     }
+
+    public $sortable = ['order_name', 'cust_name'];
 
     protected static function boot()
     {

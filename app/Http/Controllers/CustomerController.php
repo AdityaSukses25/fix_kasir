@@ -8,7 +8,7 @@ use App\Models\Therapist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Sortable;
 class CustomerController extends Controller
 {
     public function index(Request $request)
@@ -40,6 +40,7 @@ class CustomerController extends Controller
                     '=',
                     'services_extra.id'
                 )
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     'therapists.nickname as nickname',
@@ -73,7 +74,7 @@ class CustomerController extends Controller
                                 ->orWhere('orders.cust_name', 'like', $search);
                         });
                 })
-                ->orderBy('id', 'desc');
+                ->orderBy('id', request('sort'));
         } elseif (request('search')) {
             $extra_time = DB::table('orders')
                 ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')
@@ -95,6 +96,7 @@ class CustomerController extends Controller
                     '=',
                     'services_extra.id'
                 )
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     'therapists.nickname as nickname',
@@ -121,7 +123,7 @@ class CustomerController extends Controller
                         ->orWhere('users.name', 'like', $search)
                         ->orWhere('therapists.name', 'like', $search);
                 })
-                ->orderBy('id', 'desc');
+                ->orderBy('id', request('sort'));
         } else {
             $extra_time = DB::table('orders')
                 ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')
@@ -142,6 +144,7 @@ class CustomerController extends Controller
                     'services_extra.id'
                 )
                 ->whereDate('orders.created_at', date('Y-m-d'))
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     // 'orders.created_at.format("Y-m-d") as tanggal',
@@ -160,7 +163,7 @@ class CustomerController extends Controller
                     'services_extra.massage as massageExtra',
                     'places.place as place'
                 )
-                ->orderBy('id', 'desc');
+                ->orderBy('id', request('sort'));
         }
         // end sales
         return view('dashboard.transaction.index', [

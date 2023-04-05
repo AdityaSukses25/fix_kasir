@@ -35,6 +35,7 @@
                       to
                       <input type="date" id="search" class="form-control float-right rounded mr-2 py-3 ml-2" name="end_date" value="{{ request('end_date') }}">
                       <input type="text" name="search" id="search" class="form-control float-right rounded-left py-3" placeholder="Search" value="{{ request('search') }}">
+                      <input type="hidden" name="sort" id="sort_id" data-start="{{ request('start_date') }}" data-end="{{ request('end_date') }}" data-name="{{ request('search') }}"class="form-control float-right rounded-left py-3" placeholder="Search" value="asc">
                           <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                               <i class="fas fa-search"></i>
@@ -49,7 +50,9 @@
                             <i class=" fa fa-filter"></i>
                             </button>
                               <div class="dropdown-menu">
-                                <a id="all"class="dropdown-item" href="/transaction-record" value="2">Sort By All</a>
+                                <a id="all" class="dropdown-item" href="#" value="2">Sort By All</a>
+                                <a id="asc" class="dropdown-item" href="#">Sort By Asc</a>
+                                <a id="desc" class="dropdown-item" href="#" >Sort By Desc</a>
                               </div>
   
                             
@@ -131,7 +134,7 @@
               <div class="card-body table-responsive p-0" id="report-table">
                 <div class="tab-content" id="custom-tabs-two-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
-                    <table id="table1" class="table table-bordered table-striped table-head-fixed table-hover text-nowrap">
+                    <table id="table_transaction" class="table table-bordered table-striped table-head-fixed table-hover text-nowrap">
                       <thead>
                         <tr>
                           <th class="text-center">No</th>
@@ -184,7 +187,7 @@
 
                         @else
                         <tr>
-                          <td colspan="13" class="text-center">No Service yet Right now!</td>
+                          <td colspan="14" class="text-center">No Service yet Right now!</td>
                         </tr>
                         @endif
                       </tbody>
@@ -207,8 +210,8 @@
           </div>
         </div>
       </div>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      
+<script src="/js/customer.js"></script>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script src="/js/report.js"></script>
 @endsection

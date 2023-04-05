@@ -49,6 +49,7 @@ class PDFController extends Controller
                     '=',
                     'services_extra.id'
                 )
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     'therapists.nickname as nickname',
@@ -85,6 +86,7 @@ class PDFController extends Controller
                     'services_extra.id'
                 )
                 ->whereDate('orders.created_at', date('Y-m-d'))
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     'therapists.nickname as nickname',

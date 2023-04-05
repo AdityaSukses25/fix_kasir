@@ -5,12 +5,33 @@
       <span class="brand-text font-weight-light">Lotus Massage Echo</span>
     </a>
 
+    @php
+    function shortenName($name) {
+      $words = explode(' ', $name);
+      $length = 2;
+
+      $firstInitial = strtoupper($words[0][0]);
+      $lastInitial = strtoupper($words[count($words) - 1][0]);
+      if(count($words) == 1){
+        $shortenedName = $firstInitial;
+      } else {
+          $shortenedName = $firstInitial . $lastInitial;
+      }
+
+
+
+      return $shortenedName;
+    }
+    $name = auth()->user()->name;
+    $initials = shortenName($name);
+    @endphp
     <!-- Sidebar -->
     <div class="sidebar" >
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
-        <div class="image mt-2 d-none">
-          <img src="../template/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <div id="initial" class="image mt-1  d-none">
+        <div class="akronim border border-light rounded-circle px-2  mr-2 relative text-light"><p class="mt-1 mb-1 py-2 px-1 absolute">{{$initials}}</p></div>  
+        <!-- <img src="../template/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
         </div>
         <div class="info">
           <a href="#" class="edit-personal d-block text-capitalize" data-toggle="modal" data-target="#edit-personal" data-bs-id="{{ auth()->user()->id }}" data-bs-name="{{ auth()->user()->name }}" data-bs-username="{{ auth()->user()->username }}" data-bs-phone="{{ auth()->user()->phone }}" data-bs-email="{{ auth()->user()->email }}" data-bs-password="{{ auth()->user()->password }}" data-bs-status="{{ auth()->user()->status }}">{{ auth()->user()->name }} <i class="d-none fa fa-user-pen user-personal"></i></a>
@@ -96,7 +117,7 @@
       @endcan
       
       <li class="nav-item">
-        <a href="/transaction-record" class="nav-link {{ Request::is('transaction-record') ? 'active' : '' }}">
+        <a href="/transaction-record?sort=asc" class="nav-link {{ Request::is('transaction-record') ? 'active' : '' }}">
         <i class="nav-icon fa fa-sack-dollar"></i>
           <p>
             Transaction Record
@@ -234,3 +255,11 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="/js/sidebar.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#push').click(function(){
+      $('#initial').toggleClass('d-none')
+    })
+  })
+      
+</script>

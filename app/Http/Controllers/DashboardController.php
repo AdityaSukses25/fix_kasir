@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Therapist;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +42,19 @@ class DashboardController extends Controller
             ->groupBy('week_number', 'services.id', 'services.massage')
             ->orderBy('week_number', 'asc')
             ->orderBy('total', 'desc')
+            ->limit(5)
             ->get();
+
+        // initials
+        $name = auth()->user()->name;
+
+        $words = explode(' ', $name);
+        $length = 2;
+
+        $firstInitial = Str::upper($words[0][0]);
+        $lastInitial = Str::upper($words[count($words) - 1][0]);
+
+        $shortenedName = $firstInitial . $lastInitial;
 
         return view('dashboard.dash.index', [
             'title' => 'Dashboard',
@@ -68,6 +81,7 @@ class DashboardController extends Controller
             'summarys' => $summarys,
             'favorites' => $favorite_services,
             'services' => Service::all(),
+            'initials' => $shortenedName,
         ]);
     }
 }

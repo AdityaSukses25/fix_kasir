@@ -22,12 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/css/style.css">
     <!-fontawosem-  -->
   <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-  <style>
-    /* .activation{
-      background-color: red;
-      color: white;
-    } */
-  </style>
+  
+  <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

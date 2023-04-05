@@ -37,6 +37,7 @@ class ReportController extends Controller
                     '=',
                     'services_extra.id'
                 )
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     'therapists.nickname as nickname',
@@ -73,6 +74,7 @@ class ReportController extends Controller
                     'services_extra.id'
                 )
                 ->whereDate('orders.created_at', date('Y-m-d'))
+                ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
                     // 'orders.created_at.format("Y-m-d") as tanggal',
