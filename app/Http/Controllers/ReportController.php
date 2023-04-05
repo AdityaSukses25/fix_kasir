@@ -100,6 +100,12 @@ class ReportController extends Controller
         $terapis = Therapist::where('status', '>', 1)
             ->orderBy('name')
             ->get();
+        if (request('search')) {
+            $terapis = Therapist::where('status', '>', 1)
+                ->where('name', 'like', '%' . request('search') . '%')
+                ->orderBy('name')
+                ->get();
+        }
         $bulan = Carbon::now();
         if ($request->input('bulan')) {
             $bulan = Carbon::createFromFormat('Y-m', $request->input('bulan'));

@@ -9,16 +9,34 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              
-              <button type="button" class="py-2 btn btn-default dropdown-toggle dropdown-toggle-end mr-1" data-toggle="dropdown">
-                <i class=" fa fa-filter mr-1"></i>Filter By
-              </button>
-              <div class="dropdown-menu">
-              <a id="all" class="dropdown-item" href="#" value="1">All</a>
-                <a id="on" class="dropdown-item" href="#" value="1">Day On </a>
-                <a id="off" class="dropdown-item" href="#" value="0">Day Off </a>
-                <a id="inactive"class="dropdown-item" href="#" value="0">Inactive </a>
-              </div>
+              <form action="/therapist" class="date-sales mr-2">
+                  <div class="input-group input-group-sm">
+                        <input type="text" name="search" id="search" class="form-control float-right rounded-left py-3" placeholder="Search" value="{{ request('search') }}">
+                        <input type="hidden" id="sort_id" name="status" data-start="{{ request('start_date') }}" data-end="{{ request('end_date') }}" data-name="{{ request('search') }}"class="form-control float-right rounded-left py-3" placeholder="Search" value="">
+                            <div class="input-group-append">
+                              <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                              </button>
+                              <!-- <button type="button" class="btn btn-tool" >
+                                <a href="/order">
+    
+                                  
+                                  </a>
+                              </button> -->
+                              <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-end" data-toggle="dropdown">
+                              <i class=" fa fa-filter"></i>
+                              </button>
+                              <div class="dropdown-menu">
+                                <a id="all" class="dropdown-item" href="#" value="1">Sort By All</a>
+                                <a id="on" class="dropdown-item" href="#" value="1">Sort By Day On </a>
+                                <a id="off" class="dropdown-item" href="#" value="0">Sort By Day Off </a>
+                                <a id="inactive"class="dropdown-item" href="#" value="0">Sort By Inactive </a>
+                              </div>
+    
+                              
+                            </div>
+                  </div>
+              </form>
               @can('admin')
               <button class="btn btn-primary" data-target="#addTerapist" data-toggle="modal">
                 <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Therapist</li>

@@ -64,14 +64,14 @@ if (reception > 580) {
 }
 
 $('#all').click(function () {
-  window.location.href = 'http://127.0.0.1:8000/reception'
+  window.location.href = 'http://127.0.0.1:8000/user'
 })
 $('#owner').click(function () {
-  window.location.href = 'http://127.0.0.1:8000/reception?search=1'
+  window.location.href = 'http://127.0.0.1:8000/user?status=1'
 })
 $('#reception').click(function () {
-  window.location.href = 'http://127.0.0.1:8000/reception?search=2'
+  window.location.href = 'http://127.0.0.1:8000/user?status=2'
 })
 $('#inactive').click(function () {
-  window.location.href = 'http://127.0.0.1:8000/reception?search=3'
+  window.location.href = 'http://127.0.0.1:8000/user?status=3'
 })

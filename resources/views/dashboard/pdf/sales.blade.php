@@ -52,7 +52,7 @@
                           <th class="text-center">Massage</th>
                           <th class="text-center">Time</th>
                           <th class="text-center">Price </th>
-                          <th class="text-center">Discount</th>                    
+                          <th class="text-center">Discount(%)</th>                    
                           <th class="text-center">ExtraTime </th>                    
                           <th class="text-center">Massage </th>                    
                           <th class="text-center">Price  </th>                    
@@ -72,7 +72,7 @@
                           @if($day->discount == 0)
                           <td class="text-center">-</td>
                           @else
-                          <td class="text-center">{{ $day->discount }}%</td>
+                          <td class="text-center">{{ $day->discount }}</td>
                           @endif
                           @if($day->start_extra_time == null)
                           <td class="text-center">-</td>

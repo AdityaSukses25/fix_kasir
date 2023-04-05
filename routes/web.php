@@ -34,7 +34,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // reception
 Route::get(
-    '/reception',
+    '/user',
     'App\Http\Controllers\ReceptionController@index'
 )->middleware('admin');
 

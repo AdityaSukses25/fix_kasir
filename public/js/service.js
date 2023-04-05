@@ -163,17 +163,17 @@ $('.deletediscount').click(function () {
 
 var service = $('#service-table').height()
 if (service > 580) {
-  $('#service-table').css('height', '74vh')
+  $('#service-table').css('height', '73vh')
 } else {
 }
 var place = $('#place-table').height()
 if (place > 580) {
-  $('#place-table').css('height', '74vh')
+  $('#place-table').css('height', '73vh')
 } else {
 }
 var discount = $('#discount-table').height()
 if (discount > 580) {
-  $('#discount-table').css('height', '74vh')
+  $('#discount-table').css('height', '73vh')
 } else {
 }
 

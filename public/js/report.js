@@ -1,6 +1,9 @@
 var report = $('#report-table').height()
+var salary_report = $('#custom-tabs-two-profile').height()
 if (report > 535) {
   $('#report-table').css('height', '67vh')
+} else if (salary_report > 535) {
+  $('#custom-tabs-two-profile').css('height', '67vh')
 } else {
 }
 

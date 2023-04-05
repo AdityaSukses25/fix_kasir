@@ -63,18 +63,18 @@
           <a href="#" class="small-box-footer" data-target="#showFavorite" data-toggle="modal">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
         @else
-        <div class="small-box bg-danger">
+        <div class="small-box bg-teal">
           <div class="inner">
             <div class="" style="position: relative;">
-              <h3>{{ $therapists->count() }} </h3>
-              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $therapists_total->count() }}</h5>
+              <h3>{{ $favorites->count() }} </h3>
+              <h5 class="absolute ml-4" style="margin-top: -40px; position: absolute;">of {{ $services->count() }}</h5>
             </div>
-            <p>We have no therapist ready right now!</p>
+            <p>Have no top services</p>
           </div>
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="/therapist" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer" data-target="#showFavorite" data-toggle="modal">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
         @endif
       </div>

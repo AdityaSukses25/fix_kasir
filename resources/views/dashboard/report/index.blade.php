@@ -23,7 +23,8 @@
               </form>
               <form action="/report" class="date-salary d-none">
                 <div class="input-group input-group-sm">
-                      <input type="month"  class="form-control float-right rounded-left py-3" id="start_month" name="bulan" value="{{ request('bulan')}}">
+                      <input type="month"  class="form-control float-right rounded-left py-3 mr-2" id="start_month" name="bulan" value="{{ request('bulan')}}">
+                      <input type="text"  class="form-control float-right rounded-left py-3" id="start_month" name="search" value="{{ request('search')}}" placeholder="search">
                           <div class="input-group-append">
                             <button type="submit" class="btn btn-default mr-2">
                               <i class="fas fa-search"></i>
@@ -151,7 +152,7 @@
                           @if($day->discount == 0)
                           <td class="text-center">-</td>
                           @else
-                          <td class="text-center">{{ $day->discount }}%</td>
+                          <td class="text-center">{{ $day->discount }}</td>
                           @endif
                           @if($day->start_extra_time == null)
                           <td class="text-center">-</td>

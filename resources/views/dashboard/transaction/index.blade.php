@@ -169,7 +169,7 @@
                           @if($day->discount == 0)
                           <td class="text-center">-</td>
                           @else
-                          <td class="text-center">{{ $day->discount }}%</td>
+                          <td class="text-center">{{ $day->discount }}</td>
                           @endif
                           @if($day->start_extra_time == null)
                           <td class="text-center">-</td>

@@ -10,10 +10,14 @@ class ReceptionController extends Controller
     {
         $user = User::orderBy('name');
         if (\request('search')) {
+            $user = User::where('name', 'like', '%' . \request('search') . '%')
+                ->orWhere('username', 'like', '%' . \request('search') . '%')
+                ->orderBy('name');
+        } elseif (request('status')) {
             $user = User::where(
                 'status',
                 'like',
-                '%' . \request('search') . '%'
+                '%' . \request('status') . '%'
             )->orderBy('name');
         }
         return view('dashboard.reception.index', [

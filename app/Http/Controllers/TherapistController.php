@@ -16,9 +16,17 @@ class TherapistController extends Controller
 
         if (request('search')) {
             $terapist = Therapist::where(
-                'status',
+                'name',
                 'like',
                 '%' . \request('search') . '%'
+            )
+                ->orWhere('nickname', 'like', '%' . \request('search') . '%')
+                ->orderBy('name', 'asc');
+        } elseif (request('status')) {
+            $terapist = Therapist::where(
+                'status',
+                'like',
+                '%' . \request('status') . '%'
             )->orderBy('name', 'asc');
         }
         return view('dashboard.therapist.index', [

@@ -64,7 +64,7 @@
                         <td>{{$loop->iteration}}</td>
                         @if($massage->status > 1)
                         <td>{{ $massage->massage }}</td>
-                        <td>{{ $massage->time }}</td>
+                        <td>{{ $massage->time }}'</td>
                         <td class="text-end">{{ Str::rupiah($massage->price) }}</td>
                         <td>
                           <div class="row">
@@ -94,7 +94,7 @@
                         </td>
                         @else
                         <td class="text-danger">{{ $massage->massage }}</td>
-                        <td class="text-danger">{{ $massage->time }}</td>
+                        <td class="text-danger">{{ $massage->time }}'</td>
                         <td class="text-end text-danger">{{ Str::rupiah($massage->price) }}</td>
                         <td>
                           <div class="row">
@@ -224,7 +224,7 @@
                   <thead>
                     <tr>
                       <th >No</th>
-                      <th >Discount</th>
+                      <th >Discount (%)</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
