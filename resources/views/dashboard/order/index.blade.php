@@ -321,20 +321,20 @@
                             <tr>
                               @if($extm->start_extra_time == Null)
                               <td>#{{ $extm->order_name }}</td>
-                              <td><a href="#" data-toggle="modal" class="show_service" data-target="#showservice" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->price }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">{{ $extm->cust_name }}</a> </td>
+                              <td><a href="#" data-toggle="modal" class="show_service" data-target="#showservice" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">{{ $extm->cust_name }}</a> </td>
                               <td>{{ $extm->nickname }}</td>
                               <td>{{ $extm->start_service}}</td>
                               <td>{{ $extm->end_service}}</td>
                               @if($extm->start_service == null)
                               <td><button class="btn btn-danger orderid" data-toggle="modal" data-target="#confirmOrder" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">Pending</button></td>
                               @elseif($extm->status == 'on going')
-                              <td><a href="#" data-toggl="modal" data-target="extraTime" class="extraTime" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-therapistId="{{ $extm->therapistId }}" data-bs-massage="{{ $extm->massage }}" data-bs-end="{{ $extm->end_service }}" data-bs-orderId="#{{ $extm->order_name }}"><span class="badge badge-warning">On Going <span class="badge badge-danger">!</span></span></a> <a href="#" class="cancel" data-bs-target="{{$extm->id}}" data-bs-name="{{$extm->cust_name}}" ><span class="badge badge-danger">x</span></a></td>
+                              <td><a href="#" data-toggl="modal" data-target="extraTime" class="extraTime" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-therapistId="{{ $extm->therapistId }}" data-bs-massage="{{ $extm->massage }}" data-bs-end="{{ $extm->end_service }}" data-bs-orderId="#{{ $extm->order_name }}" data-summary="{{ $extm->summary }}"><span class="badge badge-warning">On Going <span class="badge badge-danger">!</span></span></a> <a href="#" class="cancel" data-bs-target="{{$extm->id}}" data-bs-name="{{$extm->cust_name}}" ><span class="badge badge-danger">x</span></a></td>
                               @else
                               <td><span class="badge badge-success">Completed!</span></td>
                               @endif
                               @else
                               <td>#{{ $extm->order_name }}</td>
-                              <td><a href="#" data-toggle="modal" class="show_service2" data-target="#showservice2" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->price }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-extra="{{ $extm->extra_time }}" data-bs-massageExtra="{{ $extm->massageExtra }}" data-bs-priceExtra="{{ $extm->priceExtra }}" data-bs-endExtra="{{ $extm->end_extra_time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">{{ $extm->cust_name }}*</a> </td>
+                              <td><a href="#" data-toggle="modal" class="show_service2" data-target="#showservice2" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-extra="{{ $extm->extra_time }}" data-bs-massageExtra="{{ $extm->massageExtra }}" data-bs-priceExtra="{{ $extm->priceExtra }}" data-bs-endExtra="{{ $extm->end_extra_time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}" data-summary="{{ $extm->summary_extra_time }}">{{ $extm->cust_name }}*</a> </td>
                               <td>{{ $extm->nickname }}</td>
                               <td>{{ $extm->start_extra_time}}</td>
                               <td>{{ $extm->end_extra_time}}</td>
@@ -552,7 +552,7 @@
 
                                   <!-- therapist -->
                                   <div class="row mb-3">
-                                      <label for="editPhone" class="col-md-4 col-form-label text-md-end">Therapist22</label>
+                                      <label for="editPhone" class="col-md-4 col-form-label text-md-end">Therapist</label>
 
                                       <div class="col-md-8">
                                         <input type="hidden" id="therapist_id" name="therapist_id">
@@ -640,6 +640,7 @@
                                   </div>
 
                                   <input type="hidden" id="summary_extra">
+                                  <input type="hidden" id="summary_order">
                                   <input type="hidden" id="sum_extra" name="summary_extra_time">
 
                                   

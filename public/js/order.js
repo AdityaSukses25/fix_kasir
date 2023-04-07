@@ -134,6 +134,7 @@ $('.extraTime').click(function () {
   var time = $(this).attr('data-bs-time')
   var orderId = $(this).attr('data-bs-orderID')
   var price = $(this).attr('data-bs-price')
+  var summOrder = $(this).attr('data-summary')
   $('#order_extra').val(id)
   $('.editOrder').val(cust)
   $('#therapist_id').val(therapistId)
@@ -141,6 +142,7 @@ $('.extraTime').click(function () {
   $('.editMassage').val(massage)
   $('.time-Start').val(end_service)
   $('.title-only').text(orderId)
+  $('#summary_order').val(summOrder)
 
   setInterval(function () {
     var time_start_extra = $('.time-Start').val()
@@ -183,10 +185,10 @@ $('.editTime').keyup(function () {
   var price_extra = $('#price-extra').val()
   var time_custom = $('.editTime').val()
   var price_real = price_extra * time_custom
-  price_real = parseInt(price_real)
+  var summ_order = $('#summary_order').val()
   var price_order = $('#summary_extra').val()
-  price_order = parseInt(price_order)
-  var summary = price_real + price_order
+  summ_order = parseInt(summ_order)
+  var summary = summ_order + price_real
   $('#price-real').val(price_real)
   $('#sum_extra').val(summary)
 })
@@ -351,7 +353,7 @@ $('.show_service2').click(function () {
   var priceExtra = $(this).attr('data-bs-priceExtra')
   priceExtra = parseInt(priceExtra)
   var endExtra = $(this).attr('data-bs-endExtra')
-  var sum = price + priceExtra
+  var sum = $(this).attr('data-summary')
   $('#cust_name2').val(cust)
   $('#therapist_name2').val(therapist)
   $('#service2').val(massage)

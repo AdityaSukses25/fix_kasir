@@ -255,11 +255,4 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="/js/sidebar.js"></script>
-<script>
-  $(document).ready(function(){
-    $('#push').click(function(){
-      $('#initial').toggleClass('d-none')
-    })
-  })
-      
-</script>
+

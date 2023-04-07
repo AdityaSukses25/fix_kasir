@@ -32,15 +32,15 @@ class DashboardController extends Controller
         }
 
         $favorite_services = DB::table('orders')
+            ->join('services', 'orders.service_id', '=', 'services.id')
             ->select(
                 DB::raw('YEARWEEK(orders.created_at) as week_number'),
                 'services.id',
                 'services.massage',
                 DB::raw('COUNT(*) as total')
             )
-            ->join('services', 'orders.service_id', '=', 'services.id')
             ->groupBy('week_number', 'services.id', 'services.massage')
-            ->orderBy('week_number', 'asc')
+            ->orderBy('week_number', 'desc')
             ->orderBy('total', 'desc')
             ->limit(5)
             ->get();

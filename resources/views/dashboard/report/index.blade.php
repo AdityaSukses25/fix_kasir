@@ -198,13 +198,13 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @if($salarys != null)
                       @foreach($salarys as $salary)
                         <tr data-widget="expandable-table" aria-expanded="false">
                           <td class="text-center">{{ $loop->iteration}}</td>
                           <td>{{ $month_salary->format('F, Y')}}</td>
                           <td>{{ $salary['therapist_name'] }}</td>
                           <td class="text-center"><a href="/report/salary-detail{{ $salary['therapist_id'] }}?bulan={{request('bulan')}}" class="serviceDetail" data-toggle="" data-target="" data-bs-name="{{ $salary['therapist_name'] }}" data-bs-order="{{ $salary['order_amount'] }}" data-bs-id="{{ $salary['therapist_id'] }}">{{ $salary['order_amount'] }}</a></td>
-                          
                           @php
                             $total_order_bonus = 0;
                             foreach ($salary['order_details'] as $dt) {
@@ -214,12 +214,18 @@
                           <td class="text-right">{{ Str::rupiah($total_order_bonus) }},00</td>
                         </tr>
                       @endforeach
+                      @else
+                      <tr>
+                        <td>Therapist atas nama {{ request('search')}} not found!</td>
+                      </tr>
+                      @endif
                       
                     </tbody>
                       <tfoot class="">
                         <tr>
                           
                           <th colspan='4' class="text-center">Total Salary (Rp)</th>
+                          @if($salary['order_details'] == null)
                           @php
                           $total_order_bonus_sum = 0;
                           foreach ($salarys as $salary) {
@@ -228,8 +234,11 @@
                               }, 0);
                           }
                           @endphp
-
                           <th class="text-right">{{ Str::rupiah($total_order_bonus_sum)}},00</th>
+                          @else
+                          <th class="text-right">0,00</th>
+                          @endif
+
                         </tr>
                       </tfoot>
                     </table>
