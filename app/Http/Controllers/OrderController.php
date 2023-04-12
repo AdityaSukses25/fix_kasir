@@ -60,7 +60,7 @@ class OrderController extends Controller
             ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')
             ->join('therapists', 'orders.therapist_id', '=', 'therapists.id')
             ->join('services', 'orders.service_id', '=', 'services.id')
-            ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+            // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
             ->join('places', 'orders.place_id', '=', 'places.id')
             ->join(
                 'services as services_extra',
@@ -74,7 +74,7 @@ class OrderController extends Controller
                 'therapists.nickname as nickname',
                 'therapists.name as name',
                 'therapists.id as therapistId',
-                'discounts.discount as discount',
+                // 'discounts.discount as discount',
                 'extra_times.start_extra_time',
                 'extra_times.id as extraId',
                 'extra_times.end_extra_time',
@@ -98,7 +98,7 @@ class OrderController extends Controller
                             '%' . request('search') . '%'
                         )
                         ->orWhere(
-                            'orders.order_name',
+                            'orders.orderID',
                             'like',
                             '%' . request('search') . '%'
                         )
@@ -120,7 +120,7 @@ class OrderController extends Controller
                     'therapists.id'
                 )
                 ->join('services', 'orders.service_id', '=', 'services.id')
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
 
                 ->join(
@@ -136,7 +136,7 @@ class OrderController extends Controller
                     'therapists.name as name',
                     'therapists.id as therapistId',
                     'extra_times.start_extra_time',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.id as extraId',
                     'extra_times.summary_extra_time',
                     'extra_times.end_extra_time',
@@ -187,7 +187,7 @@ class OrderController extends Controller
     }
 
     // therapist dropdown dinamic
-    public function therapist($id)
+    public function therapist($gender)
     {
         $onGoingOrders = DB::table('orders')
             ->where('status', 'on going')
@@ -196,7 +196,7 @@ class OrderController extends Controller
         $therapists = DB::table('therapists')
             ->leftJoin('orders', 'therapists.id', '=', 'orders.therapist_id')
             ->whereNotIn('therapists.id', $onGoingOrders)
-            ->where('gender_id', $id)
+            ->where('gender', $gender)
             ->select(
                 'therapists.id',
                 'therapists.nickname',
@@ -224,18 +224,18 @@ class OrderController extends Controller
             'service_id' => 'required',
             'therapist_id' => 'required',
             'place_id' => 'required',
-            'discount_id' => 'required',
             'cust_name' => 'required',
             'phone' => 'required',
             'time' => 'required',
             'price' => 'required',
+            'discount' => 'required',
             'payment_method' => 'required',
             'description' => '',
             'summary' => 'required',
         ]);
 
         $validatedData['reception_id'] = auth()->user()->id;
-        $validatedData['order_name'] = $orderId;
+        $validatedData['orderID'] = $orderId;
         $validatedData['status'] = 'pending';
 
         Order::create($validatedData);
@@ -245,7 +245,7 @@ class OrderController extends Controller
 
     public function update(Request $request)
     {
-        $updateOrder = Order::findorFail($request->order_name);
+        $updateOrder = Order::findorFail($request->orderID);
         $updateOrder->status = 'on going';
         $updateOrder->start_service = $request->start_service;
         $updateOrder->end_service = $request->end_service;

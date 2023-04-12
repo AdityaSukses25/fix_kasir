@@ -101,7 +101,7 @@
           </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/user" class="nav-link {{ Request::is('reception') ? 'active' : '' }}">
+                <a href="/user" class="nav-link {{ Request::is('user') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>User</p>
               </a>

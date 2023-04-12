@@ -51,12 +51,12 @@
                           <th class="text-center">Date</th>
                           <th class="text-center">Massage</th>
                           <th class="text-center">Time</th>
-                          <th class="text-center">Price </th>
+                          <th class="text-center">Price(Rp) </th>
                           <th class="text-center">Discount(%)</th>                    
                           <th class="text-center">ExtraTime </th>                    
-                          <th class="text-center">Massage </th>                    
-                          <th class="text-center">Price  </th>                    
-                          <th class="text-center">Summary </th>
+                          <th class="text-center">Massage(ET) </th>                    
+                          <th class="text-center">Price(Rp)  </th>                    
+                          <th class="text-center">Summary(Rp) </th>
                 </tr>
               </thead>
               <tbody>

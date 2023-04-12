@@ -37,7 +37,7 @@
     <section class="content">
       <div class="container-fluid"> 
         <div class="row">
-          <div class="col-7">
+          <div class="col-6">
             <div class="card">
                 <div class="card-body table-responsive" style="height: 73vh;">
                   <table class="table table-head-fixed text-nowrap">
@@ -101,9 +101,8 @@
                             <div class="col-md-3">
                               <select id="inputGender" class="form-control custom-select" name="gender_id" text-capitalize>
                                               <option value="" selected disabled>Select gender...</option>
-                                                  @foreach( $genders as $gender)                                    
-                                                  <option value="{{$gender->id}}">{{$gender->gender}}</option>
-                                                  @endforeach
+                                                  <option value="male">Male</option>
+                                                  <option value="female">Female</option>
                                               
                               </select>
                             </div>
@@ -139,7 +138,7 @@
 
                         <!-- time -->
                         <div class="row mb-3">
-                          <label for="time" class="col-md-4 col-form-label text-md-end">Time Duration</label>
+                          <label for="time" class="col-md-4 col-form-label text-md-end">Time Duration (mint)</label>
                             <div class="col-md-8">
                               <input id="time" type="text" class="form-control @error('time') is-invalid @enderror" name="time" value="{{ old('time') }}" required autocomplete="time" placeholder="minute" readonly>
 
@@ -175,7 +174,7 @@
 
                         <!-- price -->
                         <div class="row mb-3">
-                          <label for="price" class="col-md-4 col-form-label text-md-end">Price</label>
+                          <label for="price" class="col-md-4 col-form-label text-md-end">Price (Rp)</label>
                             <div class="col-md-8">
                               <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" placeholder="Rp." readonly>
 
@@ -189,16 +188,16 @@
                     
                         <!-- discount -->
                         <div class="row mb-3">
-                          <label for="discount_id" class="col-md-4 col-form-label text-md-end">Discount</label>
+                          <label for="discount_id" class="col-md-4 col-form-label text-md-end">Discount (%)</label>
                           <div class="col-md-8">
-                              <select id="inputDiscount" class="form-control custom-select" onchange="selectDiscount()" required>
+                              <!-- <select id="inputDiscount" class="form-control custom-select" onchange="selectDiscount()" required>
                                               <option value="" selected disabled>Select discount...</option>
                                                   @foreach( $discounts as $discount)                                    
                                                   <option value="{{$discount}}">{{$discount->discount}}</option>
                                                   @endforeach
                                               
-                              </select>
-                              <input type="hidden" id="discount_id" name="discount_id">
+                              </select> -->
+                              <input type="number" min="0" id="inputDiscount" name="discount" class="form-control" onchange="selectDiscount()"  placeholder="%">
                               <input type="hidden" id="discount">
                           </div>
                         </div>
@@ -232,7 +231,7 @@
 
                         <!-- summary -->
                         <div class="row mb-3">
-                          <label for="summary" class="col-md-4 col-form-label text-md-end">Total</label>
+                          <label for="summary" class="col-md-4 col-form-label text-md-end">Total (Rp)</label>
                             <div class="col-md-8">
                               <input id="summary" type="text" class="form-control @error('summary') is-invalid @enderror" name="summary" value="{{ old('summary') }}" required autocomplete="summary" placeholder="Rp." readonly>
 
@@ -260,7 +259,7 @@
                 <!-- /.card-body -->
               </div>
           </div>
-          <div class="col-5">
+          <div class="col-6">
             <div class="card">
                 <div class="card-header">
                   @if($orders->count())
@@ -307,11 +306,11 @@
                   <table id="table-view" class="table table-head-fixed table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>Order ID</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Therapist</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th class="text-center">Duration</th>
+                        <!-- <th>End</th> -->
                         <th>Status</th>
                       </tr>
                     </thead>
@@ -320,24 +319,24 @@
                             @foreach($extra_time as $extm)
                             <tr>
                               @if($extm->start_extra_time == Null)
-                              <td>#{{ $extm->order_name }}</td>
-                              <td><a href="#" data-toggle="modal" class="show_service" data-target="#showservice" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">{{ $extm->cust_name }}</a> </td>
+                              <td>#{{ $extm->orderID }}</td>
+                              <td><a href="#" data-toggle="modal" class="show_service" data-target="#showservice" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->orderID }}">{{ $extm->cust_name }}</a> </td>
                               <td>{{ $extm->nickname }}</td>
-                              <td>{{ $extm->start_service}}</td>
-                              <td>{{ $extm->end_service}}</td>
+                              <td class="text-center">{{ $extm->start_service}} -{{ $extm->end_service}}</td>
+                              <!-- <td>{{ $extm->end_service}}</td> -->
                               @if($extm->start_service == null)
-                              <td><button class="btn btn-danger orderid" data-toggle="modal" data-target="#confirmOrder" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}">Pending</button></td>
+                              <td><button class="btn btn-danger orderid" data-toggle="modal" data-target="#confirmOrder" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->orderID }}">Pending</button></td>
                               @elseif($extm->status == 'on going')
-                              <td><a href="#" data-toggl="modal" data-target="extraTime" class="extraTime" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-therapistId="{{ $extm->therapistId }}" data-bs-massage="{{ $extm->massage }}" data-bs-end="{{ $extm->end_service }}" data-bs-orderId="#{{ $extm->order_name }}" data-summary="{{ $extm->summary }}"><span class="badge badge-warning">On Going <span class="badge badge-danger">!</span></span></a> <a href="#" class="cancel" data-bs-target="{{$extm->id}}" data-bs-name="{{$extm->cust_name}}" ><span class="badge badge-danger">x</span></a></td>
+                              <td><a href="#" data-toggl="modal" data-target="extraTime" class="extraTime" data-bs-id="{{ $extm->id }}" data-bs-cust="{{ $extm->cust_name }}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{ $extm->massage }}"  data-bs-time="{{ $extm->time }}" data-bs-therapistId="{{ $extm->therapistId }}" data-bs-massage="{{ $extm->massage }}" data-bs-end="{{ $extm->end_service }}" data-bs-orderId="#{{ $extm->orderID }}" data-summary="{{ $extm->summary }}"><span class="badge badge-warning">On Going <span class="badge badge-danger">!</span></span></a> <a href="#" class="cancel" data-bs-target="{{$extm->id}}" data-bs-name="{{$extm->cust_name}}" ><span class="badge badge-danger">x</span></a></td>
                               @else
                               <td><span class="badge badge-success">Completed!</span></td>
                               @endif
                               @else
-                              <td>#{{ $extm->order_name }}</td>
-                              <td><a href="#" data-toggle="modal" class="show_service2" data-target="#showservice2" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-extra="{{ $extm->extra_time }}" data-bs-massageExtra="{{ $extm->massageExtra }}" data-bs-priceExtra="{{ $extm->priceExtra }}" data-bs-endExtra="{{ $extm->end_extra_time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->order_name }}" data-summary="{{ $extm->summary_extra_time }}">{{ $extm->cust_name }}*</a> </td>
+                              <td>#{{ $extm->orderID }}</td>
+                              <td><a href="#" data-toggle="modal" class="show_service2" data-target="#showservice2" data-bs-cust="{{$extm->cust_name}}" data-bs-therapist="{{ $extm->name }}" data-bs-massage="{{$extm->massage}}" data-bs-duration="{{ $extm->time }}" data-bs-price="{{ $extm->summary }}" data-bs-start="{{ $extm->start_service }}" data-bs-end="{{ $extm->end_service }}" data-bs-extra="{{ $extm->extra_time }}" data-bs-massageExtra="{{ $extm->massageExtra }}" data-bs-priceExtra="{{ $extm->priceExtra }}" data-bs-endExtra="{{ $extm->end_extra_time }}" data-bs-place="{{ $extm->place }}" data-bs-orderId="#{{ $extm->orderID }}" data-summary="{{ $extm->summary_extra_time }}">{{ $extm->cust_name }}*</a> </td>
                               <td>{{ $extm->nickname }}</td>
-                              <td>{{ $extm->start_extra_time}}</td>
-                              <td>{{ $extm->end_extra_time}}</td>
+                              <td class="text-center">{{ $extm->start_extra_time}} - {{ $extm->end_extra_time}}</td>
+                              <!-- <td>{{ $extm->end_extra_time}}</td> -->
                               @if($extm->status === 'finish')
                               <td><span class="badge bg-olive">Completed!</span></td>
                               @else
@@ -394,7 +393,7 @@
                       <div class="row mb-3">
                                       <label for="editName" class="col-md-4 col-form-label text-md-end">Customer Name</label>
                                       <div class="col-md-8">
-                                        <input type="hidden" id="order_id" name="order_name">
+                                        <input type="hidden" id="order_id" name="orderID">
                                         <input id="editOrder" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus readonly>
 
                                           @error('name')

@@ -6,8 +6,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/report" class="text-success"><h1>Report</h1></a></li>
+                <li class="breadcrumb-item"><a href="/report" class="text-primary"><h1>Report</h1></a></li>
                 <li class="breadcrumb-item active">Salary Detail</li>
+                <li class="breadcrumb-item active">{{ $month_salary->format('F, Y') }}</li>
               </ol>
             </div>
           <div class="col-sm-6 mt-1">
@@ -16,7 +17,8 @@
               @foreach($salary as $sal)
                 @endforeach
                 <form action="/pdf-salary-detail{{ $sal['therapist_id'] }}" method="" target="_blank">
-                <button class="btn btn-success" type="submit">
+                <input type="hidden" name="bulan" value="{{ request('bulan') }}">
+                <button class="btn btn-primary" type="submit">
                   <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
                 </button>
                 </form>

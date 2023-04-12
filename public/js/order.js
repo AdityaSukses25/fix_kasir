@@ -35,6 +35,7 @@ function selectMassage() {
   let time = document.getElementById('time')
   let price = document.getElementById('price')
   let massage = document.getElementById('massage')
+  let summary = document.getElementById('summary')
 
   if (select.value === 'default') {
     time.value = ''
@@ -44,6 +45,7 @@ function selectMassage() {
     massage.value = JSON.parse(select.value).id
     time.value = JSON.parse(select.value).time
     price.value = JSON.parse(select.value).price
+    summary.value = JSON.parse(select.value).price
   }
 }
 
@@ -63,9 +65,9 @@ function selectDiscount() {
 
 // summary
 // total summary
-$('#inputDiscount').on('change', function () {
+$('#inputDiscount').on('keyup', function () {
   var price = $('#price').val()
-  var disc = $('#discount').val()
+  var disc = $('#inputDiscount').val()
   var total = price - (price * disc) / 100
   $('#summary').val(total)
 })

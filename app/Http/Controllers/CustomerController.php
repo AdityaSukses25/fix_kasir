@@ -30,7 +30,7 @@ class CustomerController extends Controller
                 )
                 ->join('users', 'orders.reception_id', '=', 'users.id')
 
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join('services', 'orders.service_id', '=', 'services.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
 
@@ -51,11 +51,12 @@ class CustomerController extends Controller
                     'extra_times.id as extraId',
                     'extra_times.end_extra_time',
                     'extra_times.extra_time',
+                    'extra_times.status as extraStatus',
                     'extra_times.price_extra_time as priceExtra',
                     'services.massage as massage',
                     'places.place as place',
                     'services_extra.massage as massageExtra',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.summary_extra_time'
                 )
                 ->where(function ($query) {
@@ -67,7 +68,7 @@ class CustomerController extends Controller
                         ->where(function ($query) {
                             $search = '%' . request('search') . '%';
                             $query
-                                ->where('orders.order_name', 'like', $search)
+                                ->where('orders.orderID', 'like', $search)
                                 ->orWhere('services.massage', 'like', $search)
                                 ->orWhere('users.name', 'like', $search)
                                 ->orWhere('therapists.name', 'like', $search)
@@ -86,7 +87,7 @@ class CustomerController extends Controller
                 )
                 ->join('users', 'orders.reception_id', '=', 'users.id')
 
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join('services', 'orders.service_id', '=', 'services.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
 
@@ -107,17 +108,18 @@ class CustomerController extends Controller
                     'extra_times.id as extraId',
                     'extra_times.end_extra_time',
                     'extra_times.extra_time',
+                    'extra_times.status as extraStatus',
                     'extra_times.price_extra_time as priceExtra',
                     'services.massage as massage',
                     'places.place as place',
                     'services_extra.massage as massageExtra',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.summary_extra_time'
                 )
                 ->where(function ($query) {
                     $search = '%' . request('search') . '%';
                     $query
-                        ->where('orders.order_name', 'like', $search)
+                        ->where('orders.orderID', 'like', $search)
                         ->orWhere('orders.cust_name', 'like', $search)
                         ->orWhere('services.massage', 'like', $search)
                         ->orWhere('users.name', 'like', $search)
@@ -136,7 +138,7 @@ class CustomerController extends Controller
                 ->join('users', 'orders.reception_id', '=', 'users.id')
                 ->join('services', 'orders.service_id', '=', 'services.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join(
                     'services as services_extra',
                     'extra_times.service_id',
@@ -152,11 +154,12 @@ class CustomerController extends Controller
                     'therapists.name as Tname',
                     'users.name as Rname',
                     'therapists.id as therapistId',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.start_extra_time',
                     'extra_times.id as extraId',
                     'extra_times.end_extra_time',
                     'extra_times.extra_time',
+                    'extra_times.status as extraStatus',
                     'extra_times.summary_extra_time',
                     'extra_times.price_extra_time as priceExtra',
                     'services.massage as massage',

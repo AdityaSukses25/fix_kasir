@@ -347,17 +347,17 @@
 <script>
   // sales
     $('#custom-tabs-four-profile-tab').click(function(){
-      $('#sales').removeClass('card-primary')
-      $('#sales').addClass('card-success')
+      // $('#sales').removeClass('card-primary')
+      // $('#sales').addClass('card-success')
       $('#custom-tabs-four-profile-tab').removeClass('text-dark')
-      $('#custom-tabs-four-profile-tab').addClass('text-success')
+      $('#custom-tabs-four-profile-tab').addClass('text-primary')
       $('#custom-tabs-four-home-tab').addClass('text-dark')
       // $('#custom-tabs-four-home-tab').removeClass('text-primary')
     } )
 // visitation
     $('#custom-tabs-four-home-tab').click(function(){
-      $('#sales').removeClass('card-success')
-      $('#sales').addClass('card-primary')
+      // $('#sales').removeClass('card-success')
+      // $('#sales').addClass('card-primary')
       $('#custom-tabs-four-profile-tab').addClass('text-dark')
       // $('#custom-tabs-four-profile-tab').removeClass('text-dark')
       $('#custom-tabs-four-home-tab').removeClass('text-dark')
@@ -430,7 +430,7 @@
       {
         label               : 'Sales',
         backgroundColor     : 'rgba(255,255,255,1)',
-        borderColor         : 'rgba(92, 184, 92, 1)',
+        borderColor         : 'rgba(60,141,188,0.8)',
         pointRadius          : false,
         pointColor          : '#3b8bba',
         pointStrokeColor    : 'rgba(60,141,188,1)',

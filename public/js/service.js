@@ -60,9 +60,11 @@ $('.editplace').click(function () {
   $('#editplace').modal()
   var id = $(this).attr('data-bs-id')
   var place = $(this).attr('data-bs-place')
+  var facility = $(this).attr('data-bs-facility')
   var status = $(this).attr('data-bs-status')
   $('#place_id').val(id)
   $('#edit_place').val(place)
+  $('#edit_facility').val(facility)
   $('#status').val(status)
 })
 

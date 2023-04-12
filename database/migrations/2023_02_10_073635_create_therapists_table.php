@@ -15,11 +15,11 @@ class CreateTherapistsTable extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gender_id');
             $table->string('name');
             $table->string('nickname');
             $table->string('phone');
             $table->integer('status');
+            $table->string('gender');
             $table->integer('commision');
             // $table->integer('salary')->nullable();
             $table->timestamps();

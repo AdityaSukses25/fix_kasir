@@ -30,11 +30,8 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#push').click(function () {
     $('#initial').toggleClass('d-none')
+    $('.main-sidebar').hover(function () {
+      $('#initial').toggleClass('d-none')
+    })
   })
 })
-
-// $(document).ready(function () {
-//   $('.main-sidebar').hover(function () {
-//     $('#initial').toggleClass('d-none')
-//   })
-// })

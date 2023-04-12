@@ -11,8 +11,8 @@ if (report > 535) {
 $('#custom-tabs-two-home-tab').click(function () {
   $('.print-sale').removeClass('d-none')
   $('.print-salary').addClass('d-none')
-  $('#card-sales').removeClass('card-success')
-  $('#card-sales').addClass('card-primary')
+  // $('#card-sales').removeClass('card-success')
+  // $('#card-sales').addClass('card-primary')
   $('.date-sales').removeClass('d-none')
   $('.date-salary').addClass('d-none')
 })
@@ -20,8 +20,8 @@ $('#custom-tabs-two-home-tab').click(function () {
 $('#custom-tabs-two-profile-tab').click(function () {
   $('.print-sale').addClass('d-none')
   $('.print-salary').removeClass('d-none')
-  $('#card-sales').removeClass('card-primary')
-  $('#card-sales').addClass('card-success')
+  // $('#card-sales').removeClass('card-primary')
+  // $('#card-sales').addClass('card-success')
   $('.date-sales').addClass('d-none')
   $('.date-salary').removeClass('d-none')
 })

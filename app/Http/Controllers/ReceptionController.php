@@ -44,7 +44,7 @@ class ReceptionController extends Controller
 
         $request->session()->flash('success', 'User has been added!');
 
-        return redirect('/reception');
+        return redirect('/user');
     }
 
     public function update(Request $request)
@@ -57,10 +57,7 @@ class ReceptionController extends Controller
         $updateUser->email = $request->email;
         $updateUser->save();
 
-        return Redirect('/reception')->with(
-            'success',
-            'User has been updated!'
-        );
+        return Redirect('/user')->with('success', 'User has been updated!');
     }
 
     public function updatePersonal(Request $request)
@@ -83,6 +80,6 @@ class ReceptionController extends Controller
         $updateUser->status = 0;
         $updateUser->save();
 
-        return Redirect('/reception');
+        return Redirect('/user');
     }
 }

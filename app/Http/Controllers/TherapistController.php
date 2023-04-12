@@ -41,7 +41,7 @@ class TherapistController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'nickname' => 'required',
-            'gender_id' => 'required',
+            'gender' => 'required',
             'phone' => 'required',
             'commision' => 'required',
         ]);
@@ -61,7 +61,7 @@ class TherapistController extends Controller
         $updateTerapist = Therapist::findorFail($request->terapist_name);
         $updateTerapist->name = $request->name;
         $updateTerapist->nickname = $request->nickname;
-        $updateTerapist->gender_id = $request->gender_id;
+        $updateTerapist->gender = $request->gender;
         $updateTerapist->phone = $request->phone;
 
         // $presence = attendence::where(

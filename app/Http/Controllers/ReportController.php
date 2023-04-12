@@ -27,7 +27,7 @@ class ReportController extends Controller
                     '=',
                     'therapists.id'
                 )
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join('services', 'orders.service_id', '=', 'services.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
 
@@ -51,7 +51,7 @@ class ReportController extends Controller
                     'services.massage as massage',
                     'places.place as place',
                     'services_extra.massage as massageExtra',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.summary_extra_time'
                 )
                 ->orderBy('id', 'desc');
@@ -66,7 +66,7 @@ class ReportController extends Controller
                 )
                 ->join('services', 'orders.service_id', '=', 'services.id')
                 ->join('places', 'orders.place_id', '=', 'places.id')
-                ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
+                // ->join('discounts', 'orders.discount_id', '=', 'discounts.id')
                 ->join(
                     'services as services_extra',
                     'extra_times.service_id',
@@ -81,7 +81,7 @@ class ReportController extends Controller
                     'therapists.nickname as nickname',
                     'therapists.name as name',
                     'therapists.id as therapistId',
-                    'discounts.discount as discount',
+                    // 'discounts.discount as discount',
                     'extra_times.start_extra_time',
                     'extra_times.id as extraId',
                     'extra_times.end_extra_time',
@@ -164,9 +164,16 @@ class ReportController extends Controller
                 'order_details' => $order_details,
             ];
         }
-        $total_salary = array_reduce($order_details, function ($sum, $item) {
-            return $sum + $item['order_bonus'];
-        });
+        if ($terapis == null) {
+            $total_salary = array_reduce($order_details, function (
+                $sum,
+                $item
+            ) {
+                return $sum + $item['order_bonus'];
+            });
+        } else {
+            $total_salary = 0;
+        }
 
         return view('dashboard.report.index', [
             'title' => 'Report',

@@ -88,13 +88,13 @@
                         <div class="row justify-content-center">
                           @if($terapists->count() < 2)
                           <div class="col-md">
-                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                             <i class="fa fa-edit"></i>
                             </button>
                           </div>
                           @else
                           <div class="col-md">
-                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender->id }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
+                            <button type="button" class="editTerapist btn btn-block btn-warning" data-toggle="modal" data-target="#editTerapist"  data-bs-name="{{ $terapist->name }}" data-bs-terapist="{{ $terapist->id }}" data-bs-nickname="{{ $terapist->nickname }}" data-bs-number="{{ $terapist->phone }}" data-bs-gender="{{ $terapist->gender }}" data-bs-kehadiran="{{ $terapist->presence }}" data-bs-komisi="{{ $terapist->commision }}" data-bs-attend="{{ $terapist->status }}">
                             <i class="fa fa-edit"></i>
                             </button>
                           </div>
@@ -198,11 +198,10 @@
                                   <div class="row mb-3">
                                       <label for="gender" class="col-md-4 col-form-label text-md-end">Gender</label>
                                       <div class="col-8">
-                                        <select id="gender" class="form-control custom-select" name="gender_id">
+                                        <select id="gender" class="form-control custom-select" name="gender">
                                           <option value="" selected disabled>Select gender...</option>
-                                          @foreach ($genders as $gender)                                        
-                                              <option value="{{ $gender->id }}">{{ $gender->gender }}</option>
-                                          @endforeach
+                                              <option value="male">Male</option>
+                                              <option value="female">Female</option>
                                         </select>
                                       </div>
                                   </div>
@@ -323,11 +322,10 @@
                                   <div class="row mb-3">
                                       <label for="gender" class="col-md-4 col-form-label text-md-end">Gender</label>
                                       <div class="col-8">
-                                        <select id="editGender" class="form-control custom-select" name="gender_id">
+                                        <select id="editGender" class="form-control custom-select" name="gender">
                                           <option value="" selected disabled>Select gender...</option>
-                                          @foreach ($genders as $gender)                                        
-                                              <option value="{{ $gender->id }}">{{ $gender->gender }}</option>
-                                          @endforeach
+                                              <option value="male">Male</option>
+                                              <option value="female">Female</option>
                                         </select>
                                       </div>
                                   </div>

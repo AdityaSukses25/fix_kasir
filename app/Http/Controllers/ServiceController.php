@@ -84,6 +84,7 @@ class ServiceController extends Controller
     {
         $validatedData = $request->validate([
             'place' => 'required',
+            'facility' => 'required',
         ]);
         $validatedData['status'] = 2;
 
@@ -96,6 +97,7 @@ class ServiceController extends Controller
     {
         $updateService = Place::findorFail($request->place_name);
         $updateService->place = $request->place;
+        $updateService->facility = $request->facility;
         $updateService->status = $request->status;
         $updateService->save();
 

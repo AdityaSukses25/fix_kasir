@@ -53,24 +53,29 @@ class DatabaseSeeder extends Seeder
 
         Place::create([
             'place' => 'Yudistira',
+            'facility' => 'Ac, bed, bedtube',
             'status' => '2',
         ]);
 
         Place::create([
             'place' => 'Bima',
+            'facility' => 'Ac, bed, bedtube',
             'status' => '2',
         ]);
 
         Place::create([
             'place' => 'Arjuna',
+            'facility' => 'Ac, bed, bedtube',
             'status' => '2',
         ]);
         Place::create([
             'place' => 'Nakula',
+            'facility' => 'Ac, bed, bedtube',
             'status' => '2',
         ]);
         Place::create([
             'place' => 'Sahadewa',
+            'facility' => 'Ac, bed, bedtube',
             'status' => '2',
         ]);
 

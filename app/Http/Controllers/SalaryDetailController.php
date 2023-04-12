@@ -84,6 +84,7 @@ class SalaryDetailController extends Controller
             'title' => 'Report',
             'salary' => $data,
             'Summary' => $total_salary,
+            'month_salary' => $bulan,
         ]);
     }
 

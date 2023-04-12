@@ -41,7 +41,7 @@
               </form>
               <form action="/pdf-salary" method="" target="_blank" class="print-salary d-none">
               <input type="hidden" name="bulan" id="bulan" class="ml-5 mr-2 rounded border-0 p-1 px-2 start_month" value="{{ request('bulan')}}"  >
-              <button class="btn btn-success" type="submit">
+              <button class="btn btn-primary" type="submit">
                 <li class="breadcrumb-item"><i class="fas fa-print"></i> Print to PDF </li>
               </button>
               </form>
@@ -134,9 +134,9 @@
                           <th class="text-center">Time (mnt)</th>
                           <th class="text-center">Price (Rp)</th>
                           <th class="text-center">Discount (%)</th>                    
-                          <th class="text-center">Extra Time (mnt)</th>                    
-                          <th class="text-center">Massage (Extra Time)</th>                    
-                          <th class="text-center">Price (Rp) (Extra Time)</th>                    
+                          <th class="text-center">Extra Time (mint)</th>                    
+                          <th class="text-center">Massage (ET)</th>                    
+                          <th class="text-center">Price (Rp) (ET)</th>                    
                           <th class="text-center">Summary (Rp)</th>
                         </tr>
                       </thead>
@@ -204,7 +204,7 @@
                           <td class="text-center">{{ $loop->iteration}}</td>
                           <td>{{ $month_salary->format('F, Y')}}</td>
                           <td>{{ $salary['therapist_name'] }}</td>
-                          <td class="text-center"><a href="/report/salary-detail{{ $salary['therapist_id'] }}?bulan={{request('bulan')}}" class="serviceDetail" data-toggle="" data-target="" data-bs-name="{{ $salary['therapist_name'] }}" data-bs-order="{{ $salary['order_amount'] }}" data-bs-id="{{ $salary['therapist_id'] }}">{{ $salary['order_amount'] }}</a></td>
+                          <td class="text-center"><a href="/report/salary-detail{{ $salary['therapist_id'] }}?bulan={{request('bulan')}}" class="serviceDetail" data-toggle="" data-target="" data-bs-name="{{ $salary['therapist_name'] }}" data-bs-order="{{ $salary['order_amount'] }}" data-bs-id="{{ $salary['therapist_id'] }}"><span class="mr-3">{{ $salary['order_amount'] }}</span> | <button class="btn-sm btn-warning  ml-3"><i class="fa fa-circle-info"></i></button></a></td>
                           @php
                             $total_order_bonus = 0;
                             foreach ($salary['order_details'] as $dt) {
@@ -216,7 +216,7 @@
                       @endforeach
                       @else
                       <tr>
-                        <td>Therapist atas nama {{ request('search')}} not found!</td>
+                        <td colspan="5" class="text-center">The therapist on behalf of <strong>{{ request('search')}}</strong> is nowhere to be found!</td>
                       </tr>
                       @endif
                       
@@ -225,7 +225,6 @@
                         <tr>
                           
                           <th colspan='4' class="text-center">Total Salary (Rp)</th>
-                          @if($salary['order_details'] == null)
                           @php
                           $total_order_bonus_sum = 0;
                           foreach ($salarys as $salary) {
@@ -235,9 +234,6 @@
                           }
                           @endphp
                           <th class="text-right">{{ Str::rupiah($total_order_bonus_sum)}},00</th>
-                          @else
-                          <th class="text-right">0,00</th>
-                          @endif
 
                         </tr>
                       </tfoot>
