@@ -216,7 +216,7 @@
                       @endforeach
                       @else
                       <tr>
-                        <td colspan="5" class="text-center">The therapist on behalf of <strong>{{ request('search')}}</strong> is nowhere to be found!</td>
+                        <td colspan="5" class="text-center">The therapist on behalf of <strong><span class="text-capitalize">{{ request('search')}}</span></strong> is nowhere to be found!</td>
                       </tr>
                       @endif
                       

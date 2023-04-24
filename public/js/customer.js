@@ -121,6 +121,8 @@ $('.detail-btn').click(function () {
   var start = $(this).attr('data-start')
   var end = $(this).attr('data-end')
   var status = $(this).attr('data-status')
+  var reception = $(this).attr('data-reception')
+  var therapist = $(this).attr('data-therapist')
   $('.modal-title').text('Transaction Detail #' + id)
   $('#transaction_date').val(date)
   $('#customer').val(customer)
@@ -132,6 +134,8 @@ $('.detail-btn').click(function () {
   $('#summary').val(summary)
   $('#start').val(start)
   $('#end').val(end)
+  $('#reception').val(reception)
+  $('#therapist').val(therapist)
   if (status === 'finish') {
     status = 'completed'
   }
@@ -158,6 +162,8 @@ $('.detail-extra').click(function () {
   var massage_extra = $(this).attr('data-massage-extra')
   var summary_extra = $(this).attr('data-summary-extra')
   var status = $(this).attr('data-status')
+  var reception = $(this).attr('data-reception')
+  var therapist = $(this).attr('data-therapist')
   $('.modal-title').text('Transaction Detail #' + id + '*')
   $('#transaction_date1').val(date)
   $('#customer1').val(customer)
@@ -176,6 +182,8 @@ $('.detail-extra').click(function () {
   $('#total1').val(summary_extra)
   $('#start_et1').val(start_extra)
   $('#end_et1').val(end_extra)
+  $('#reception1').val(reception)
+  $('#therapist1').val(therapist)
   if (status === 'finish') {
     status = 'completed'
   }

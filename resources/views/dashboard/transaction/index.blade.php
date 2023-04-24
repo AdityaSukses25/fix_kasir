@@ -160,9 +160,9 @@
                         <tr>
                           <td class="text-center">{{ $loop->iteration }}</td>
                           @if($day->start_extra_time == null)
-                          <td class="text-center"><span class="mr-3">#{{ $day->orderID}}</span> | <button class="btn-sm btn-warning ml-3 detail-btn" data-target="#detail" data-toggle="modal" data-customer="{{ $day->cust_name }}" data-date="{{ date('Y-m-d', strtotime($day->created_at)) }} | {{ date('H:i:s', strtotime($day->created_at)) }}" data-id="{{ $day->orderID }}" data-massage="{{ $day->massage }}" data-time="{{ $day->time }}" data-price="{{ $day->price }}" data-description="{{ $day->description }}" data-summary="{{ $day->summary }}" data-discount="{{ $day->discount }}" data-start="{{ $day->start_service }}" data-end="{{ $day->end_service }}" data-status="{{ $day->status }}"><i class="fa fa-circle-info"></i></button></td>
+                          <td class="text-center"><span class="mr-3">#{{ $day->orderID}}</span> | <button class="btn-sm btn-warning ml-3 detail-btn" data-target="#detail" data-toggle="modal" data-customer="{{ $day->cust_name }}" data-date="{{ date('Y-m-d', strtotime($day->created_at)) }} | {{ date('H:i:s', strtotime($day->created_at)) }}" data-id="{{ $day->orderID }}" data-massage="{{ $day->massage }}" data-time="{{ $day->time }}" data-price="{{ $day->price }}" data-description="{{ $day->description }}" data-summary="{{ $day->summary }}" data-discount="{{ $day->discount }}" data-start="{{ $day->start_service }}" data-end="{{ $day->end_service }}" data-status="{{ $day->status }}" data-reception="{{ $day->Rname }}" data-therapist="{{ $day->Tname }}"><i class="fa fa-circle-info"></i></button></td>
                           @else
-                          <td class="text-center"><span class="mr-3">#{{ $day->orderID}}</span> | <button class="btn-sm ml-3 btn-warning detail-extra" style="position: relative; margin-top: -20px;" data-target="#detail_extra" data-toggle="modal" data-customer="{{ $day->cust_name }}" data-date="{{ date('Y-m-d', strtotime($day->created_at)) }} | {{ date('H:i:s', strtotime($day->created_at)) }}" data-id="{{ $day->orderID }}" data-massage="{{ $day->massage }}" data-time="{{ $day->time }}" data-price="{{ $day->price }}" data-description="{{ $day->description }}" data-summary="{{ $day->summary }}" data-discount="{{ $day->discount }}" data-start="{{ $day->start_service }}" data-end="{{ $day->end_service }}" data-massage-extra="{{ $day->massageExtra }}" data-extra="{{ $day->extra_time }}" data-start-extra="{{ $day->start_extra_time }}" data-end-extra="{{ $day->end_extra_time }}" data-price-extra="{{ $day->priceExtra }}" data-summary-extra="{{ $day->summary_extra_time }}" data-status="{{ $day->status}}"><i class="fa fa-circle-info"></i><span class="mr-0" style="position: absolute;">*</span></button></td>
+                          <td class="text-center"><span class="mr-3">#{{ $day->orderID}}</span> | <button class="btn-sm ml-3 btn-warning detail-extra" style="position: relative; margin-top: -20px;" data-target="#detail_extra" data-toggle="modal" data-customer="{{ $day->cust_name }}" data-date="{{ date('Y-m-d', strtotime($day->created_at)) }} | {{ date('H:i:s', strtotime($day->created_at)) }}" data-id="{{ $day->orderID }}" data-massage="{{ $day->massage }}" data-time="{{ $day->time }}" data-price="{{ $day->price }}" data-description="{{ $day->description }}" data-summary="{{ $day->summary }}" data-discount="{{ $day->discount }}" data-start="{{ $day->start_service }}" data-end="{{ $day->end_service }}" data-massage-extra="{{ $day->massageExtra }}" data-extra="{{ $day->extra_time }}" data-start-extra="{{ $day->start_extra_time }}" data-end-extra="{{ $day->end_extra_time }}" data-price-extra="{{ $day->priceExtra }}" data-summary-extra="{{ $day->summary_extra_time }}" data-status="{{ $day->status}}" data-reception="{{ $day->Rname }}" data-therapist="{{ $day->Tname }}"><i class="fa fa-circle-info"></i><span class="mr-0" style="position: absolute;">*</span></button></td>
                           @endif
                           <td>{{ $day->cust_name}}</td>
                           <!-- <td>{{ $day->Rname}}</td> -->
@@ -253,6 +253,34 @@
                                         <input id="customer" type="text" class="form-control @error('customer') is-invalid @enderror" name="customer" value="{{ old('customer') }}" required autocomplete="customer" autofocus>
 
                                           @error('customer')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- reception -->
+                                  <div class="row mb-3">
+                                      <label for="reception" class="col-md-4 col-form-label text-md-end">Receptionist</label>
+                                      <div class="col-md-8">
+                                        <input id="reception" type="text" class="form-control @error('reception') is-invalid @enderror" name="reception" value="{{ old('reception') }}" required autocomplete="reception" autofocus>
+
+                                          @error('reception')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- therapist -->
+                                  <div class="row mb-3">
+                                      <label for="therapist" class="col-md-4 col-form-label text-md-end">Therapist</label>
+                                      <div class="col-md-8">
+                                        <input id="therapist" type="text" class="form-control @error('therapist') is-invalid @enderror" name="therapist" value="{{ old('therapist') }}" required autocomplete="therapist" autofocus>
+
+                                          @error('therapist')
                                               <span class="invalid-feedback" role="alert">
                                                   <strong>{{ $message }}</strong>
                                               </span>
@@ -444,6 +472,34 @@
                                       </div>
                                   </div>
 
+                                  <!-- reception -->
+                                  <div class="row mb-3">
+                                      <label for="reception" class="col-md-4 col-form-label text-md-end">Receptionist</label>
+                                      <div class="col-md-8">
+                                        <input id="reception1" type="text" class="form-control @error('reception') is-invalid @enderror" name="reception" value="{{ old('reception') }}" required autocomplete="reception" autofocus>
+
+                                          @error('reception')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
+                                  <!-- therapist -->
+                                  <div class="row mb-3">
+                                      <label for="therapist" class="col-md-4 col-form-label text-md-end">Therapist</label>
+                                      <div class="col-md-8">
+                                        <input id="therapist1" type="text" class="form-control @error('therapist') is-invalid @enderror" name="therapist" value="{{ old('therapist') }}" required autocomplete="therapist" autofocus>
+
+                                          @error('therapist')
+                                              <span class="invalid-feedback" role="alert">
+                                                  <strong>{{ $message }}</strong>
+                                              </span>
+                                          @enderror
+                                      </div>
+                                  </div>
+
                                   <!-- massage -->
                                   <div class="row mb-3">
                                       <label for="massage" class="col-md-4 col-form-label text-md-end">Massage</label>
@@ -573,7 +629,7 @@
                                   
                                   <!-- extra_time -->
                                   <div class="row mb-3">
-                                      <label for="extra_time" class="col-md-4 col-form-label text-md-end">Extra Time</label>
+                                      <label for="extra_time" class="col-md-4 col-form-label text-md-end">Extra Time (mint)</label>
                                       <div class="col-md-8">
                                         <input id="extra_time1" type="text" class="form-control @error('extra_time') is-invalid @enderror" name="extra_time" value="{{ old('extra_time') }}" required autocomplete="extra_time" autofocus>
 

@@ -158,7 +158,7 @@
           <div class="inner">
             <h3>{{ $order_on_going->count() }}</h3>
             @if($order_on_going->count() > 1)
-            <p>Services is running!</p>
+            <p>Services are running!</p>
             @else
             <p>Service is running!</p>
             @endif

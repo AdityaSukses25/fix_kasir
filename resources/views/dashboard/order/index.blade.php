@@ -197,7 +197,7 @@
                                                   @endforeach
                                               
                               </select> -->
-                              <input type="number" min="0" id="inputDiscount" name="discount" class="form-control" onchange="selectDiscount()"  placeholder="%">
+                              <input type="number" min="0" id="inputDiscount" name="discount" class="form-control" onchange="selectDiscount()"  placeholder="type discount.. (%)" required>
                               <input type="hidden" id="discount">
                           </div>
                         </div>

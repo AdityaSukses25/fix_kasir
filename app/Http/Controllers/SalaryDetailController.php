@@ -48,7 +48,7 @@ class SalaryDetailController extends Controller
                 }
                 $bonus = $order_bonus;
                 $order_details[] = [
-                    'order_id' => $order->id,
+                    'order_id' => $order->orderID,
                     'order_date' => $order->created_at->format('Y-m-d'),
                     'order_time' => $order->start_service,
                     'customer_name' => $order->cust_name,
@@ -120,7 +120,7 @@ class SalaryDetailController extends Controller
                 }
                 $bonus = $order_bonus;
                 $order_details[] = [
-                    'order_id' => $order->id,
+                    'order_id' => $order->orderID,
                     'order_date' => $order->created_at->format('Y-m-d'),
                     'order_time' => $order->start_service,
                     'customer_name' => $order->cust_name,
