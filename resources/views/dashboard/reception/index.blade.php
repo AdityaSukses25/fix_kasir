@@ -38,7 +38,7 @@
                     </div>
                 </form>
               <button class="btn btn-primary" data-target="#addUser" data-toggle="modal">
-                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>  Add Receptionist</li>
+                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>Add User</li>
 
               </button>
               
@@ -138,7 +138,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Add Receptionist</h4>
+                  <h4 class="modal-title">Add User</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>

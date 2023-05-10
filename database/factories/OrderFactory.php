@@ -20,7 +20,7 @@ class OrderFactory extends Factory
             'place_id' => mt_rand(1, 5),
             'discount' => mt_rand(1, 10),
             'cust_name' => $this->faker->name(),
-            'orderID' => $this->faker->randomDigitNotNull(),
+            'orderID' => mt_rand(1, 10),
             'phone' => $this->faker->phoneNumber(),
             'time' => 60,
             'price' => 200000,

@@ -54,7 +54,8 @@ class ReportController extends Controller
                     // 'discounts.discount as discount',
                     'extra_times.summary_extra_time'
                 )
-                ->orderBy('id', 'desc');
+                ->orderBy('id', 'desc')
+                ->get();
         } else {
             $extra_time = DB::table('orders')
                 ->join('extra_times', 'orders.id', '=', 'extra_times.order_id')
@@ -73,7 +74,7 @@ class ReportController extends Controller
                     '=',
                     'services_extra.id'
                 )
-                ->whereDate('orders.created_at', date('Y-m-d'))
+                ->whereDate('orders.created_at', '=', date('Y-m-d'))
                 ->where('orders.status', '!=', 'pending')
                 ->select(
                     'orders.*',
@@ -92,7 +93,8 @@ class ReportController extends Controller
                     'services_extra.massage as massageExtra',
                     'places.place as place'
                 )
-                ->orderBy('id', 'desc');
+                ->orderBy('id', 'desc')
+                ->get();
         }
         // end sales
 
@@ -111,7 +113,31 @@ class ReportController extends Controller
             $bulan = Carbon::createFromFormat('Y-m', $request->input('bulan'));
         }
         $data = [];
+        // $nextMonth = $bulan->copy()->addMonth();
         foreach ($terapis as $t) {
+            // if ($t->status == 2) {
+            //     // Dinonaktifkan di bulan berikutnya
+            //     $nextMonthStatusUpdate = [
+            //         'status' => 1, // Set status to 0 (nonaktif)
+            //     ];
+            //     $t->update($nextMonthStatusUpdate);
+
+            //     continue; // Lanjut ke terapis berikutnya
+            // }
+
+            // if ($t->status == 2) {
+            // Terapis dengan status > 1 (atau bukan 1)
+            // Tambahkan ID terapis ke dalam array untuk pembaruan bulan berikutnya
+            // $terapisToUpdate[] = $t->id;
+            // } elseif ($t->status > 1 && $bulan == $bulan) {
+            // Terapis dengan status 1 pada bulan ini
+            // $bulan = $nextMonth; // Menggunakan bulan berikutnya untuk terapis ini
+            // continue; // Lewati pemrosesan terapis untuk bulan ini
+            // }
+
+            // Proses penghitungan gaji dan lainnya untuk terapis
+            // ...
+
             $jumlah_orderan = Order::with('therapist')
                 ->where('therapist_id', $t->id)
                 ->where('status', '=', 'finish')
@@ -163,6 +189,12 @@ class ReportController extends Controller
                 'total_salary' => $total_gaji + $bonus,
                 'order_details' => $order_details,
             ];
+
+            // if ($bulan === $nextMonth && in_array($t->id, $terapisToUpdate)) {
+            //     // Perbarui status terapis menjadi 1 untuk bulan berikutnya
+            //     $t->status = 1;
+            //     $t->save();
+            // }
         }
         if ($terapis == null) {
             $total_salary = array_reduce($order_details, function (
@@ -177,7 +209,7 @@ class ReportController extends Controller
 
         return view('dashboard.report.index', [
             'title' => 'Report',
-            'days' => $extra_time->get(),
+            'days' => $extra_time,
             'totalADays' => $extra_time->sum('summary_extra_time'),
             'salarys' => $data,
             'Summary' => $total_salary,

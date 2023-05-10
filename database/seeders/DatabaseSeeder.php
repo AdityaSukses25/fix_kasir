@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(5)->create();
         Therapist::factory(10)->create();
-        Order::factory(20)->create();
+        Order::factory(2)->create();
 
         User::create([
             'name' => 'Ni Putu Rai Asih',
