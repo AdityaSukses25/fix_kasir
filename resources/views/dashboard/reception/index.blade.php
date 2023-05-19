@@ -38,7 +38,7 @@
                     </div>
                 </form>
               <button class="btn btn-primary" data-target="#addUser" data-toggle="modal">
-                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i>Add User</li>
+                <li class="breadcrumb-item"><i class="fa-solid fa-user-plus"></i> Add User</li>
 
               </button>
               

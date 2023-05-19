@@ -23,7 +23,7 @@ class CreateExtraTimesTable extends Migration
             $table->time('start_extra_time')->nullable();
             $table->time('end_extra_time')->nullable();
             $table->integer('summary_extra_time')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status', 15)->nullable();
             $table->timestamps();
         });
     }

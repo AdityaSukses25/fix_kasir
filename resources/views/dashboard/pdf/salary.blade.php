@@ -15,8 +15,12 @@
       <div class="row justify-content-center">
         <div class="col p-2">
           <div class="title text-end"><p><span class="today">Download in {{ $Now->format('Y-m-d | H:i:s') }}</span></p></div>
+          <div class="card-logo text-center">
+            <img src="/assets/logo_lotus/logo_lap.png" alt="Lotus Logo" class="img " style="height: 150px; weight: 150px; background-color: white;">
+          </div>
           <div class="title text-center pt-4 pb-3"><h3>SPA LOTUS MASSAGE ECHO</h3></div>
-          <div class="from text-center pb-1"><p>Jalan Batu Mejan Canggu, Desa Canggu, Kecamatan Kuta Utara, Kabupaten Badung, Bali.</p></div>
+          <div class="from text-center"><p>Jalan Batu Mejan Canggu, Desa Canggu, Kecamatan Kuta Utara, Kabupaten Badung, Bali.</p></div>
+          <div class="from text-center" style="margin-top: -10px;"><p>Phone: 083112097031</p></div>
           <div class="border border-top border-dark"></div>
           <div class="title text-center text-success pt-3"><h4>SALARY REPORT</h4></div>
           <div class="row justify-content-center">

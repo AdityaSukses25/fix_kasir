@@ -20,21 +20,21 @@ class CreateOrdersTable extends Migration
             // $table->foreignId('service_extra_time_id')->nullable();
             $table->foreignId('therapist_id');
             $table->foreignId('place_id');
-            $table->string('cust_name');
-            $table->string('orderID');
-            $table->string('phone');
+            $table->string('cust_name', 50);
+            $table->string('orderID', 20);
+            $table->string('phone', 15);
             $table->integer('time');
             // $table->integer('extra_time')->nullable();
             $table->integer('price');
             $table->integer('discount')->nullable();
             // $table->integer('price_extra_time')->nullable();
-            $table->string('payment_method');
+            $table->string('payment_method', 20);
             $table->string('description')->nullable();
-            $table->string('summary');
+            $table->integer('summary');
             $table->time('start_service')->nullable();
             $table->time('end_service')->nullable();
             // $table->time('end_extra_time')->nullable();
-            $table->string('status');
+            $table->string('status', 15);
             $table->timestamps();
         });
     }

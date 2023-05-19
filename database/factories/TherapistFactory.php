@@ -16,7 +16,7 @@ class TherapistFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'nickname' => $this->faker->name(mt_rand(3, 5)),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => '081123098234',
             'gender' => 'male',
             'status' => mt_rand(2, 3),
             'commision' => '40000',
